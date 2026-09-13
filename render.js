@@ -532,6 +532,51 @@ function renderVillaShortlist() {
 }
 
 /* =============================================================================
+   INVESTMENT SUBMENU — sidebar list of investment table rows
+   ============================================================================= */
+function renderInvestmentSubmenu() {
+  const menu = $("#investmentTableSubmenu");
+  if (!menu) return;
+  const list = DATA.investmentTable || [];
+  menu.innerHTML = list.map(v => `
+    <li>
+      <a class="nav-link" href="#investmentTableWrap">
+        <span class="villa-name">${esc(v.name)}</span>
+        <span class="villa-detail">
+          ${esc(v.location)}${v.beds != null ? " · "+v.beds+"BR" : ""}${v.priceUsd != null ? " · $"+v.priceUsd.toLocaleString("en-AU") : ""}
+        </span>
+        <span class="x-ref">${esc(v.roi)}</span>
+      </a>
+    </li>
+  `).join("");
+}
+
+/* =============================================================================
+   INVESTMENT TABLE — full comparison table in main content
+   ============================================================================= */
+function renderInvestmentTable() {
+  const tbody = $("#investmentTable tbody");
+  if (!tbody) return;
+  const rows = (DATA.investmentTable || []).map(v => {
+    const beds = v.beds != null ? (typeof v.beds === "number" ? v.beds+"BR" : String(v.beds)) : "—";
+    const price = v.priceUsd != null ? "$"+v.priceUsd.toLocaleString("en-AU") : "—";
+    const lease = v.leaseTo != null ? v.leaseTo : "—";
+    return `<tr>
+      <td><strong>${esc(v.name)}</strong><br><span class="muted" style="font-size:12px;">${esc(v.id)}</span></td>
+      <td>${esc(v.location)}</td>
+      <td class="num">${beds}</td>
+      <td class="num">${price}</td>
+      <td>${esc(v.roi)}</td>
+      <td>${esc(v.status)}</td>
+      <td class="num">${lease}</td>
+      <td class="muted" style="font-size:12px;">${esc(v.operator)}</td>
+      <td class="verdict-cell">${esc(v.verdict)}</td>
+    </tr>`;
+  }).join("");
+  tbody.innerHTML = rows;
+}
+
+/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
@@ -539,6 +584,8 @@ function boot() {
   if (lu) lu.textContent = "Last updated: " + DATA.lastUpdated;
 
   renderVillaShortlist();
+  renderInvestmentSubmenu();
+  renderInvestmentTable();
   renderAnnual();
   renderMonthly();
   renderGate();

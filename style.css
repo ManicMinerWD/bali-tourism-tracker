@@ -51,6 +51,16 @@ body { display: flex; flex-direction: row; min-height: 100vh; }
 }
 
 .sidebar-inner { padding: 0; }
+.sidebar-main-header {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--teal);
+  padding: 14px 16px 5px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--teal);
+  margin-top: 8px;
+}
 .sidebar-section-label {
   font-size: 11px;
   text-transform: uppercase;
@@ -206,6 +216,15 @@ header .meta strong { color: var(--ink); }
 }
 .chart-box.tall { height: 320px; }
 
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.verdict-cell {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
 table {
   width: 100%;
   border-collapse: collapse;
