@@ -163,6 +163,9 @@ function renderGate() {
   const tbody = $("#gateTable tbody");
   if (tbody) tbody.innerHTML = rows;
 
+  const gn = $("#gateNote");
+  if (gn) gn.innerHTML = `<strong>Note:</strong> BPS gate data counts all foreign visitors passing through Bali's entry points (including transit and same-day entries). Total airport + harbour exceeds the headline "foreign tourist arrivals" figure because the gate table is broader — it captures all foreign entry, not just overnight tourists. Harbour share is small but growing with cruise traffic. Source: <a href="https://bali.bps.go.id/en/statistics-table/2/MTA2IzI=/" target="_blank" rel="noopener">BPS Bali gate table</a>.`;
+
   // chart
   const ctx = $("#gateChart");
   if (ctx) {
@@ -266,7 +269,7 @@ function renderHotelOccupancy() {
   const regRows = DATA.tpkApril2026ByRegion.map(d=>`
     <tr>
       <td>${esc(d.region)}</td>
-      <td class="pct num">${d.v.toFixed(2)}%</td>
+      <td class="pct num">${d.tpk.toFixed(2)}%</td>
       <td class="note">${esc(d.note)}</td>
     </tr>`).join("");
   $("#tpkRegionTable tbody").innerHTML = regRows;
@@ -505,12 +508,37 @@ function renderHotelReport() {
 }
 
 /* =============================================================================
+   VILLA SHORTLIST — sidebar submenu
+   ============================================================================= */
+function renderVillaShortlist() {
+  const menu = $("#villaSubmenu");
+  if (!menu) return;
+  const list = DATA.villaShortlist || [];
+  menu.innerHTML = list.map(v => `
+    <li>
+      <a class="nav-link" href="${esc(v.url)}" target="_blank" rel="noopener">
+        <span class="villa-name">${esc(v.name)}</span>
+        <span class="villa-detail">
+          ${esc(v.flag)} ${esc(v.zone)} · ${v.br}BR · $${v.priceUsd.toLocaleString("en-AU")}
+          ${v.leaseTo ? " · lease to "+v.leaseTo : ""}
+          ${v.status.indexOf("Completed")>=0 ? " · Available now" : " · "+esc(v.status)}
+        </span>
+        ${v.zoning && v.zoning.toLowerCase().indexOf("not stated")>=0
+          ? `<span class="x-ref">⚠ Zoning not stated — confirm</span>`
+          : `<span class="x-ref">${esc(v.zoning)}</span>`}
+      </a>
+    </li>
+  `).join("");
+}
+
+/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
   const lu = $("#lastUpdated");
   if (lu) lu.textContent = "Last updated: " + DATA.lastUpdated;
 
+  renderVillaShortlist();
   renderAnnual();
   renderMonthly();
   renderGate();

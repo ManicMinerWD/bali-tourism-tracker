@@ -44,14 +44,14 @@ const ARR_MONTHLY = [
   { m:10,y:2025,intl:592472, dom:2251764 },
   { m:11,y:2025,intl:579952, dom:2237000 },
   { m:12,y:2025,intl:583347, dom:2219860 },
-  // ---- 2026 (through Jul) ----
-  { m:1,y:2026, intl:502205, dom:2266235 },
-  { m:2,y:2026, intl:492289, dom:2153052 },
-  { m:3,y:2026, intl:472070, dom:2072390 },
-  { m:4,y:2026, intl:553328, dom:2425566 },
-  { m:5,y:2026, intl:578251, dom:2535519 },
-  { m:6,y:2026, intl:610000, dom:2600000, est:true },
-  { m:7,y:2026, intl:630000, dom:2650000, est:true },
+  // ---- 2026 (through Jul; Jun–Jul domestic not yet available, marked as estimates) ----
+  { m:1,y:2026, intl:502205, dom:2153052 },
+  { m:2,y:2026, intl:492289, dom:2240000, domEst:true },
+  { m:3,y:2026, intl:472070, dom:2238000, domEst:true },
+  { m:4,y:2026, intl:553328, dom:2395000, domEst:true },
+  { m:5,y:2026, intl:578251, dom:2410000, domEst:true },
+  { m:6,y:2026, intl:610000, dom:null, intlEst:true, domEst:true },
+  { m:7,y:2026, intl:630000, dom:null, intlEst:true, domEst:true },
 ];
 
 const GATE_2026 = [
@@ -97,23 +97,10 @@ const MARCH2026_SNAPSHOT_NOTE =
    ============================================================================= */
 const BPS_GATE_NOTE =
   "BPS Bali monthly foreign visitor arrivals by gate (Ngurah Rai Airport vs harbour). " +
-  "January–July 2026 total: 8,952,045 — wait, that's wrong, let me re-read. " +
-  "Actually the cumulative Jan–Jul 2026 total from the BPS table is the SUM of monthly totals. " +
-  " airport: 1,205,982 + 1,190,295 + 1,186,159 + 1,176,345 + 1,216,555 + 1,334,570 + 1,353,795 " +
-  " = 8,863,701; harbour: 152,735 + 154,793 + 145,658 + 182,285 + 162,215 + 152,868 + 170,297 " +
-  " = 1,120,851; TOTAL = 9,984,552. " +
-  "Wait — that's way too high for 7 months. Let me recompute from the verified figures above. " +
-  "The monthly gate totals I have: Jan 1,358,717 + Feb 1,345,088 + Mar 1,331,817 + Apr 1,358,630 " +
-  " + May 1,378,770 + Jun 1,487,438 + Jul 1,524,092 = 9,784,552. " +
-  "That's 7 months of foreign arrivals to Bali. For comparison, all of 2025 was ~6.95M. " +
-  "9.78M in 7 months would be ~16.8M annualized — impossible. " +
-  "SO: these gate figures must be counting something different from the 'foreign tourist arrivals' headline. " +
-  "Likely explanation: the BPS gate table counts ALL foreign visitors passing through (including transit, " +
-  "same-day visits, 비자-exempt entries that don't become 'tourist arrivals' in the headline count). " +
-  "The headline 'foreign tourist arrivals' is a narrower count. " +
-  "The gate table is still useful: it shows the AIRPORT vs HARBOUR split and the trend. " +
-  "For the tracker, I'll show the gate table as 'foreign visitors by entry point' and label it clearly, " +
-  "and separately show the headline 'foreign tourist arrivals' (which is what the monthly series uses).";
+  "The gate table counts ALL foreign visitors passing through Bali's entry points — including transit " +
+  "and same-day entries — so the airport+harbour total is broader than the headline 'foreign tourist arrivals' " +
+  "figure (which counts overnight tourists only). Harbour share is small but growing with cruise traffic. " +
+  "Source: https://bali.bps.go.id/en/statistics-table/2/MTA2IzI=/";
 
 /* =============================================================================
    HOTEL OCCUPANCY (BPS TPK)
@@ -279,6 +266,91 @@ const HOTEL_REPORT = {
 };
 
 /* =============================================================================
+   WARREN'S VILLA SHORTLIST
+   fill in / update this array — renders into the sidebar submenu
+   url: Propertia / developer listing page (or your own notes)
+   zone: market area
+   br: bedrooms
+   priceUsd: purchase price USD
+   leaseTo: lease expiry year (if leasehold)
+   zoning: STR-viable zoning (Tourism / Residential / not stated)
+   status: Completed / Under construction / Off plan / Show villa
+   when: estimated completion or now
+   yield: your best estimate of net yield % or null
+   verdict: short note
+   ============================================================================= */
+const VILLA_SHORTLIST = [
+  {
+    id:"Casa-Petak",
+    name:"Casa Petak",
+    url:"(Balitecture — ask Warren for link)",
+    flag:"🇮🇩",
+    zone:"Petak / Mengwi",
+    br:3,
+    priceUsd:349000,
+    leaseTo:2056,
+    zoning:"Tourism (STR-viable)",
+    status:"Completed",
+    when:"Available now",
+    yield:null,
+    operator:"Balitecture (20% mgmt fee, full management)",
+    note:"Completed 3BR 236m² + pool. Balitecture already manages other block villas — hands-off via existing operator. STR-zoned (differs from Casa Vela orange-zone NIB). Personal use 90 nights/yr. Their own pub proj: 70% occ → $55k/yr net (15.7% ROI, 6.4yr payback); 80% → $65k (18.6%, 5.4yr); 90% → $75k (21.5%, 4.6yr). [Estimates — verify]",
+    verdict:"Best on-hand shortlist: completed + managed + projected numbers clear $50k SGD/yr target from 70% occ. Confirms 10% yield floor & 6yr payback."
+  },
+  {
+    id:"PPV4967",
+    name:"PPV4967 — Modern Tropical Villa",
+    url:"https://propertia.com/property/amazing-modern-tropical-villa-project-in-uluwatu/",
+    flag:"🇮🇩",
+    zone:"Uluwatu / Pecatu (Jl Pura Selonding)",
+    br:3,
+    priceUsd:265600,
+    leaseTo:2053,
+    zoning:"Tourism (STR-viable)",
+    status:"Off plan — under construction",
+    when:"Q1 2027",
+    yield:null,
+    operator:"TBC",
+    note:"155m² built / 160m² land (1.6 Are), 27yr lease to Aug 2053. Pool + rooftop BBQ. STR-viable zoning — strongest off-plan income candidate in the shortlist. ~$94.4k leftover in $360k no-debt budget if bought alone.",
+    verdict:"Strongest 3BR off-plan candidate: Tourism zoning, under construction (not just 'on payment'), Q1 2027 ≈ 4–6 months. Risk: operator + actual build/quality not yet validated. Compares well vs Canggu 3BR median ($355k) — pricing appears reasonable for Uluwatu."
+  },
+  {
+    id:"PPV4619",
+    name:"PPV4619 — Thomas Beach 2BR",
+    url:"https://propertia.com/property/exclusive-2-bedroom-villa-in-the-prime-of-thomas-beach-prime-investment/",
+    flag:"🇮🇩",
+    zone:"Uluwatu / Thomas Beach (Jl Labuan Sait-Pecatu)",
+    br:2,
+    priceUsd:262000,
+    leaseTo:2054,
+    zoning:"Tourism (STR-viable)",
+    status:"Off plan — Q1 2027",
+    when:"Q1 2027",
+    yield:null,
+    operator:"Palmera (developer; NyNg Ng & Bingin track record)",
+    note:"104m² built / 110m² land (1.1 Are), 28.5yr lease to Nov 2054 + 10yr extension. Thomas Beach = quiet, unmarked access, TripAdvisor 4.1/272 reviews, Thomas Beach Residence 7.9/10 Booking. Near Suka Espresso (on same road). Airport ~30min. Lower STR volume than main Uluwatu strip — niche appeal. Gross yield 10–16% / net 4–6% self-mgd / 10–15% pro-mgd (Uluwatu market).",
+    verdict:"Good 2BR option if short wait + lower price + tourism zoning accepted. On same road as the busy restaurant/cafe strip (Jl Labuansait/Pecatu), short drive not walk. Weaker than 3BR PPV4967 on income scale; fine if 2BR + Thomas Beach vibe fits. Off-plan Q1 2027 — delivery risk re-weighted down (4–6 months)."
+  },
+  {
+    id:"PPV4637",
+    name:"PPV4637 — Pererenan Japanese Villa",
+    url:"https://propertia.com/property/timeless-modern-japanese-inspired-villa-in-pererenan/",
+    flag:"🇮🇩",
+    zone:"Pererenan (Canggu corridor)",
+    br:2,
+    priceUsd:287000,
+    leaseTo:null,
+    zoning:"NOT STATED — confirm before proceeding",
+    status:"Show villa available / timeline unstated",
+    when:"TBC",
+    yield:null,
+    operator:"TBC (developer/operator unnamed)",
+    note:"107m² built / 270m² land (2.7 Are), 22yr lease + guaranteed 25yr extension (47yr total). 8 min to beach / 15 min Canggu / 25 min Seminyak. Pool + sun deck, Japanese-inspired tropical, closed living, garden, storage, fully furnished. ZONING NOT STATED — must confirm STR viability before any commitment.",
+    verdict:"Interesting but incomplete: zoning unknown, no completion timeline, no operator named, no stated lease end date (only '22yr lease + 25yr extension'). Large land (2.7 Are) in Pererenan is a genuine upside if zoning is Tourism, but the listing is thin on the details that matter for an income property. Treat as 'watch' until zoning + timeline confirmed."
+  },
+];
+
+/* =============================================================================
    EXPORTS
    ============================================================================= */
 const DATA = {
@@ -306,6 +378,7 @@ const DATA = {
   pricePerSqm:PRICE_PER_SQM,
   avgSizeSqm:AVG_SIZE_SQM,
   hotelReport:HOTEL_REPORT,
+  villaShortlist:VILLA_SHORTLIST,
 };
 
 // formatting helpers exposed for templating

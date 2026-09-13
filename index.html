@@ -9,6 +9,33 @@
   <script src="data.js"></script>
 </head>
 <body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">☰ Menu</button>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+
+    <div class="sidebar-section-label">Tracker Sections</div>
+    <a class="nav-link" href="#annualWrap">Annual arrivals</a>
+    <a class="nav-link" href="#monthlyWrap">Monthly arrivals</a>
+    <a class="nav-link" href="#gateWrap">Foreign visitors by gate</a>
+    <a class="nav-link" href="#marketsWrap">Source markets</a>
+    <a class="nav-link" href="#hotelOccWrap">Hotel occupancy (TPK)</a>
+    <a class="nav-link" href="#losWrap">Length of stay</a>
+    <a class="nav-link" href="#economyWrap">Bali economy (GDP)</a>
+    <a class="nav-link" href="#strWrap">STR / Airbnb market</a>
+    <a class="nav-link" href="#priceAdrWrap">Property prices by zone</a>
+    <a class="nav-link" href="#hotelReportWrap">Hotel report</a>
+    <a class="nav-link" href="#sources">Data sources</a>
+
+    <div class="sidebar-section-label" style="margin-top:14px;">Warren's Villa Shortlist</div>
+    <ul class="villa-submenu" id="villaSubmenu"></ul>
+
+  </div>
+</aside>
+
+<div class="layout">
+<div class="main-content">
 <div class="wrap">
 
 <header>
@@ -248,8 +275,28 @@
   Bali Tourism Tracker · <code>data.js</code> is the single source of truth · refresh after editing · last updated <span id="lastUpdatedFooter"></span>
 </p>
 
-</div>
+</div><!-- /main-content -->
+</div><!-- /layout -->
 
 <script src="render.js"></script>
+<script>
+/* ---- mobile sidebar toggle ---- */
+(function(){
+  const btn = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
+  if (!btn || !sidebar) return;
+  btn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    btn.textContent = sidebar.classList.contains("open") ? "✕ Close" : "☰ Menu";
+  });
+  // close on outside click
+  document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      sidebar.classList.remove("open");
+      btn.textContent = "☰ Menu";
+    }
+  });
+})();
+</script>
 </body>
 </html>
