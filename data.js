@@ -1,7 +1,7 @@
 // =============================================================================
 // Bali Tourism Tracker — data.js
 // Single source of truth. Edits go here; commit + push rebuilds the live site.
-// Last updated: 2026-09-13
+// Last updated: 2026-09-13T14:10
 // =============================================================================
 "use strict";
 
