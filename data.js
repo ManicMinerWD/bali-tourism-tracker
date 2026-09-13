@@ -1,5 +1,5 @@
 // =============================================================================
-// Bali Tourism Tracker — data.js
+// Warrens Exit Strategy — data.js
 // Single source of truth. Edits go here; commit + push rebuilds the live site.
 // Last updated: 2026-09-13T19:00
 // =============================================================================
