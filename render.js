@@ -519,7 +519,7 @@ function renderVillaShortlist() {
       <a class="nav-link" href="${esc(v.url)}" target="_blank" rel="noopener">
         <span class="villa-name">${esc(v.name)}</span>
         <span class="villa-detail">
-          ${esc(v.flag)} ${esc(v.zone)} · ${v.br}BR · $${v.priceUsd.toLocaleString("en-AU")}
+          ${v.flag} ${esc(v.zone)}${v.br != null ? " · " + v.br + "BR" : ""}${v.priceUsd != null ? " · $" + v.priceUsd.toLocaleString("en-AU") : ""}
           ${v.leaseTo ? " · lease to "+v.leaseTo : ""}
           ${v.status.indexOf("Completed")>=0 ? " · Available now" : " · "+esc(v.status)}
         </span>
