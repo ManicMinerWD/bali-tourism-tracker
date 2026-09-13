@@ -66,13 +66,13 @@ const ARR_MONTHLY = [
    BPS GATE DATA — 2026 monthly foreign arrivals by entry point
    ============================================================================= */
 const GATE_2026 = [
-  { mon:1, airport:532105, harbour:1204, total:533309 },
-  { mon:2, airport:482494, harbour:1023, total:483517 },
-  { mon:3, airport:471026, harbour:969, total:471995 },
-  { mon:4, airport:477991, harbour:1422, total:479413 },
-  { mon:5, airport:473900, harbour:1386, total:475286 },
-  { mon:6, airport:530000, harbour:1755, total:531755, est:true },
-  { mon:7, airport:520000, harbour:1700, total:521700, est:true },
+  { mon:1, y:2026, airport:532105, harbour:1204, total:533309 },
+  { mon:2, y:2026, airport:482494, harbour:1023, total:483517 },
+  { mon:3, y:2026, airport:471026, harbour:969, total:471995 },
+  { mon:4, y:2026, airport:477991, harbour:1422, total:479413 },
+  { mon:5, y:2026, airport:473900, harbour:1386, total:475286 },
+  { mon:6, y:2026, airport:530000, harbour:1755, total:531755, est:true },
+  { mon:7, y:2026, airport:520000, harbour:1700, total:521700, est:true },
 ];
 
 const BPS_GATE_NOTE = "BPS gate data counts all foreign visitors passing through Bali's entry points — not just overnight tourists. Source: https://bali.bps.go.id";
