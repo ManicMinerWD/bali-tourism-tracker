@@ -1,7 +1,7 @@
 // =============================================================================
 // Bali Tourism Tracker — data.js
 // Single source of truth. Edits go here; commit + push rebuilds the live site.
-// Last updated: 2026-09-13T18:00
+// Last updated: 2026-09-13T19:00
 // =============================================================================
 
 "use strict";
@@ -404,7 +404,7 @@ const INVESTMENT_TABLE = [
    EXPORTS
    ============================================================================= */
 const DATA = {
-  lastUpdated: "2026-09-13T18:00",
+  lastUpdated: "2026-09-13T19:00",
   arrAnnual: ARR_ANNUAL,
   arrMonthly: ARR_MONTHLY,
   gate2026: GATE_2026,
