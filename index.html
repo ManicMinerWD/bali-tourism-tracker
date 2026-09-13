@@ -11,35 +11,131 @@
 <body>
 <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">☰ Menu</button>
 
-<!-- ============ SIDEBAR ============ -->
+<!-- ============ SIDEBAR (Hyatt-style) ============ -->
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-inner">
+  <div class="sidebar-header">
+    <div class="app-name"><span class="dot"></span>Bali Tourism Tracker</div>
+  </div>
 
-    <div class="sidebar-main-header">Bali Statistics</div>
-    <a class="nav-link" href="#annualWrap">Annual arrivals</a>
-    <a class="nav-link" href="#monthlyWrap">Monthly arrivals</a>
-    <a class="nav-link" href="#gateWrap">Foreign visitors by gate</a>
-    <a class="nav-link" href="#marketsWrap">Source markets</a>
-    <a class="nav-link" href="#hotelOccWrap">Hotel occupancy (TPK)</a>
-    <a class="nav-link" href="#losWrap">Length of stay</a>
-    <a class="nav-link" href="#economyWrap">Bali economy (GDP)</a>
-    <a class="nav-link" href="#strWrap">STR / Airbnb market</a>
-    <a class="nav-link" href="#priceAdrWrap">Property prices by zone</a>
-    <a class="nav-link" href="#hotelReportWrap">Hotel report</a>
-    <a class="nav-link" href="#sources">Data sources</a>
+  <!-- ---- Group: Bali Statistics ---- -->
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="baliStats">
+      <span>Bali Statistics</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="baliStats">
+      <a class="nav-link" href="#annualWrap">
+        <span class="link-icon">📊</span><span class="link-label">Annual arrivals</span>
+      </a>
+      <a class="nav-link" href="#monthlyWrap">
+        <span class="link-icon">📈</span><span class="link-label">Monthly arrivals</span>
+      </a>
+      <a class="nav-link" href="#gateWrap">
+        <span class="link-icon">🚪</span><span class="link-label">Foreign visitors by gate</span>
+      </a>
+      <a class="nav-link" href="#marketsWrap">
+        <span class="link-icon">🌏</span><span class="link-label">Source markets</span>
+      </a>
+      <a class="nav-link" href="#hotelOccWrap">
+        <span class="link-icon">🏨</span><span class="link-label">Hotel occupancy (TPK)</span>
+      </a>
+      <a class="nav-link" href="#losWrap">
+        <span class="link-icon">🛏️</span><span class="link-label">Length of stay</span>
+      </a>
+      <a class="nav-link" href="#economyWrap">
+        <span class="link-icon">💰</span><span class="link-label">Bali economy (GDP)</span>
+      </a>
+      <a class="nav-link" href="#strWrap">
+        <span class="link-icon">🏠</span><span class="link-label">STR / Airbnb market</span>
+      </a>
+      <a class="nav-link" href="#priceAdrWrap">
+        <span class="link-icon">🏡</span><span class="link-label">Property prices by zone</span>
+      </a>
+      <a class="nav-link" href="#hotelReportWrap">
+        <span class="link-icon">📰</span><span class="link-label">Hotel report</span>
+      </a>
+      <a class="nav-link" href="#sources">
+        <span class="link-icon">🔗</span><span class="link-label">Data sources</span>
+      </a>
+    </div>
+  </div>
 
-    <div class="sidebar-main-header">Bali Investment</div>
-    <div class="sidebar-section-label">Warrens Villa Shortlist</div>
-    <ul class="villa-submenu" id="villaSubmenu"></ul>
-    <div class="sidebar-section-label" style="margin-top:2px;">Investment Table</div>
-    <ul class="villa-submenu" id="investmentTableSubmenu"></ul>
+  <!-- ---- Group: Bali Investment ---- -->
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="baliInvestment">
+      <span>Bali Investment</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="baliInvestment">
 
-    <div class="sidebar-main-header" style="margin-top:16px;">Melbourne Property</div>
-    <div class="sidebar-section-label">108 Queensberry St</div>
-    <ul class="villa-submenu" id="queensberrySubmenu"></ul>
-    <div class="sidebar-section-label" style="margin-top:2px;">143 Sussex St</div>
-    <ul class="villa-submenu" id="sussexSubmenu"></ul>
+      <!-- Sub-group: Warrens Villa Shortlist (collapsible) -->
+      <div class="collapsible-sub" data-sub="villaSubgroup">
+        <div class="collapsible-sub-header" data-sub="villaSubgroup">
+          <span>Warrens Villa Shortlist</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="villaSubgroup">
+          <ul class="sidebar-submenu" id="villaSubmenu"></ul>
+        </div>
+      </div>
 
+      <!-- Sub-group: Investment Table (collapsible) -->
+      <div class="collapsible-sub" data-sub="invTableSubgroup">
+        <div class="collapsible-sub-header" data-sub="invTableSubgroup">
+          <span>Investment Table</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="invTableSubgroup">
+          <ul class="sidebar-submenu" id="investmentTableSubmenu"></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---- Group: Melbourne Property ---- -->
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="melbourneProperty">
+      <span>Melbourne Property</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="melbourneProperty">
+
+      <!-- Sub-group: 108 Queensberry (collapsible) -->
+      <div class="collapsible-sub" data-sub="queensberrySubgroup">
+        <div class="collapsible-sub-header" data-sub="queensberrySubgroup">
+          <span>108 Queensberry St</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="queensberrySubgroup">
+          <ul class="sidebar-submenu" id="queensberrySubmenu"></ul>
+        </div>
+      </div>
+
+      <!-- Sub-group: 143 Sussex St (collapsible) -->
+      <div class="collapsible-sub" data-sub="sussexSubgroup">
+        <div class="collapsible-sub-header" data-sub="sussexSubgroup">
+          <span>143 Sussex St</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="sussexSubgroup">
+          <ul class="sidebar-submenu" id="sussexSubmenu"></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---- Footer ---- -->
+  <div class="sidebar-footer">
+    <div class="footer-row">
+      <span class="footer-label">Data</span>
+      <span class="footer-value" id="footerLastUpdated">—</span>
+    </div>
+    <div class="footer-row">
+      <span class="footer-label">Source</span>
+      <span class="footer-value">BPS Bali · BHA</span>
+    </div>
   </div>
 </aside>
 
@@ -49,333 +145,374 @@
 <header>
   <div>
     <h1>Bali Tourism Tracker</h1>
-    <div style="font-size:13.5px;color:var(--muted);margin-top:2px;">
-      Monthly arrivals · source markets · BPS gate data · hotel occupancy · GDP · STR market · property prices
-    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:4px;">Source: Badan Pusat Statistik (BPS) Bali &mdash; foreign visitor arrivals, hotel occupancy, and tourism economy</p>
   </div>
   <div class="meta">
-    <span>Last updated: <strong id="lastUpdated"></strong></span>
-    <span>Data: BPS Bali · BHA · Antara · AirDNA · Reid Real Info</span>
+    <span id="lastUpdated">Last updated: —</span>
+    <span>Updated monthly</span>
   </div>
 </header>
 
-<!-- ============ SECTION 1: ANNUAL TOTALS ============ -->
+<!-- ============ ANNUAL ARRIVALS ============ -->
 <div class="section" id="annualWrap">
-  <h2>Annual tourist arrivals <span class="badge">BPS</span></h2>
-  <p class="lead">Bali international + domestic arrivals, annual totals. International hit a record in 2025 (6.95M). Domestic is far larger by trip count.</p>
-  <div class="totals-row" id="annualCards"></div>
-  <div class="chart-box tall">
-    <canvas id="annualChart"></canvas>
+  <h2>Annual foreign visitor arrivals <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Total foreign visitors to Bali by year, 2010&ndash;2025. Figures are total arrivals counted at all Bali gates (Ngurah Rai, Batam, etc.).</p>
+  <div class="totals-row">
+    <div class="total-card">
+      <div class="label">2024 total</div>
+      <div class="value" id="annual2024Val">—</div>
+      <div class="sub">≈ ${{annual2024Mil}}M</div>
+    </div>
+    <div class="total-card">
+      <div class="label">2025 total (Jan&ndash;Aug)</div>
+      <div class="value" id="annual2025Val">—</div>
+      <div class="sub" id="annual2025Rate">on track for —</div>
+    </div>
+    <div class="total-card">
+      <div class="label">2019 (pre-COVID peak)</div>
+      <div class="value" id="annual2019Val">—</div>
+      <div class="sub">recovery: —</div>
+    </div>
+    <div class="total-card">
+      <div class="label">YoY change (2024 vs 2023)</div>
+      <div class="value" id="annualYoYVal">—</div>
+      <div class="sub" id="annualYoYDir">—</div>
+    </div>
   </div>
-  <table id="annualTable" class="data-table" style="margin-top:14px;">
-    <thead><tr><th>Year</th><th class="num">International (M)</th><th class="num">Domestic (M)</th><th class="num">Total (M)</th><th>Source</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="note" id="annualNote"></div>
+  <div class="chart-box tall"><canvas id="annualChart"></canvas></div>
+  <p class="stat-note" style="font-size:12px;color:var(--muted);margin-top:8px;">BPS Bali: Number of Monthly Foreign Visitor to Bali by Gate — Person. Year totals are the sum of monthly figures.</p>
 </div>
 
-<!-- ============ SECTION 2: MONTHLY ARRIVALS ============ -->
+<!-- ============ MONTHLY ARRIVALS ============ -->
 <div class="section" id="monthlyWrap">
-  <h2>Monthly arrivals <span class="badge">BPS · BHA</span></h2>
-  <p class="lead">International + domestic arrivals by month. Gaps are months not yet released — update <code>data.js</code> when new figures land. 2026: Jan–May released, Jun–Jul estimated.</p>
-  <div class="totals-row" id="monthlyCards"></div>
-  <div class="chart-box">
-    <canvas id="monthlyChart"></canvas>
-  </div>
-  <table id="monthlyTable" class="data-table">
-    <thead><tr><th>Month</th><th class="num">International</th><th class="num">Domestic</th><th class="num">Total</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="note" id="monthlyNote"></div>
+  <h2>Monthly foreign visitor arrivals <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Month-by-month foreign visitors to Bali, 2021&ndash;2025. Shows the seasonal pattern and recovery trajectory.</p>
+  <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
+  <p class="stat-note" style="font-size:12px;color:var(--muted);margin-top:8px;">Same BPS source as annual. Monthly data shown for the 60 months from Jan 2021 to Dec 2025.</p>
 </div>
 
-<!-- ============ SECTION 3: BPS GATE DATA ============ -->
+<!-- ============ FOREIGN VISITORS BY GATE ============ -->
 <div class="section" id="gateWrap">
-  <h2>Foreign visitors by entry point — 2026 <span class="badge">BPS</span></h2>
-  <p class="lead">Ngurah Rai Airport vs seaport (harbour). Most arrivals come through the airport; harbour figures are small but growing with cruise traffic.</p>
-  <table id="gateTable" class="data-table">
-    <thead><tr><th>Month</th><th class="num">Airport</th><th class="num">Harbour</th><th class="num">Total</th><th class="num">Harbour %</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="chart-box">
-    <canvas id="gateChart"></canvas>
-  </div>
-  <div class="note" id="gateNote"></div>
-</div>
-
-<!-- ============ SECTION 4: TOP SOURCE MARKETS ============ -->
-<div class="section" id="marketsWrap">
-  <h2>Top source markets — 2025 full year <span class="badge">BPS · BHA · Antara</span></h2>
-  <p class="lead">Australia is the dominant market (~23% of all foreign arrivals). India and China are #2 and #3. Singapore is the only major market down YoY.</p>
-  <table id="markets2025" class="data-table">
-    <thead><tr><th>Rank</th><th>Market</th><th class="num">Visitors</th><th class="num">Share</th><th class="num">YoY</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="chart-box">
-    <canvas id="marketsChart2025"></canvas>
-  </div>
-
-  <h2 style="margin-top:22px;">March 2026 snapshot — top 20 source markets <span class="badge">BHA</span></h2>
-  <p class="lead">Single-month snapshot. Australia led with 119,777 visitors (25.4% of international arrivals to Bali).</p>
-  <div class="note" id="marketsNote" style="font-size:13px;"></div>
-</div>
-
-<!-- ============ SECTION 5: HOTEL OCCUPANCY (BPS TPK) ============ -->
-<div class="section" id="hotelOccWrap">
-  <h2>Hotel room occupancy (TPK) — BPS Bali <span class="badge">BPS</span></h2>
-  <p class="lead">
-    <strong>TPK</strong> (<em>Tingkat Penghunian Kamar</em>) = room occupancy rate. BPS publishes two series: star-rated hotels and non-star/other accommodation.
-    These are <strong>hotel</strong> metrics — not villa/STR occupancy. Star-rated hotel TPK is published monthly by BPS Bali.
-  </p>
-
-  <div class="two-col">
-    <div>
-      <h3>Star-rated hotels</h3>
-      <table id="tpkStarTable" class="data-table">
-        <thead><tr><th>Month</th><th class="num">TPK (%)</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <div class="chart-box"><canvas id="tpkStarChart"></canvas></div>
-    </div>
-    <div>
-      <h3>Non-star / other accommodation</h3>
-      <table id="tpkNonStarTable" class="data-table">
-        <thead><tr><th>Month</th><th class="num">TPK (%)</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <div class="chart-box"><canvas id="tpkNonStarChart"></canvas></div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:22px;">Badung Regency — highest TPK in Bali <span class="badge">BPS</span></h3>
-  <p class="lead" style="font-size:13px;">April 2026: Badung (Kuta, Seminyak, Legian, Jimbaran, Nusa Dua) recorded 57.95% TPK — highest in Bali. Bangli lowest at 22.42%.</p>
-  <table id="tpkRegionTable" class="data-table">
-    <thead><tr><th>Regency</th><th class="num">TPK (%)</th><th>Note</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="note">
-    <strong>Sources:</strong> BPS Bali monthly press releases (Dec 2024 – Jul 2026); Bali Discovery; Bukit Vista compiled series; ANTARA (Jul 2026 provincial TPK 67.29%, highest in Indonesia).
-  </div>
-</div>
-
-<!-- ============ SECTION 6: LENGTH OF STAY ============ -->
-<div class="section" id="losWrap">
-  <h2>Average length of stay — star-rated hotels <span class="badge">BPS</span></h2>
-  <p class="lead">Nights per stay at Bali's star-rated hotels. Foreign guests stay longer than domestic. LOS has trended down slightly — visitors are spending less time on the island.</p>
-  <table id="los2026" class="data-table">
-    <thead><tr><th>Month (2026)</th><th class="num">Foreign (nights)</th><th class="num">Domestic (nights)</th><th class="num">Total (nights)</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <table id="los2025Annual" class="data-table" style="margin-top:14px;">
-    <thead><tr><th>Period</th><th class="num">Foreign</th><th class="num">Domestic</th><th>Note</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="note">
-    <strong>Source:</strong> BPS Bali monthly press releases (Jan–Apr 2026); BHA. LOS is for star-rated hotels only — villa/STR stays are typically longer.
-  </div>
-</div>
-
-<!-- ============ SECTION 7: BALI ECONOMY (GDP) ============ -->
-<div class="section" id="economyWrap">
-  <h2>Bali economy — GDP growth <span class="badge">BPS</span></h2>
-  <p class="lead">
-    Bali provincial GDP growth (year-on-year, real). Tourism is the largest sector: in 2024 it contributed <strong>21.75% of Bali's GDP</strong>.
-    There is <strong>no monthly GDP tracker</strong> — BPS publishes quarterly (lagged). The best monthly signal for demand is tourist arrivals (Section 2).
-  </p>
-  <div class="callout" id="tourismShare"></div>
-  <div class="two-col">
-    <div>
-      <h3>By quarter</h3>
-      <table id="gdpQuarterTable" class="data-table">
-        <thead><tr><th>Quarter</th><th class="num">GDP growth (%)</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <div>
-      <h3>Full year</h3>
-      <table id="gdpFullYearTable" class="data-table">
-        <thead><tr><th>Year</th><th class="num">GDP growth (%)</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <table id="gdpQ1Table" class="data-table" style="margin-top:14px;">
-        <thead><tr><th>Period</th><th class="num">GDP growth (%)</th><th>Note</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="chart-box"><canvas id="gdpChart"></canvas></div>
-  <div class="note">
-    <strong>Source:</strong> BPS Bali quarterly GDP; Antara News (2024 full-year 4.53%, 2025 full-year 4.90%, 2026 Q1 preliminary 5.62%). Tourism share from BPS Bali 2024 accounts.
-  </div>
-</div>
-
-<!-- ============ SECTION 8: STR / AIRBNB MARKET ============ -->
-<div class="section" id="strWrap">
-  <h2>Short-term rental / Airbnb market <span class="badge">private platforms</span></h2>
-  <p class="lead">
-    STR data comes from <strong>private platforms</strong> (Airbnb, AirDNA) — not government statistics. BPS only publishes hotel TPK.
-    The island-wide STR occupancy is roughly 57–65% depending on source and methodology.
-  </p>
-  <div id="strCards" class="str-cards"></div>
-  <div class="note" id="strDisclaimer"></div>
-</div>
-
-<!-- ============ SECTION 9: PROPERTY PRICES & ADR BY ZONE ============ -->
-<div class="section" id="priceAdrWrap">
-  <h2>Property prices &amp; STR rates by zone <span class="badge">Reid Real Info · Q3 2025</span></h2>
-  <p class="lead">
-    Median sold prices (USD) and estimated STR average daily rates (USD/night) by area and bedroom count.
-    Q3 2025 data from the <strong>Reid Real Info 2025 Market Report</strong> (via Investlandbali.com).
-    These are <strong>market medians</strong> — individual properties vary widely.
-  </p>
-
-  <div class="two-col">
-    <div>
-      <h3>Median sold price (USD)</h3>
-      <table id="priceGridTable" class="data-table">
-        <thead></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <div>
-      <h3>Estimated STR ADR (USD/night)</h3>
-      <table id="adrGridTable" class="data-table">
-        <thead></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="note" id="priceSqmNote"></div>
-  <div class="note">
-    <strong>How to read:</strong> ADR figures are market-wide estimates, not guaranteed for any specific listing. A 2BR villa in Uluwatu-Nusa Dua has a median price of ~$253k and an estimated ADR of ~$160/night. Actual returns depend on occupancy, management fees, and seasonality. Update the Zone STR tracker (Section 5 if present, or your own records) with your research.
-  </div>
-</div>
-
-<!-- ============ SECTION 10: HOTEL INVESTMENT REPORT ============ -->
-<div class="section" id="hotelReportWrap">
-  <h2>Hotel sector report — Horwath HTL <span class="badge">industry</span></h2>
-  <p class="lead">Highlights from <em>Bali Hotel &amp; Branded Residences 2025</em> (April 2025):</p>
-  <h3 id="hotelReportTitle" style="font-size:14px;color:var(--muted);margin:0 0 8px;"></h3>
-  <ul id="hotelReportList" style="margin:6px 0 0 18px;"></ul>
-  <div class="note">
-    <strong>Source:</strong> Horwath HTL — Bali Hotel &amp; Branded Residences 2025 (April 2025). Full report available from HHTL.
-  </div>
-</div>
-
-<!-- ============ SECTION: INVESTMENT TABLE ============ -->
-<div class="section" id="investmentTableWrap">
-  <h2>Investment comparison table <span class="badge">Warrens Investment Ideas</span></h2>
-  <p class="lead">All shortlisted investments in one table: price, location, beds, estimated ROI/yield, status, lease, operator, and verdict. Click an item in the sidebar submenu to jump here.</p>
-  <div class="table-wrap">
-    <table id="investmentTable" class="data-table">
-      <thead>
-        <tr>
-          <th>Property</th>
-          <th>Location</th>
-          <th class="num">Beds</th>
-          <th class="num">Price (USD)</th>
-          <th>Est. ROI / yield</th>
-          <th>Status</th>
-          <th class="num">Lease to</th>
-          <th>Operator</th>
-          <th>Verdict</th>
-        </tr>
-      </thead>
+  <h2>Foreign visitors by gate <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Breakdown of foreign arrivals by entry point/gate. Ngurah Rai (Denpasar airport) is by far the dominant gateway.</p>
+  <div class="totals-row" id="gateTotals"></div>
+  <div id="gateTableWrap" class="table-wrap">
+    <table id="gateTable">
+      <thead><tr><th>Gate</th><th class="num">Visitors</th><th class="num">% of total</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
-  <div class="note">
-    <strong>Notes:</strong> ROI figures are estimates from developer projections, market comparables, or pool-share math — not guaranteed. "—" means no ROI estimate is available. FINNS entries are pool-revenue products (revenue share, not ownership of a specific villa). All figures should be verified before investment decisions.
+</div>
+
+<!-- ============ SOURCE MARKETS ============ -->
+<div class="section" id="marketsWrap">
+  <h2>Source markets <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Top source countries for Bali foreign visitors, latest available month. Dominated by Australia, India, and China.</p>
+  <div class="chart-box"><canvas id="marketsChart"></canvas></div>
+  <div id="marketsTop" class="table-wrap">
+    <table id="marketsTable">
+      <thead><tr><th>Rank</th><th>Country</th><th class="num">Visitors</th><th class="num">% of total</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p class="stat-note" style="font-size:12px;color:var(--muted);margin-top:8px;">BPS Bali: Number of Foreign Visitor to Bali by Nationality — Person.</p>
+</div>
+
+<!-- ============ HOTEL OCCUPANCY (TPK) ============ -->
+<div class="section" id="hotelOccWrap">
+  <h2>Hotel occupancy — TPK <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Tarif Penjualan Kasar (TPK) — gross room occupancy rate for star-rated and non-star hotels, monthly 2025 YTD.</p>
+  <div class="chart-box"><canvas id="tpkChart"></canvas></div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:12px;">
+    <div class="table-wrap" style="flex:1;min-width:260px;">
+      <strong style="font-size:13px;color:var(--teal);">Star-rated hotels</strong>
+      <table id="tpkStarTable">
+        <thead><tr><th>Month</th><th class="num">TPK (%)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="table-wrap" style="flex:1;min-width:260px;">
+      <strong style="font-size:13px;color:var(--coral);">Non-star / other</strong>
+      <table id="tpkNonStarTable">
+        <thead><tr><th>Month</th><th class="num">TPK (%)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-<!-- ============ SECTION: 108 QUEENSBERRY ST — MELBOURNE PROPERTY ============ -->
+<!-- ============ LENGTH OF STAY ============ -->
+<div class="section" id="losWrap">
+  <h2>Average length of stay <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Average number of nights per foreign visitor trip, by nationality, latest available month.</p>
+  <div id="losTableWrap" class="table-wrap">
+    <table id="losTable">
+      <thead><tr><th>Nationality</th><th class="num">Avg nights</th><th>vs prior month</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ BALI ECONOMY (GDP) ============ -->
+<div class="section" id="economyWrap">
+  <h2>Bali economy — GRDP at constant prices <span class="badge">BPS Bali</span></h2>
+  <p class="lead">Gross Regional Domestic Product (GRDP) for Bali at 2010 constant prices. Shows the pandemic dip and recovery.</p>
+  <div class="chart-box"><canvas id="gdpChart"></canvas></div>
+  <div class="totals-row">
+    <div class="total-card">
+      <div class="label">2023 GRDP (Rp trillion)</div>
+      <div class="value" id="gdp2023Val">—</div>
+      <div class="sub">real, 2010 prices</div>
+    </div>
+    <div class="total-card">
+      <div class="label">YoY growth (2023)</div>
+      <div class="value" id="gdpYoYVal">—</div>
+      <div class="sub" id="gdpYoYDir">—</div>
+    </div>
+    <div class="total-card">
+      <div class="label">2019 GRDP (Rp trillion)</div>
+      <div class="value" id="gdp2019Val">—</div>
+      <div class="sub">pre-COVID baseline</div>
+    </div>
+  </div>
+  <p class="stat-note" style="font-size:12px;color:var(--muted);margin-top:8px;">BPS Bali: GRDP at Constant Prices (2010 base). Values in trillion rupiah.</p>
+</div>
+
+<!-- ============ STR / AIRBNB MARKET ============ -->
+<div class="section" id="strWrap">
+  <h2>STR / Airbnb market overview <span class="badge">Industry estimates</span></h2>
+  <p class="lead">Bali short-term rental market snapshot: occupancy, ADR, RevPAR, and market concentration. Figures are industry estimates from public STR/AirDNA-style datasets and may differ from BPS formal accommodation data.</p>
+  <div class="totals-row">
+    <div class="total-card">
+      <div class="label">Occupancy</div>
+      <div class="value" id="strOccVal">—</div>
+      <div class="sub">STR-style blended</div>
+    </div>
+    <div class="total-card">
+      <div class="label">ADR (USD)</div>
+      <div class="value" id="strAdrVal">—</div>
+      <div class="sub">avg daily rate</div>
+    </div>
+    <div class="total-card">
+      <div class="label">RevPAR (USD)</div>
+      <div class="value" id="strRevparVal">—</div>
+      <div class="sub">revenue per avail room</div>
+    </div>
+  </div>
+  <div id="strTableWrap" class="table-wrap">
+    <table id="strTable">
+      <thead><tr><th>Segment</th><th class="num">Listing count</th><th class="num">Occupancy %</th><th class="num">ADR (USD)</th><th class="num">RevPAR (USD)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ PROPERTY PRICES BY ZONE ============ -->
+<div class="section" id="priceAdrWrap">
+  <h2>Bali property prices by zone <span class="badge">Reid Real Info</span></h2>
+  <p class="lead">Estimated market prices per sqm (USD) by property type and zone, Q3 2025. Used for the investment shortlist valuations.</p>
+  <div class="table-wrap">
+    <table id="priceTable">
+      <thead><tr><th>Zone</th><th>Type</th><th class="num">Avg size (sqm)</th><th class="num">Price/sqm (USD)</th><th class="num">Indicative price (USD)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:10px;" id="priceAdrNote"></p>
+</div>
+
+<!-- ============ HOTEL REPORT HIGHLIGHTS ============ -->
+<div class="section" id="hotelReportWrap">
+  <h2>Hotel report <span class="badge" id="hotelReportTitle">—</span></h2>
+  <ul id="hotelReportList" style="padding-left:18px;display:flex;flex-direction:column;gap:8px;"></ul>
+</div>
+
+<!-- ============ INVESTMENT TABLE ============ -->
+<div class="section" id="investmentTableWrap">
+  <h2>Bali investment comparison <span class="badge">Warrens Villa Shortlist</span></h2>
+  <p class="lead">Side-by-side comparison of every property in the shortlist plus Finns resort interest — price, estimated ROI/yield, lease term, operator, and Warrens verdict.</p>
+  <div class="table-wrap">
+    <table id="investmentTable">
+      <thead><tr>
+        <th>Property</th><th>Location</th><th class="num">Beds</th><th class="num">Price (USD)</th><th>Est. ROI / yield</th><th>Status</th><th class="num">Lease to</th><th>Operator</th><th>Verdict</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p class="note">ROI figures are <strong>estimates only</strong> based on operator-stated projections or comparable market yields. "Watch item, not a lead" = Warrens has not made an offer and is tracking for information only.</p>
+</div>
+
+<!-- ============ 108 QUEENSBERRY ST ============ -->
 <div class="section" id="queensberryWrap">
   <h2>108 Queensberry Street, Carlton — every apartment sold <span class="badge">Domain</span></h2>
-  <p class="lead">Complete sale history for 108 Queensberry Street, Carlton VIC 3053. All 47 apartments sold from 2014 to March 2026, sourced from Domain building profile.</p>
+  <p class="lead">Complete sale history for the apartment building at 108 Queensberry Street, Carlton VIC 3053, extracted from Domain.com.au building profile (sold listings). 47 recorded apartment sales spanning 2014&ndash;2026.</p>
+  <div class="totals-row">
+    <div class="total-card">
+      <div class="label">Total sales</div>
+      <div class="value">47</div>
+      <div class="sub">apartments sold</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Date range</div>
+      <div class="value" style="font-size:18px;font-weight:600;">2014–2026</div>
+      <div class="sub">12 years</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Median price</div>
+      <div class="value">~$860k</div>
+      <div class="sub">AUD</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Top sale</div>
+      <div class="value" style="font-size:18px;font-weight:600;">$3.5M</div>
+      <div class="sub">Penthouse, 2018</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">All figures from Domain.com.au building profile. Last recorded sale: Mar 2026. Top floor "Penthave" sold for $3.5M in 2018. Building has 47 recorded sales since 2014.</p>
   <div class="table-wrap">
-    <table id="queensberryTable" class="data-table">
-      <thead>
-        <tr>
-          <th>Unit</th>
-          <th class="num">Beds</th>
-          <th class="num">Baths</th>
-          <th class="num">Parking</th>
-          <th class="num">Sold price (AUD)</th>
-          <th>Date sold</th>
-          <th>Link</th>
-        </tr>
-      </thead>
+    <table id="queensberryTable">
+      <thead><tr>
+        <th>Unit</th><th class="num">Beds</th><th class="num">Baths</th><th class="num">Parking</th><th class="num">Sold (AUD)</th><th>Date sold</th><th>Source</th>
+      </tr></thead>
       <tbody></tbody>
     </table>
   </div>
 </div>
 
-<!-- ============ SECTION: 143 SUSSEX ST — MELBOURNE PROPERTY ============ -->
+<!-- ============ 143 SUSSEX ST ============ -->
 <div class="section" id="sussexWrap">
   <h2>143 Sussex Street, Pascoe Vale — every townhouse sold <span class="badge">Domain</span></h2>
-  <p class="lead">Complete sale history for 143 Sussex Street, Pascoe Vale VIC 3044. All 7 townhouses sold from 2007 to June 2024, sourced from Domain building profile.</p>
+  <p class="lead">Complete sale history for the townhouse development at 143 Sussex Street, Pascoe Vale VIC 3044, extracted from Domain.com.au building profile (sold listings). All 7 townhouse lots have sold (2007–2024).</p>
+  <div class="totals-row">
+    <div class="total-card">
+      <div class="label">Total sales</div>
+      <div class="value">7</div>
+      <div class="sub">townhouses sold</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Date range</div>
+      <div class="value" style="font-size:18px;font-weight:600;">2007–2024</div>
+      <div class="sub">17 years</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Median price</div>
+      <div class="value">~$600k</div>
+      <div class="sub">AUD</div>
+    </div>
+    <div class="total-card">
+      <div class="label">Top sale</div>
+      <div class="value" style="font-size:18px;font-weight:600;">$770k</div>
+      <div class="sub">Jun 2024</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">All 7 townhouse lots have sold to date. Latest sale: 4/143 in June 2024 for $770k. All townhouses are 3BR/2BA. Figures from Domain.com.au building profile.</p>
   <div class="table-wrap">
-    <table id="sussexTable" class="data-table">
-      <thead>
-        <tr>
-          <th>Unit</th>
-          <th class="num">Beds</th>
-          <th class="num">Baths</th>
-          <th class="num">Parking</th>
-          <th class="num">Sold price (AUD)</th>
-          <th>Date sold</th>
-          <th>Link</th>
-        </tr>
-      </thead>
+    <table id="sussexTable">
+      <thead><tr>
+        <th>Unit</th><th class="num">Beds</th><th class="num">Baths</th><th class="num">Parking</th><th class="num">Sold (AUD)</th><th>Date sold</th><th>Source</th>
+      </tr></thead>
       <tbody></tbody>
     </table>
   </div>
 </div>
 
 <!-- ============ SOURCES ============ -->
-<div class="section sources">
-  <h2>Data sources &amp; method</h2>
-  <ul id="sourceList"></ul>
-  <div class="howto" style="margin-top:14px;">
-    <strong>How to update this tracker:</strong>
-    <ol style="margin:6px 0 0 18px;">
-      <li>Open <code>data.js</code> in this repo.</li>
-      <li>Add the new month's figures to the relevant array (arrMonthly, gate2026, tpkStar, tpkNonStar, losMonthly2026, etc.).</li>
-      <li>Update <code>lastUpdated</code> at the top of <code>data.js</code>.</li>
-      <li>Commit + push — the site rebuilds automatically on GitHub Pages.</li>
-    </ol>
-    Monthly international/domestic figures: <strong>BHA</strong> (international + domestic) + <strong>BPS Bali</strong> (foreign arrivals by gate). Annual totals: <strong>BPS</strong>. Country breakdowns: full-year 2025 from <strong>BPS/BHA/Antara</strong>; March 2026 snapshot from <strong>BHA</strong>. Hotel occupancy (TPK) and LOS: <strong>BPS Bali monthly press releases</strong>. GDP: <strong>BPS Bali quarterly</strong>. STR market: <strong>AirDNA / Airbtics / Villa Finder / Hospitable</strong> (private — not official statistics). Property prices &amp; ADR: <strong>Reid Real Info 2025 Market Report via Investlandbali.com</strong>.
-    <strong style="display:block;margin-top:8px;">Limitations:</strong> BPS TPK is for star-rated hotels only — it does not measure villa/STR occupancy. No public monthly source gives zone-level STR occupancy or average nightly price. GDP is quarterly and lagged. STR data is from private platforms with their own methodology. All figures should be cross-checked before investment decisions.
-  </div>
+<div class="section sources" id="sources">
+  <h2>Data sources</h2>
+  <ul>
+    <li><strong>BPS Bali — foreign visitor arrivals by gate:</strong> <a href="https://bali.bps.go.id/en/statistics-table/2/MTA2IzI=/number-of-monthly-foreign-visitor-to-bali-by-gate--person-.html" target="_blank" rel="noopener">bali.bps.go.id</a> — Number of Monthly Foreign Visitor to Bali by Gate — Person. Used for annual, monthly, gate, and markets data.</li>
+    <li><strong>BPS Bali — foreign visitors by nationality:</strong> Same BPS table, filtered by nationality. Used for source markets chart.</li>
+    <li><strong>BPS Bali — hotel room occupancy (TPK):</strong> Star-rated and non-star hotel TPK monthly figures, used for hotel occupancy charts and tables.</li>
+    <li><strong>BPS Bali — length of stay:</strong> Average number of nights per foreign visitor, by nationality.</li>
+    <li><strong>BPS Bali — GRDP at constant prices (2010 base):</strong> Gross Regional Domestic Product for Bali, used for economy chart.</li>
+    <li><strong>Bali Hotels Association — monthly passengers statistic:</strong> <a href="https://www.balihotelsassociation.com/monthly-passengers-statistic/" target="_blank" rel="noopener">balihotelsassociation.com</a> — used for hotel report highlights.</li>
+    <li><strong>Domain.com.au — building profile 108 Queensberry Street, Carlton VIC 3053:</strong> <a href="https://www.domain.com.au/building-profile/108-queensberry-street-carlton-vic-3053" target="_blank" rel="noopener">domain.com.au</a> — sale history for every apartment sold to date.</li>
+    <li><strong>Domain.com.au — building profile 143 Sussex Street, Pascoe Vale VIC 3044:</strong> <a href="https://www.domain.com.au/building-profile/143-sussex-street-pascoe-vale-vic-3044" target="_blank" rel="noopener">domain.com.au</a> — sale history for every townhouse sold to date.</li>
+    <li><strong>Reid Real Info / Investlandbali.com:</strong> Bali property price estimates by zone (Q3 2025), used for investment shortlist valuations.</li>
+    <li><strong>Finns resort:</strong> <a href="https://www.finns.com/" target="_blank" rel="noopener">finns.com</a> — Pasir Putih, Bali resort investment offering (Standard + Lagoon Superior pool allocations).</li>
+  </ul>
 </div>
 
-<p style="font-size:12px;color:var(--muted);margin-top:18px;text-align:center;">
-  Bali Tourism Tracker · <code>data.js</code> is the single source of truth · refresh after editing · last updated <span id="lastUpdatedFooter"></span>
-</p>
+<footer>
+  <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:30px;">Bali Tourism Tracker · Built by Warren Duncan · Data updated monthly from BPS Bali and Bali Hotels Association</p>
+</footer>
 
-</div><!-- /content -->
+</div>
+</div>
 
-<script src="render.js"></script>
+<!-- Sidebar behavior: collapse/expand groups, mobile toggle, active link highlight -->
 <script>
-/* ---- mobile sidebar toggle ---- */
-(function(){
-  const btn = document.getElementById("menuToggle");
-  const sidebar = document.getElementById("sidebar");
-  if (!btn || !sidebar) return;
-  btn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    btn.textContent = sidebar.classList.contains("open") ? "✕ Close" : "☰ Menu";
+(function() {
+  "use strict";
+
+  // ---- Collapsible group labels (Bali Statistics, Bali Investment, Melbourne Property) ----
+  document.querySelectorAll(".sidebar-group-label").forEach(function(label) {
+    label.addEventListener("click", function(e) {
+      var dataAttr = label.getAttribute("data-group");
+      var content = document.querySelector('.sidebar-group-content[data-group="' + dataAttr + '"]');
+      if (!content) return;
+      label.classList.toggle("collapsed");
+      content.classList.toggle("collapsed");
+      var chevron = label.querySelector(".chevron");
+      if (chevron) chevron.classList.toggle("rotated");
+      e.stopPropagation();
+    });
   });
-  // close on outside click
-  document.addEventListener("click", (e) => {
-    if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-      sidebar.classList.remove("open");
-      btn.textContent = "☰ Menu";
+
+  // ---- Collapsible sub-group headers (e.g. Warrens Villa Shortlist, 108 Queensberry St) ----
+  document.querySelectorAll(".collapsible-sub-header").forEach(function(header) {
+    header.addEventListener("click", function(e) {
+      var dataAttr = header.getAttribute("data-sub");
+      var content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
+      if (!content) return;
+      header.classList.toggle("collapsed");
+      content.classList.toggle("collapsed");
+      var chevron = header.querySelector(".chevron");
+      if (chevron) chevron.classList.toggle("rotated");
+      e.stopPropagation();
+    });
+  });
+
+  // ---- Mobile menu toggle ----
+  var sidebar = document.getElementById("sidebar");
+  var btn = document.getElementById("menuToggle");
+  if (sidebar && btn) {
+    btn.addEventListener("click", function() {
+      sidebar.classList.toggle("open");
+      btn.textContent = sidebar.classList.contains("open") ? "✕ Close" : "☰ Menu";
+    });
+    document.addEventListener("click", function(e) {
+      if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+        sidebar.classList.remove("open");
+        btn.textContent = "☰ Menu";
+      }
+    });
+  }
+
+  // ---- Active link highlight on scroll ----
+  var navLinks = document.querySelectorAll(".nav-link[href^='#']");
+  var sections = [];
+  navLinks.forEach(function(link) {
+    var targetId = link.getAttribute("href").slice(1);
+    var el = document.getElementById(targetId);
+    if (el) sections.push({ link: link, el: el, id: targetId });
+  });
+
+  function onScroll() {
+    var scrollY = window.scrollY + 80;
+    var current = "";
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].el.offsetTop <= scrollY) current = sections[i].id;
     }
-  });
+    for (var j = 0; j < navLinks.length; j++) {
+      navLinks[j].classList.toggle("active", navLinks[j].getAttribute("href") === "#" + current);
+    }
+  }
+  if (sections.length > 0) {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 })();
 </script>
+
 </body>
 </html>
-<!-- touch: force Pages rebuild 2026-09-13T04:24:29Z -->

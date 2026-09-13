@@ -514,21 +514,27 @@ function renderVillaShortlist() {
   const menu = $("#villaSubmenu");
   if (!menu) return;
   const list = DATA.villaShortlist || [];
-  menu.innerHTML = list.map(v => `
-    <li>
-      <a class="nav-link" href="${esc(v.url)}" target="_blank" rel="noopener">
-        <span class="villa-name">${esc(v.name)}</span>
-        <span class="villa-detail">
-          ${v.flag} ${esc(v.zone)}${v.br != null ? " · " + v.br + "BR" : ""}${v.priceUsd != null ? " · $" + v.priceUsd.toLocaleString("en-AU") : ""}
-          ${v.leaseTo ? " · lease to "+v.leaseTo : ""}
-          ${v.status.indexOf("Completed")>=0 ? " · Available now" : " · "+esc(v.status)}
+  menu.innerHTML = list.map(v => {
+    const detail = (v.flag + " " + esc(v.zone)) +
+      (v.br != null ? " · " + v.br + "BR" : "") +
+      (v.priceUsd != null ? " · $" + v.priceUsd.toLocaleString("en-AU") : "") +
+      (v.leaseTo ? " · lease to " + v.leaseTo : "");
+    const statusLine = v.status.indexOf("Completed") >= 0
+      ? "Available now"
+      : esc(v.status);
+    const zoningWarn = v.zoning && v.zoning.toLowerCase().indexOf("not stated") >= 0
+      ? `<span class="x-ref">⚠ Zoning not stated — confirm</span>`
+      : `<span class="x-ref">${esc(v.zoning)}</span>`;
+    return `<li class="sidebar-submenu-item">
+      <a class="sidebar-submenu-btn" href="${esc(v.url)}" target="_blank" rel="noopener">
+        <span class="sub-icon">📌</span>
+        <span class="sub-label">${esc(v.name)}</span>
+        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
+          ${detail}<br>${statusLine}<br>${zoningWarn}
         </span>
-        ${v.zoning && v.zoning.toLowerCase().indexOf("not stated")>=0
-          ? `<span class="x-ref">⚠ Zoning not stated — confirm</span>`
-          : `<span class="x-ref">${esc(v.zoning)}</span>`}
       </a>
-    </li>
-  `).join("");
+    </li>`;
+  }).join("");
 }
 
 /* =============================================================================
@@ -538,17 +544,21 @@ function renderInvestmentSubmenu() {
   const menu = $("#investmentTableSubmenu");
   if (!menu) return;
   const list = DATA.investmentTable || [];
-  menu.innerHTML = list.map(v => `
-    <li>
-      <a class="nav-link" href="#investmentTableWrap">
-        <span class="villa-name">${esc(v.name)}</span>
-        <span class="villa-detail">
-          ${esc(v.location)}${v.beds != null ? " · "+v.beds+"BR" : ""}${v.priceUsd != null ? " · $"+v.priceUsd.toLocaleString("en-AU") : ""}
+  menu.innerHTML = list.map(v => {
+    const beds = v.beds != null ? (typeof v.beds === "number" ? v.beds+"BR" : String(v.beds)) : "";
+    const price = v.priceUsd != null ? " · $" + v.priceUsd.toLocaleString("en-AU") : "";
+    return `<li class="sidebar-submenu-item">
+      <a class="sidebar-submenu-btn" href="#investmentTableWrap">
+        <span class="sub-icon">💰</span>
+        <span class="sub-label">${esc(v.name)}</span>
+        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
+          ${esc(v.location)}${beds}${price}<br>
+          ROI: ${esc(v.roi)}<br>
+          Status: ${esc(v.status)}
         </span>
-        <span class="x-ref">${esc(v.roi)}</span>
       </a>
-    </li>
-  `).join("");
+    </li>`;
+  }).join("");
 }
 
 /* =============================================================================
@@ -598,6 +608,28 @@ function renderQueensberrySales() {
 }
 
 /* =============================================================================
+   108 QUEENSBERRY ST — SIDEBAR SUBMENU
+   ============================================================================= */
+function renderQueensberrySubmenu() {
+  const menu = $("#queensberrySubmenu");
+  if (!menu) return;
+  const list = DATA.queensberrySales || [];
+  menu.innerHTML = list.map(v => {
+    const parking = v.parking != null ? " · " + v.parking + " ps" : "";
+    return `<li class="sidebar-submenu-item">
+      <a class="sidebar-submenu-btn" href="#queensberryWrap">
+        <span class="sub-icon">🏢</span>
+        <span class="sub-label">${esc(v.unit)}</span>
+        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
+          ${v.beds}BR/${v.baths}BA${parking}<br>
+          $${v.price.toLocaleString("en-AU")} · ${esc(v.date)}
+        </span>
+      </a>
+    </li>`;
+  }).join("");
+}
+
+/* =============================================================================
    143 SUSSEX ST — SALE HISTORY TABLE
    ============================================================================= */
 function renderSussexSales() {
@@ -619,11 +651,35 @@ function renderSussexSales() {
 }
 
 /* =============================================================================
+   143 SUSSEX ST — SIDEBAR SUBMENU
+   ============================================================================= */
+function renderSussexSubmenu() {
+  const menu = $("#sussexSubmenu");
+  if (!menu) return;
+  const list = DATA.sussexSales || [];
+  menu.innerHTML = list.map(v => {
+    const parking = v.parking != null ? " · " + v.parking + " ps" : "";
+    return `<li class="sidebar-submenu-item">
+      <a class="sidebar-submenu-btn" href="#sussexWrap">
+        <span class="sub-icon">🏡</span>
+        <span class="sub-label">${esc(v.unit)}</span>
+        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
+          ${v.beds}BR/${v.baths}BA${parking}<br>
+          $${v.price.toLocaleString("en-AU")} · ${esc(v.date)}
+        </span>
+      </a>
+    </li>`;
+  }).join("");
+}
+
+/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
   const lu = $("#lastUpdated");
   if (lu) lu.textContent = "Last updated: " + DATA.lastUpdated;
+  const fl = $("#footerLastUpdated");
+  if (fl) fl.textContent = DATA.lastUpdated;
 
   renderVillaShortlist();
   renderInvestmentSubmenu();
