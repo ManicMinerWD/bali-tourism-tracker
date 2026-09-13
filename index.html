@@ -25,18 +25,22 @@
 </header>
 
 <!-- ============ SECTION 1: ANNUAL TOTALS ============ -->
-<div class="section">
+<div class="section" id="annualWrap">
   <h2>Annual tourist arrivals <span class="badge">BPS</span></h2>
   <p class="lead">Bali international + domestic arrivals, annual totals. International hit a record in 2025 (6.95M). Domestic is far larger by trip count.</p>
   <div class="totals-row" id="annualCards"></div>
   <div class="chart-box tall">
     <canvas id="annualChart"></canvas>
   </div>
+  <table id="annualTable" class="data-table" style="margin-top:14px;">
+    <thead><tr><th>Year</th><th class="num">International (M)</th><th class="num">Domestic (M)</th><th class="num">Total (M)</th><th>Source</th></tr></thead>
+    <tbody></tbody>
+  </table>
   <div class="note" id="annualNote"></div>
 </div>
 
 <!-- ============ SECTION 2: MONTHLY ARRIVALS ============ -->
-<div class="section">
+<div class="section" id="monthlyWrap">
   <h2>Monthly arrivals <span class="badge">BPS · BHA</span></h2>
   <p class="lead">International + domestic arrivals by month. Gaps are months not yet released — update <code>data.js</code> when new figures land. 2026: Jan–May released, Jun–Jul estimated.</p>
   <div class="totals-row" id="monthlyCards"></div>
@@ -51,7 +55,7 @@
 </div>
 
 <!-- ============ SECTION 3: BPS GATE DATA ============ -->
-<div class="section">
+<div class="section" id="gateWrap">
   <h2>Foreign visitors by entry point — 2026 <span class="badge">BPS</span></h2>
   <p class="lead">Ngurah Rai Airport vs seaport (harbour). Most arrivals come through the airport; harbour figures are small but growing with cruise traffic.</p>
   <table id="gateTable" class="data-table">
@@ -65,7 +69,7 @@
 </div>
 
 <!-- ============ SECTION 4: TOP SOURCE MARKETS ============ -->
-<div class="section">
+<div class="section" id="marketsWrap">
   <h2>Top source markets — 2025 full year <span class="badge">BPS · BHA · Antara</span></h2>
   <p class="lead">Australia is the dominant market (~23% of all foreign arrivals). India and China are #2 and #3. Singapore is the only major market down YoY.</p>
   <table id="markets2025" class="data-table">
@@ -82,7 +86,7 @@
 </div>
 
 <!-- ============ SECTION 5: HOTEL OCCUPANCY (BPS TPK) ============ -->
-<div class="section">
+<div class="section" id="hotelOccWrap">
   <h2>Hotel room occupancy (TPK) — BPS Bali <span class="badge">BPS</span></h2>
   <p class="lead">
     <strong>TPK</strong> (<em>Tingkat Penghunian Kamar</em>) = room occupancy rate. BPS publishes two series: star-rated hotels and non-star/other accommodation.
@@ -120,7 +124,7 @@
 </div>
 
 <!-- ============ SECTION 6: LENGTH OF STAY ============ -->
-<div class="section">
+<div class="section" id="losWrap">
   <h2>Average length of stay — star-rated hotels <span class="badge">BPS</span></h2>
   <p class="lead">Nights per stay at Bali's star-rated hotels. Foreign guests stay longer than domestic. LOS has trended down slightly — visitors are spending less time on the island.</p>
   <table id="los2026" class="data-table">
@@ -137,7 +141,7 @@
 </div>
 
 <!-- ============ SECTION 7: BALI ECONOMY (GDP) ============ -->
-<div class="section">
+<div class="section" id="economyWrap">
   <h2>Bali economy — GDP growth <span class="badge">BPS</span></h2>
   <p class="lead">
     Bali provincial GDP growth (year-on-year, real). Tourism is the largest sector: in 2024 it contributed <strong>21.75% of Bali's GDP</strong>.
@@ -171,7 +175,7 @@
 </div>
 
 <!-- ============ SECTION 8: STR / AIRBNB MARKET ============ -->
-<div class="section">
+<div class="section" id="strWrap">
   <h2>Short-term rental / Airbnb market <span class="badge">private platforms</span></h2>
   <p class="lead">
     STR data comes from <strong>private platforms</strong> (Airbnb, AirDNA) — not government statistics. BPS only publishes hotel TPK.
@@ -182,7 +186,7 @@
 </div>
 
 <!-- ============ SECTION 9: PROPERTY PRICES & ADR BY ZONE ============ -->
-<div class="section">
+<div class="section" id="priceAdrWrap">
   <h2>Property prices &amp; STR rates by zone <span class="badge">Reid Real Info · Q3 2025</span></h2>
   <p class="lead">
     Median sold prices (USD) and estimated STR average daily rates (USD/night) by area and bedroom count.
@@ -213,7 +217,7 @@
 </div>
 
 <!-- ============ SECTION 10: HOTEL INVESTMENT REPORT ============ -->
-<div class="section">
+<div class="section" id="hotelReportWrap">
   <h2>Hotel sector report — Horwath HTL <span class="badge">industry</span></h2>
   <p class="lead">Highlights from <em>Bali Hotel &amp; Branded Residences 2025</em> (April 2025):</p>
   <h3 id="hotelReportTitle" style="font-size:14px;color:var(--muted);margin:0 0 8px;"></h3>
