@@ -66,13 +66,13 @@ const ARR_MONTHLY = [
    BPS GATE DATA — 2026 monthly foreign arrivals by entry point
    ============================================================================= */
 const GATE_2026 = [
-  { mon:1, y:2026, airport:532105, harbour:1204, total:533309 },
-  { mon:2, y:2026, airport:482494, harbour:1023, total:483517 },
-  { mon:3, y:2026, airport:471026, harbour:969, total:471995 },
-  { mon:4, y:2026, airport:477991, harbour:1422, total:479413 },
-  { mon:5, y:2026, airport:473900, harbour:1386, total:475286 },
-  { mon:6, y:2026, airport:530000, harbour:1755, total:531755, est:true },
-  { mon:7, y:2026, airport:520000, harbour:1700, total:521700, est:true },
+    { m:1, y:2026, airport:532105, harbour:1204, total:533309 },
+    { m:2, y:2026, airport:482494, harbour:1023, total:483517 },
+    { m:3, y:2026, airport:471026, harbour:969, total:471995 },
+    { m:4, y:2026, airport:477991, harbour:1422, total:479413 },
+    { m:5, y:2026, airport:473900, harbour:1386, total:475286 },
+    { m:6, y:2026, airport:530000, harbour:1755, total:531755, est:true },
+    { m:7, y:2026, airport:520000, harbour:1700, total:521700, est:true },
 ];
 
 const BPS_GATE_NOTE = "BPS gate data counts all foreign visitors passing through Bali's entry points — not just overnight tourists. Source: https://bali.bps.go.id";
@@ -97,46 +97,46 @@ const MARKET_2025 = [
    HOTEL OCCUPANCY (TPK) — BPS Bali
    ============================================================================= */
 const TPK_STAR = [
-  { mon:1, tpk:45.99 },
-  { mon:2, tpk:47.31 },
-  { mon:3, tpk:50.57 },
-  { mon:4, tpk:52.42 },
-  { mon:5, tpk:53.68 },
-  { mon:6, tpk:54.88 },
-  { mon:7, tpk:60.79 },
-  { mon:8, tpk:62.15 },
-  { mon:9, tpk:58.34 },
-  { mon:10, tpk:56.21 },
-  { mon:11, tpk:54.08 },
-  { mon:12, tpk:52.93 },
+    { m:1, y:2026, v:45.99 },
+    { m:2, y:2026, v:47.31 },
+    { m:3, y:2026, v:50.57 },
+    { m:4, y:2026, v:52.42 },
+    { m:5, y:2026, v:53.68 },
+    { m:6, y:2026, v:54.88 },
+    { m:7, y:2026, v:60.79 },
+    { m:8, y:2026, v:62.15 },
+    { m:9, y:2026, v:58.34 },
+    { m:10, y:2026, v:56.21 },
+    { m:11, y:2026, v:54.08 },
+    { m:12, y:2026, v:52.93 },
 ];
 
 const TPK_NONSTAR = [
-  { mon:1, tpk:36.99 },
-  { mon:2, tpk:31.98 },
-  { mon:3, tpk:33.70 },
-  { mon:4, tpk:32.75 },
-  { mon:5, tpk:30.84 },
-  { mon:6, tpk:33.69 },
-  { mon:7, tpk:37.54 },
-  { mon:8, tpk:38.92 },
-  { mon:9, tpk:36.18 },
-  { mon:10, tpk:34.55 },
-  { mon:11, tpk:33.02 },
-  { mon:12, tpk:31.87 },
+    { m:1, y:2026, v:36.99 },
+    { m:2, y:2026, v:31.98 },
+    { m:3, y:2026, v:33.70 },
+    { m:4, y:2026, v:32.75 },
+    { m:5, y:2026, v:30.84 },
+    { m:6, y:2026, v:33.69 },
+    { m:7, y:2026, v:37.54 },
+    { m:8, y:2026, v:38.92 },
+    { m:9, y:2026, v:36.18 },
+    { m:10, y:2026, v:34.55 },
+    { m:11, y:2026, v:33.02 },
+    { m:12, y:2026, v:31.87 },
 ];
 
 /* =============================================================================
    LENGTH OF STAY — star-rated hotels, BPS Bali
    ============================================================================= */
 const LOS_MONTHLY_2026 = [
-  { month:1, foreign:3.78, domestic:2.60, total:3.25 },
-  { month:2, foreign:3.79, domestic:2.60, total:3.24 },
-  { month:3, foreign:3.58, domestic:2.54, total:3.11 },
-  { month:4, foreign:3.58, domestic:2.56, total:3.12 },
-  { month:5, foreign:3.55, domestic:2.52, total:3.08 },
-  { month:6, foreign:3.50, domestic:2.50, total:3.05 },
-  { month:7, foreign:3.48, domestic:2.48, total:3.02 },
+  { m:1, y:2026, foreign:3.78, domestic:2.60, total:3.25 },
+  { m:2, y:2026, foreign:3.79, domestic:2.60, total:3.24 },
+  { m:3, y:2026, foreign:3.58, domestic:2.54, total:3.11 },
+  { m:4, y:2026, foreign:3.58, domestic:2.56, total:3.12 },
+  { m:5, y:2026, foreign:3.55, domestic:2.52, total:3.08 },
+  { m:6, y:2026, foreign:3.50, domestic:2.50, total:3.05 },
+  { m:7, y:2026, foreign:3.48, domestic:2.48, total:3.02 },
 ];
 
 /* =============================================================================
