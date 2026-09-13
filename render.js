@@ -587,92 +587,6 @@ function renderInvestmentTable() {
 }
 
 /* =============================================================================
-   108 QUEENSBERRY ST — SALE HISTORY TABLE
-   ============================================================================= */
-function renderQueensberrySales() {
-  const tbody = $("#queensberryTable tbody");
-  if (!tbody) return;
-  const rows = (DATA.queensberrySales || []).map(v => {
-    const parking = v.parking != null ? v.parking : "—";
-    return `<tr>
-      <td><strong>${esc(v.unit)}</strong></td>
-      <td class="num">${v.beds}</td>
-      <td class="num">${v.baths}</td>
-      <td class="num">${parking}</td>
-      <td class="num">$${v.price.toLocaleString("en-AU")}</td>
-      <td>${esc(v.date)}</td>
-      <td class="muted"><a href="${esc(v.link)}" target="_blank" rel="noopener">Domain</a></td>
-    </tr>`;
-  }).join("");
-  tbody.innerHTML = rows;
-}
-
-/* =============================================================================
-   108 QUEENSBERRY ST — SIDEBAR SUBMENU
-   ============================================================================= */
-function renderQueensberrySubmenu() {
-  const menu = $("#queensberrySubmenu");
-  if (!menu) return;
-  const list = DATA.queensberrySales || [];
-  menu.innerHTML = list.map(v => {
-    const parking = v.parking != null ? " · " + v.parking + " ps" : "";
-    return `<li class="sidebar-submenu-item">
-      <a class="sidebar-submenu-btn" href="#queensberryWrap">
-        <span class="sub-icon">🏢</span>
-        <span class="sub-label">${esc(v.unit)}</span>
-        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
-          ${v.beds}BR/${v.baths}BA${parking}<br>
-          $${v.price.toLocaleString("en-AU")} · ${esc(v.date)}
-        </span>
-      </a>
-    </li>`;
-  }).join("");
-}
-
-/* =============================================================================
-   143 SUSSEX ST — SALE HISTORY TABLE
-   ============================================================================= */
-function renderSussexSales() {
-  const tbody = $("#sussexTable tbody");
-  if (!tbody) return;
-  const rows = (DATA.sussexSales || []).map(v => {
-    const parking = v.parking != null ? v.parking : "—";
-    return `<tr>
-      <td><strong>${esc(v.unit)}</strong></td>
-      <td class="num">${v.beds}</td>
-      <td class="num">${v.baths}</td>
-      <td class="num">${parking}</td>
-      <td class="num">$${v.price.toLocaleString("en-AU")}</td>
-      <td>${esc(v.date)}</td>
-      <td class="muted"><a href="${esc(v.link)}" target="_blank" rel="noopener">Domain</a></td>
-    </tr>`;
-  }).join("");
-  tbody.innerHTML = rows;
-}
-
-/* =============================================================================
-   143 SUSSEX ST — SIDEBAR SUBMENU
-   ============================================================================= */
-function renderSussexSubmenu() {
-  const menu = $("#sussexSubmenu");
-  if (!menu) return;
-  const list = DATA.sussexSales || [];
-  menu.innerHTML = list.map(v => {
-    const parking = v.parking != null ? " · " + v.parking + " ps" : "";
-    return `<li class="sidebar-submenu-item">
-      <a class="sidebar-submenu-btn" href="#sussexWrap">
-        <span class="sub-icon">🏡</span>
-        <span class="sub-label">${esc(v.unit)}</span>
-        <span style="font-size:11px;color:var(--muted);line-height:1.4;">
-          ${v.beds}BR/${v.baths}BA${parking}<br>
-          $${v.price.toLocaleString("en-AU")} · ${esc(v.date)}
-        </span>
-      </a>
-    </li>`;
-  }).join("");
-}
-
-/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
@@ -694,10 +608,6 @@ function boot() {
   renderSTR();
   renderPriceAdr();
   renderHotelReport();
-  renderQueensberrySubmenu();
-  renderQueensberrySales();
-  renderSussexSubmenu();
-  renderSussexSales();
 }
 
 // Boot: wait for DOM fully parsed before querying
