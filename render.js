@@ -20,11 +20,11 @@ const el = (tag, attrs={}, children=[]) => {
 };
 
 /* number formatting (matches data.js) */
-const fmt = n => DATA._fmt(n);
-const pct = p => DATA._pct(p);
-const usd = u => DATA._usd(u);
-const lab = (m,y) => DATA._lab(m,y);
-const mon = m => DATA._mon[m-1];
+const fmt = _fmt;
+const pct = _pct;
+const usd = _usd;
+const lab = _lab;
+const mon = m => _mon[m-1];
 
 /* =============================================================================
    1. ANNUAL ARRIVALS — chart + table
