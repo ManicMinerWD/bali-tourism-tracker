@@ -348,6 +348,40 @@ const VILLA_SHORTLIST = [
     note:"107m² built / 270m² land (2.7 Are), 22yr lease + guaranteed 25yr extension (47yr total). 8 min to beach / 15 min Canggu / 25 min Seminyak. Pool + sun deck, Japanese-inspired tropical, closed living, garden, storage, fully furnished. ZONING NOT STATED — must confirm STR viability before any commitment.",
     verdict:"Interesting but incomplete: zoning unknown, no completion timeline, no operator named, no stated lease end date (only '22yr lease + 25yr extension'). Large land (2.7 Are) in Pererenan is a genuine upside if zoning is Tourism, but the listing is thin on the details that matter for an income property. Treat as 'watch' until zoning + timeline confirmed."
   },
+  {
+    id:"FINNS-Standard",
+    name:"FINNS — Standard Pool Villa",
+    url:"https://www.finns.com/",
+    flag:"🇮🇩",
+    zone:"Berawa, Seminyak (FINNS Beach Club)",
+    br:null,
+    priceUsd:null,
+    leaseTo:null,
+    zoning:"Commercial / resort (via Mgmt Agreement)",
+    status:"Operating beach club + building 256-room resort",
+    when:"Revenue share from Q3 2027",
+    yield:null,
+    operator:"FINNS (Mgmt Agreement — 35% gross rental rev → investor pool)",
+    note:"FINNS operates the beach club at Berawa (Seminyak) and is building a 256-room resort. Deal structure: 35% of gross rental revenue → investor pool (revenue share, NOT profit). Monthly payouts from day 1, Q3 2027. Std pool 0.38% of pool; Lagoon Superior 0.59% of pool. Yr1 pool ~$4.1M → Std ~$15.5k (9%) / Lagoon ~$24.3k; yr5 pool ~$6.7M → Lagoon ~$39.5k (12.7%); 5yr avg ~12.3%. Lagoon Sup 5.3B IDR (~$312k USD). Stated 9% yr1 doesn't reconcile with spot (~7.8%) — flag FX. Misses Warren's 10% yield floor and 6yr payback hard lines; below $50k SGD/yr until yr5 peak.",
+    verdict:"Pool-revenue product, not a villa. Higher scale/divided risk than a single villa — your share depends on the whole pool. Below 10% yield floor; below $50k SGD/yr until yr5 peak. Lags behind single-villa options on every axis Warren cares about. Keep as a watch item, not a lead."
+  },
+  {
+    id:"FINNS-Lagoon",
+    name:"FINNS — Lagoon Superior Pool",
+    url:"https://www.finns.com/",
+    flag:"🇮🇩",
+    zone:"Berawa, Seminyak (FINNS Beach Club)",
+    br:null,
+    priceUsd:312000,
+    leaseTo:null,
+    zoning:"Commercial / resort (via Mgmt Agreement)",
+    status:"Operating beach club + building 256-room resort",
+    when:"Revenue share from Q3 2027",
+    yield:null,
+    operator:"FINNS (Mgmt Agreement — 35% gross rental rev → investor pool)",
+    note:"Lagoon Superior pool — 5.3B IDR (~$312k USD). Same revenue-share structure as the Standard pool: 0.59% of investor pool (vs 0.38% for Standard). So this is a ~55% larger share of the same pool. Yr1: ~$24.3k; yr5: ~$39.5k (12.7%). Same caveats as Standard: below 10% yield floor, below $50k SGD/yr until yr5 peak, misses 6yr payback, FX on stated 9% vs spot ~7.8%.",
+    verdict:"Higher ticket ($312k) for a ~55% bigger slice of the same pool — but still a pool product, not your own villa. Revenue depends on FINNS' whole pool performance, not your asset. Same structural drawbacks as Standard. If you want exposure to the FINNS resort, the Lagoon Superior is the better-priced slice of that exposure — but still doesn't beat a single STR-viable villa on Warren's criteria."
+  },
 ];
 
 /* =============================================================================
