@@ -700,5 +700,5 @@ function boot() {
   renderSussexSales();
 }
 
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-else boot();
+// Boot: wait for DOM fully parsed before querying
+document.addEventListener("DOMContentLoaded", boot);
