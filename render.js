@@ -577,6 +577,48 @@ function renderInvestmentTable() {
 }
 
 /* =============================================================================
+   108 QUEENSBERRY ST — SALE HISTORY TABLE
+   ============================================================================= */
+function renderQueensberrySales() {
+  const tbody = $("#queensberryTable tbody");
+  if (!tbody) return;
+  const rows = (DATA.queensberrySales || []).map(v => {
+    const parking = v.parking != null ? v.parking : "—";
+    return `<tr>
+      <td><strong>${esc(v.unit)}</strong></td>
+      <td class="num">${v.beds}</td>
+      <td class="num">${v.baths}</td>
+      <td class="num">${parking}</td>
+      <td class="num">$${v.price.toLocaleString("en-AU")}</td>
+      <td>${esc(v.date)}</td>
+      <td class="muted"><a href="${esc(v.link)}" target="_blank" rel="noopener">Domain</a></td>
+    </tr>`;
+  }).join("");
+  tbody.innerHTML = rows;
+}
+
+/* =============================================================================
+   143 SUSSEX ST — SALE HISTORY TABLE
+   ============================================================================= */
+function renderSussexSales() {
+  const tbody = $("#sussexTable tbody");
+  if (!tbody) return;
+  const rows = (DATA.sussexSales || []).map(v => {
+    const parking = v.parking != null ? v.parking : "—";
+    return `<tr>
+      <td><strong>${esc(v.unit)}</strong></td>
+      <td class="num">${v.beds}</td>
+      <td class="num">${v.baths}</td>
+      <td class="num">${parking}</td>
+      <td class="num">$${v.price.toLocaleString("en-AU")}</td>
+      <td>${esc(v.date)}</td>
+      <td class="muted"><a href="${esc(v.link)}" target="_blank" rel="noopener">Domain</a></td>
+    </tr>`;
+  }).join("");
+  tbody.innerHTML = rows;
+}
+
+/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
@@ -596,6 +638,10 @@ function boot() {
   renderSTR();
   renderPriceAdr();
   renderHotelReport();
+  renderQueensberrySubmenu();
+  renderQueensberrySales();
+  renderSussexSubmenu();
+  renderSussexSales();
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

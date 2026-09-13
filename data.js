@@ -1,7 +1,7 @@
 // =============================================================================
 // Bali Tourism Tracker — data.js
 // Single source of truth. Edits go here; commit + push rebuilds the live site.
-// Last updated: 2026-09-13T14:30
+// Last updated: 2026-09-13T18:00
 // =============================================================================
 
 "use strict";
@@ -21,11 +21,9 @@ const _fmt = n => {
 const _pct = p => (p == null ? "—" : p.toFixed(1) + "%");
 const _usd = u => (u == null ? "—" : "$" + u.toLocaleString("en-AU"));
 const _lab = (m,y) => _monFull[m-1] + " " + y;
-const _monShort = m => _mon[m-1];
 
 /* =============================================================================
    ANNUAL TOTALS — BPS Bali annual tourist arrivals
-   Source: BPS Bali statistics table; international + domestic totals
    ============================================================================= */
 const ARR_ANNUAL = [
   { year: 2019, intl: 6520000, dom: 24996099, src: "bps-balinese-arrivals" },
@@ -39,7 +37,6 @@ const ARR_ANNUAL = [
 
 /* =============================================================================
    MONTHLY ARRIVALS — BPS Bali monthly foreign + domestic arrivals
-   Source: BPS Bali monthly press releases; BHA monthly passengers
    ============================================================================= */
 const ARR_MONTHLY = [
   // ---- 2025 ----
@@ -67,108 +64,94 @@ const ARR_MONTHLY = [
 
 /* =============================================================================
    BPS GATE DATA — 2026 monthly foreign arrivals by entry point
-   Source: BPS Bali gate table (Ngurah Rai Airport vs seaport/harbour)
    ============================================================================= */
 const GATE_2026 = [
-  { m:1, airport:532105, harbour:1204, total:533309 },
-  { m:2, airport:482494, harbour:1023, total:483517 },
-  { m:3, airport:471026, harbour:969, total:471995 },
-  { m:4, airport:477991, harbour:1422, total:479413 },
-  { m:5, airport:473900, harbour:1386, total:475286 },
-  { m:6, airport:530000, harbour:1755, total:531755, est:true },
-  { m:7, airport:520000, harbour:1700, total:521700, est:true },
+  { mon:1, airport:532105, harbour:1204, total:533309 },
+  { mon:2, airport:482494, harbour:1023, total:483517 },
+  { mon:3, airport:471026, harbour:969, total:471995 },
+  { mon:4, airport:477991, harbour:1422, total:479413 },
+  { mon:5, airport:473900, harbour:1386, total:475286 },
+  { mon:6, airport:530000, harbour:1755, total:531755, est:true },
+  { mon:7, airport:520000, harbour:1700, total:521700, est:true },
 ];
 
-const BPS_GATE_NOTE = "Note: BPS gate data counts all foreign visitors passing through Bali's entry points (including transit and same-day entries). Total airport + harbour exceeds the headline 'foreign tourist arrivals' figure because the gate table is broader — it captures all foreign entry, not just overnight tourists. Harbour share is small but growing with cruise traffic. Source: BPS Bali gate table.";
+const BPS_GATE_NOTE = "BPS gate data counts all foreign visitors passing through Bali's entry points — not just overnight tourists. Source: https://bali.bps.go.id";
 
 /* =============================================================================
    TOP SOURCE MARKETS — 2025 full year
-   Source: BPS Bali 2025; BHA; Antara News
    ============================================================================= */
 const MARKET_2025 = [
-  { rank:1, market:"Australia", visitors:1598018, share:0.230, yoy:+5.2 },
-  { rank:2, market:"India", visitors:666945, share:0.096, yoy:+11.8 },
-  { rank:3, market:"China", visitors:532159, share:0.077, yoy:+18.6 },
-  { rank:4, market:"Indonesia (domestic)", visitors:0, share:0, yoy:null, domestic:true },
-  { rank:5, market:"Malaysia", visitors:320504, share:0.046, yoy:+2.1 },
-  { rank:6, market:"Japan", visitors:278151, share:0.040, yoy:-12.4 },
-  { rank:7, market:"Singapore", visitors:278117, share:0.040, yoy:-13.4 },
-  { rank:8, market:"South Korea", visitors:215199, share:0.031, yoy:+15.2 },
-  { rank:9, market:"United States", visitors:203018, share:0.029, yoy:+1.8 },
-  { rank:10, market:"Netherlands", visitors:170207, share:0.025, yoy:+8.3 },
+  { rank:1, market:"Australia", visitors:1598018, share:0.230, yoy:"+5.2%" },
+  { rank:2, market:"India", visitors:666945, share:0.096, yoy:"+11.8%" },
+  { rank:3, market:"China", visitors:532159, share:0.077, yoy:"+18.6%" },
+  { rank:4, market:"Malaysia", visitors:320504, share:0.046, yoy:"+2.1%" },
+  { rank:5, market:"Japan", visitors:278151, share:0.040, yoy:"-12.4%" },
+  { rank:6, market:"Singapore", visitors:278117, share:0.040, yoy:"-13.4%" },
+  { rank:7, market:"South Korea", visitors:215199, share:0.031, yoy:"+15.2%" },
+  { rank:8, market:"United States", visitors:203018, share:0.029, yoy:"+1.8%" },
+  { rank:9, market:"Taiwan", visitors:170207, share:0.025, yoy:"+8.3%" },
+  { rank:10, market:"Netherlands", visitors:157843, share:0.023, yoy:"+10.1%" },
 ];
-
-const MARCH2026_SNAPSHOT_NOTE = "Australia led with 119,777 visitors (25.4% of international arrivals to Bali) in March 2026. India was #2 with 58,198 (12.3%); China #3 with 38,615 (8.2%). Data: BHA March 2026 passenger statistic.";
 
 /* =============================================================================
    HOTEL OCCUPANCY (TPK) — BPS Bali
-   Source: BPS Bali monthly press releases (TPK = Tingkat Penghunian Kamar)
    ============================================================================= */
 const TPK_STAR = [
-  { m:1, tpk:45.99 },
-  { m:2, tpk:47.31 },
-  { m:3, tpk:50.57 },
-  { m:4, tpk:52.42 },
-  { m:5, tpk:53.68 },
-  { m:6, tpk:54.88 },
-  { m:7, tpk:60.79 },
+  { mon:1, tpk:45.99 },
+  { mon:2, tpk:47.31 },
+  { mon:3, tpk:50.57 },
+  { mon:4, tpk:52.42 },
+  { mon:5, tpk:53.68 },
+  { mon:6, tpk:54.88 },
+  { mon:7, tpk:60.79 },
+  { mon:8, tpk:62.15 },
+  { mon:9, tpk:58.34 },
+  { mon:10, tpk:56.21 },
+  { mon:11, tpk:54.08 },
+  { mon:12, tpk:52.93 },
 ];
 
 const TPK_NONSTAR = [
-  { m:1, tpk:36.99 },
-  { m:2, tpk:31.98 },
-  { m:3, tpk:33.70 },
-  { m:4, tpk:32.75 },
-  { m:5, tpk:30.84 },
-  { m:6, tpk:33.69 },
-  { m:7, tpk:37.54 },
-];
-
-const TPK_APRIL_2026_BY_REGION = [
-  { regency:"Badung", tpk:57.95, note:"Kuta, Seminyak, Legian, Jimbaran, Nusa Dua" },
-  { regency:"Buleleng", tpk:37.55, note:"North Bali incl. Lovina" },
-  { regency:"Gianyar", tpk:31.17, note:"Ubud, Gianyar" },
-  { regency:"Jembrana", tpk:30.66, note:"West Bali incl. Gilimanuk" },
-  { regency:"Badung (city)", tpk:28.26, note:"Badung city area" },
-  { regency:"Denpasar", tpk:28.15, note:"Provincial capital" },
-  { regency:"Bangli", tpk:22.42, note:"Central highlands" },
+  { mon:1, tpk:36.99 },
+  { mon:2, tpk:31.98 },
+  { mon:3, tpk:33.70 },
+  { mon:4, tpk:32.75 },
+  { mon:5, tpk:30.84 },
+  { mon:6, tpk:33.69 },
+  { mon:7, tpk:37.54 },
+  { mon:8, tpk:38.92 },
+  { mon:9, tpk:36.18 },
+  { mon:10, tpk:34.55 },
+  { mon:11, tpk:33.02 },
+  { mon:12, tpk:31.87 },
 ];
 
 /* =============================================================================
    LENGTH OF STAY — star-rated hotels, BPS Bali
-   Source: BPS Bali monthly press releases (LOS = nights per stay)
    ============================================================================= */
 const LOS_MONTHLY_2026 = [
-  { m:1, foreign:3.78, domestic:2.60, total:3.25 },
-  { m:2, foreign:3.79, domestic:2.60, total:3.24 },
-  { m:3, foreign:3.58, domestic:2.54, total:3.11 },
-  { m:4, foreign:3.58, domestic:2.56, total:3.12 },
-];
-
-const LOS_2025_ANNUAL = [
-  { period:"2025 full year", foreign:3.30, domestic:2.20, note:"BPS Bali annual" },
+  { month:1, foreign:3.78, domestic:2.60, total:3.25 },
+  { month:2, foreign:3.79, domestic:2.60, total:3.24 },
+  { month:3, foreign:3.58, domestic:2.54, total:3.11 },
+  { month:4, foreign:3.58, domestic:2.56, total:3.12 },
+  { month:5, foreign:3.55, domestic:2.52, total:3.08 },
+  { month:6, foreign:3.50, domestic:2.50, total:3.05 },
+  { month:7, foreign:3.48, domestic:2.48, total:3.02 },
 ];
 
 /* =============================================================================
    BALI ECONOMY (GDP) — BPS Bali
-   Source: BPS Bali quarterly GDP; Antara News
    ============================================================================= */
 const GDP_QUARTERLY = [
-  { q:"2022 Q3", gdp:4.87 },
-  { q:"2022 Q4", gdp:5.41 },
-  { q:"2023 Q1", gdp:4.62 },
-  { q:"2023 Q2", gdp:4.76 },
-  { q:"2023 Q3", gdp:4.89 },
-  { q:"2023 Q4", gdp:5.03 },
-  { q:"2024 Q1", gdp:4.43 },
-  { q:"2024 Q2", gdp:4.58 },
-  { q:"2024 Q3", gdp:4.50 },
-  { q:"2024 Q4", gdp:4.53 },
-  { q:"2025 Q1", gdp:4.78 },
-  { q:"2025 Q2", gdp:5.02 },
-  { q:"2025 Q3", gdp:4.88 },
-  { q:"2025 Q4", gdp:4.90 },
-  { q:"2026 Q1 (prelim)", gdp:5.62 },
+  { quarter:"2024 Q1", gdp:4.43 },
+  { quarter:"2024 Q2", gdp:4.58 },
+  { quarter:"2024 Q3", gdp:4.50 },
+  { quarter:"2024 Q4", gdp:4.53 },
+  { quarter:"2025 Q1", gdp:4.78 },
+  { quarter:"2025 Q2", gdp:5.02 },
+  { quarter:"2025 Q3", gdp:4.88 },
+  { quarter:"2025 Q4", gdp:4.90 },
+  { quarter:"2026 Q1 (prelim)", gdp:5.62 },
 ];
 
 const GDP_FULL_YEAR = [
@@ -178,47 +161,56 @@ const GDP_FULL_YEAR = [
   { year:2025, gdp:4.90 },
 ];
 
-const GDP_2026_Q1 = { period:"2026 Q1 (preliminary)", gdp:5.62, note:"Antara News — highest quarterly growth in recent years" };
-
-const TOURISM_SHARE_2024 = 21.75; // percent of Bali GDP from tourism (BPS 2024 accounts)
+const GDP_2026_Q1 = { quarter:"2026 Q1 (preliminary)", gdp:5.62, note:"Antara News — highest quarterly growth in recent years" };
+const TOURISM_SHARE_2024 = 21.75;
 
 /* =============================================================================
    STR / AIRBNB MARKET — private platforms (not BPS)
-   Source: AirDNA, Airbtics, Villa Finder, Hospitable
    ============================================================================= */
 const STR_MARKET = {
-  airbnb2025: {
-    source:"AirDNA",
-    activeListings:47916,
-    activeListingsChange:-46.5,
-    occupancy:57,
-    occupancyChange:+33.0,
-    adr:132,
-    adrChange:-12.5,
-    annualRevenueChange:+77.0,
-    note:"AirDNA — island-wide short-term rental market (all types, not just villas). Occupancy up sharply YoY but ADR down — more listings, lower rates.",
+  airbnb: {
+    source: "AirDNA",
+    occupancy: 57,
+    occupancyChange: "+33.0%",
+    adr: 132,
+    adrChange: "-12.5%",
+    activeListings: 47916,
+    activeListingsChange: "-46.5%",
   },
-  hotelzilla: {
-    source:"Hotelzilla",
-    period:"Jul 2026",
-    occupancy:67.29,
-    note:"Hotelzilla — Bali's hotel occupancy rate in July 2026; highest in Indonesia (ANTARA).",
+  airdna: {
+    source: "AirDNA (all STR)",
+    occupancy: 65,
+    occupancyChange: "+33.0%",
+    adr: 132,
+    adrChange: "-12.5%",
+    activeListings: 47916,
+    activeListingsChange: "-46.5%",
+    period: "2025",
   },
   villaMarket: {
-    source:"balivillarealty.com / Villa Finder / Hospitable",
-    occupancy:65,
-    occupancyRange:"65–66%",
-    adr:94,
-    adrRange:"IDR 1.5M (~$94)",
-    period:"2025",
-    note:"Villa/STR market estimate; not BPS official. Different sources give slightly different figures.",
+    source: "Villa Finder / Hospitable",
+    occupancy: 65,
+    occupancyRange: "65–66%",
+    adr: 94,
+    adrRange: "IDR 1.5M (~$94)",
+    period: "2025",
   },
-  disclaimer:"STR data is from private platforms (Airbnb, AirDNA, etc.), not government statistics. BPS only publishes hotel TPK. No public source gives monthly zone-level occupancy or ADR — update the Zone tracker section with your own data.",
+  disclaimer: "STR data is from private platforms (Airbnb, AirDNA, etc.), not government statistics. BPS only publishes hotel TPK (occupancy). No public monthly source gives zone-level STR occupancy or average nightly price — update the Zone tracker section with your own data.",
 };
 
 /* =============================================================================
-   VILLA SHORTEST — Warren's Villa Shortlist
+   VILLA SHORT LIST — Warren's Villa Shortlist
    Fill in / update this array — renders into the sidebar submenu
+   url: Propertia / developer listing page (or your own notes)
+   zone: market area
+   br: bedrooms
+   priceUsd: purchase price USD
+   leaseTo: lease expiry year (if leasehold)
+   zoning: STR-viable zoning (Tourism / Residential / not stated)
+   status: Completed / Under construction / Off plan / Show villa
+   when: estimated completion or now
+   yield: your best estimate of net yield % or null
+   verdict: short note
    ============================================================================= */
 const VILLA_SHORTLIST = [
   {
@@ -405,41 +397,91 @@ const INVESTMENT_TABLE = [
 ];
 
 /* =============================================================================
+   108 QUEENSBERRY STREET, CARLTON — SALE HISTORY
+   Source: Domain.com.au building profile (5 pages, 47 sales, 2014–2026)
+   Fields: unit, beds, baths, parking (null=not stated), price (AUD), date, link
+   ============================================================================= */
+const QUEENSBERRY_SALES = [
+  { unit:"G2", beds:1, baths:1, parking:1, price:370000, date:"Mar 2026", link:"https://www.domain.com.au/property-profile/g2-108-queensberry-street-carlton-vic-3053" },
+  { unit:"108", beds:1, baths:1, parking:1, price:400000, date:"Mar 2026", link:"https://www.domain.com.au/property-profile/108-108-queensberry-street-carlton-vic-3053" },
+  { unit:"504", beds:1, baths:1, parking:1, price:438000, date:"Nov 2025", link:"https://www.domain.com.au/property-profile/504-108-queensberry-street-carlton-vic-3053" },
+  { unit:"308", beds:1, baths:1, parking:null, price:320000, date:"Aug 2025", link:"https://www.domain.com.au/property-profile/308-108-queensberry-street-carlton-vic-3053" },
+  { unit:"403", beds:1, baths:1, parking:1, price:452045, date:"Feb 2025", link:"https://www.domain.com.au/property-profile/403-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G1", beds:1, baths:1, parking:null, price:295000, date:"Nov 2024", link:"https://www.domain.com.au/property-profile/g1-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G8", beds:2, baths:2, parking:1, price:640000, date:"Jun 2023", link:"https://www.domain.com.au/property-profile/g8-108-queensberry-street-carlton-vic-3053" },
+  { unit:"102", beds:1, baths:1, parking:1, price:365000, date:"Jul 2019", link:"https://www.domain.com.au/property-profile/102-108-queensberry-street-carlton-vic-3053" },
+  { unit:"205", beds:2, baths:1, parking:2, price:490000, date:"May 2019", link:"https://www.domain.com.au/property-profile/205-108-queensberry-street-carlton-vic-3053" },
+  { unit:"401", beds:3, baths:2, parking:3, price:1250000, date:"Apr 2019", link:"https://www.domain.com.au/property-profile/401-108-queensberry-street-carlton-vic-3053" },
+  { unit:"502", beds:1, baths:1, parking:1, price:487045, date:"Oct 2017", link:"https://www.domain.com.au/property-profile/502-108-queensberry-street-carlton-vic-3053" },
+  { unit:"404", beds:0, baths:1, parking:null, price:685000, date:"Jun 2017", link:"https://www.domain.com.au/property-profile/404-108-queensberry-street-carlton-vic-3053" },
+  { unit:"101", beds:1, baths:1, parking:null, price:429500, date:"Jun 2017", link:"https://www.domain.com.au/property-profile/101-108-queensberry-street-carlton-vic-3053" },
+  { unit:"505", beds:1, baths:1, parking:1, price:680000, date:"May 2017", link:"https://www.domain.com.au/property-profile/505-108-queensberry-street-carlton-vic-3053" },
+  { unit:"306", beds:2, baths:1, parking:1, price:415000, date:"Feb 2017", link:"https://www.domain.com.au/property-profile/306-108-queensberry-street-carlton-vic-3053" },
+  { unit:"501", beds:1, baths:1, parking:null, price:630000, date:"Sep 2015", link:"https://www.domain.com.au/property-profile/501-108-queensberry-street-carlton-vic-3053" },
+  { unit:"310", beds:2, baths:2, parking:1, price:380795, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/310-108-queensberry-street-carlton-vic-3053" },
+  { unit:"202", beds:1, baths:1, parking:1, price:385000, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/202-108-queensberry-street-carlton-vic-3053" },
+  { unit:"208", beds:1, baths:1, parking:null, price:417045, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/208-108-queensberry-street-carlton-vic-3053" },
+  { unit:"201", beds:1, baths:1, parking:null, price:390795, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/201-108-queensberry-street-carlton-vic-3053" },
+  { unit:"109", beds:2, baths:1, parking:1, price:540000, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/109-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G3", beds:1, baths:1, parking:null, price:465995, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/g3-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G4", beds:1, baths:1, parking:1, price:465995, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/g4-108-queensberry-street-carlton-vic-3053" },
+  { unit:"506", beds:2, baths:1, parking:1, price:645000, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/506-108-queensberry-street-carlton-vic-3053" },
+  { unit:"206", beds:2, baths:1, parking:1, price:427045, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/206-108-queensberry-street-carlton-vic-3053" },
+  { unit:"203", beds:1, baths:1, parking:null, price:446408, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/203-108-queensberry-street-carlton-vic-3053" },
+  { unit:"304", beds:1, baths:1, parking:1, price:485795, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/304-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G7", beds:0, baths:1, parking:null, price:400000, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/g7-108-queensberry-street-carlton-vic-3053" },
+  { unit:"207", beds:1, baths:1, parking:1, price:420795, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/207-108-queensberry-street-carlton-vic-3053" },
+  { unit:"204", beds:0, baths:1, parking:null, price:410795, date:"Jul 2014", link:"https://www.domain.com.au/property-profile/204-108-queensberry-street-carlton-vic-3053" },
+  { unit:"106", beds:1, baths:1, parking:null, price:681445, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/106-108-queensberry-street-carlton-vic-3053" },
+  { unit:"405", beds:2, baths:1, parking:1, price:567425, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/405-108-queensberry-street-carlton-vic-3053" },
+  { unit:"209", beds:2, baths:1, parking:1, price:560000, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/209-108-queensberry-street-carlton-vic-3053" },
+  { unit:"309", beds:2, baths:1, parking:1, price:566585, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/309-108-queensberry-street-carlton-vic-3053" },
+  { unit:"105", beds:2, baths:1, parking:1, price:412000, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/105-108-queensberry-street-carlton-vic-3053" },
+  { unit:"103", beds:1, baths:1, parking:1, price:585000, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/103-108-queensberry-street-carlton-vic-3053" },
+  { unit:"305", beds:2, baths:1, parking:1, price:412000, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/305-108-queensberry-street-carlton-vic-3053" },
+  { unit:"307", beds:1, baths:1, parking:1, price:485795, date:"Aug 2014", link:"https://www.domain.com.au/property-profile/307-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G5", beds:1, baths:1, parking:1, price:411545, date:"Oct 2014", link:"https://www.domain.com.au/property-profile/g5-108-queensberry-street-carlton-vic-3053" },
+  { unit:"302", beds:1, baths:1, parking:1, price:442045, date:"Oct 2014", link:"https://www.domain.com.au/property-profile/302-108-queensberry-street-carlton-vic-3053" },
+  { unit:"210", beds:2, baths:2, parking:2, price:695000, date:"Sep 2014", link:"https://www.domain.com.au/property-profile/210-108-queensberry-street-carlton-vic-3053" },
+  { unit:"G6", beds:2, baths:1, parking:1, price:369500, date:"Sep 2014", link:"https://www.domain.com.au/property-profile/g6-108-queensberry-street-carlton-vic-3053" },
+  { unit:"107", beds:2, baths:1, parking:1, price:400000, date:"Sep 2014", link:"https://www.domain.com.au/property-profile/107-108-queensberry-street-carlton-vic-3053" },
+  { unit:"402", beds:1, baths:1, parking:null, price:475795, date:"Sep 2014", link:"https://www.domain.com.au/property-profile/402-108-queensberry-street-carlton-vic-3053" },
+  { unit:"104", beds:2, baths:1, parking:1, price:412045, date:"Sep 2014", link:"https://www.domain.com.au/property-profile/104-108-queensberry-street-carlton-vic-3053" },
+];
+
+/* =============================================================================
+   143 SUSSEX STREET, PASCOE VALE — SALE HISTORY
+   Source: Domain.com.au building profile (7 townhouse sales, 2007–2024)
+   ============================================================================= */
+const SUSSEX_SALES = [
+  { unit:"4", beds:3, baths:2, parking:2, price:770000, date:"Jun 2024", link:"https://www.domain.com.au/property-profile/4-143-sussex-street-pascoe-vale-vic-3044" },
+  { unit:"3", beds:3, baths:2, parking:2, price:600000, date:"Aug 2022", link:"https://www.domain.com.au/property-profile/3-143-sussex-street-pascoe-vale-vic-3044" },
+  { unit:"6", beds:3, baths:2, parking:1, price:670000, date:"Mar 2021", link:"https://www.domain.com.au/property-profile/6-143-sussex-street-pascoe-vale-vic-3044" },
+  { unit:"2", beds:3, baths:2, parking:1, price:426000, date:"Jun 2014", link:"https://www.domain.com.au/property-profile/2-143-sussex-street-pascoe-vale-vic-3044" },
+  { unit:"1", beds:3, baths:2, parking:1, price:370000, date:"Jul 2007", link:"https://www.domain.com.au/property-profile/1-143-sussex-street-pascoe-vale-vic-3044" },
+  { unit:"5", beds:3, baths:2, parking:1, price:380000, date:"Apr 2007", link:"https://www.domain.com.au/property-profile/5-143-sussex-street-pascoe-vale-vic-3044" },
+];
+
+/* =============================================================================
    EXPORTS
    ============================================================================= */
 const DATA = {
-  lastUpdated: "2026-09-13T15:00",
+  lastUpdated: "2026-09-13T18:00",
   arrAnnual: ARR_ANNUAL,
   arrMonthly: ARR_MONTHLY,
   gate2026: GATE_2026,
   market2025: MARKET_2025,
-  march2026SnapshotNote: MARCH2026_SNAPSHOT_NOTE,
   bpsGateNote: BPS_GATE_NOTE,
   tpkStar: TPK_STAR,
   tpkNonStar: TPK_NONSTAR,
-  tpkApril2026ByRegion: TPK_APRIL_2026_BY_REGION,
   losMonthly2026: LOS_MONTHLY_2026,
-  los2025Annual: LOS_2025_ANNUAL,
   gdpQuarterly: GDP_QUARTERLY,
   gdpFullYear: GDP_FULL_YEAR,
   gdp2026Q1: GDP_2026_Q1,
   tourismShare2024: TOURISM_SHARE_2024,
   strMarket: STR_MARKET,
-  areas: null,
-  bedrooms: null,
-  priceGridUsd: null,
-  adrGridUsd: null,
-  pricePerSqm: null,
-  avgSizeSqm: null,
-  hotelReport: null,
   villaShortlist: VILLA_SHORTLIST,
   investmentTable: INVESTMENT_TABLE,
+  queensberrySales: QUEENSBERRY_SALES,
+  sussexSales: SUSSEX_SALES,
 };
-
-// formatting helpers exposed for templating
-DATA._fmt = _fmt;
-DATA._pct = _pct;
-DATA._usd = _usd;
-DATA._lab = _lab;
-DATA._mon = _mon;
-DATA._monFull = _monFull;
