@@ -5,55 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>143 Sussex Street, Pascoe Vale — Sale History</title>
   <link rel="stylesheet" href="style.css">
-  <script src="data.js"></script>
-  <script src="render.js"></script>
 </head>
 <body>
+
+<!-- ===== LOCKED SIDEBAR ===== -->
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">☰ Menu</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="app-name"><span class="dot"></span>Bali Tourism Tracker</div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="melbourneProperty">
+      <span>Melbourne Property</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="melbourneProperty">
+      <a class="nav-link" href="queensberry.html">
+        <span class="link-icon">🏢</span><span class="link-label">108 Queensberry St</span>
+      </a>
+      <a class="nav-link" href="sussex.html">
+        <span class="link-icon">🏡</span><span class="link-label">143 Sussex St</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="baliStats">
+      <span>Bali Statistics</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="baliStats">
+      <a class="nav-link" href="index.html#annualWrap"><span class="link-icon">📊</span><span class="link-label">Annual arrivals</span></a>
+      <a class="nav-link" href="index.html#monthlyWrap"><span class="link-icon">📈</span><span class="link-label">Monthly arrivals</span></a>
+      <a class="nav-link" href="index.html#gateWrap"><span class="link-icon">🚪</span><span class="link-label">Foreign visitors by gate</span></a>
+      <a class="nav-link" href="index.html#marketsWrap"><span class="link-icon">🌏</span><span class="link-label">Source markets</span></a>
+      <a class="nav-link" href="index.html#hotelOccWrap"><span class="link-icon">🏨</span><span class="link-label">Hotel occupancy (TPK)</span></a>
+      <a class="nav-link" href="index.html#losWrap"><span class="link-icon">🛏️</span><span class="link-label">Length of stay</span></a>
+      <a class="nav-link" href="index.html#economyWrap"><span class="link-icon">💰</span><span class="link-label">Bali economy (GDP)</span></a>
+      <a class="nav-link" href="index.html#strWrap"><span class="link-icon">🏠</span><span class="link-label">STR / Airbnb market</span></a>
+      <a class="nav-link" href="index.html#priceAdrWrap"><span class="link-icon">🏡</span><span class="link-label">Property prices by zone</span></a>
+      <a class="nav-link" href="index.html#hotelReportWrap"><span class="link-icon">📰</span><span class="link-label">Hotel report</span></a>
+      <a class="nav-link" href="index.html#sources"><span class="link-icon">🔗</span><span class="link-label">Data sources</span></a>
+    </div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label" data-group="baliInvestment">
+      <span>Bali Investment</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="sidebar-group-content" data-group="baliInvestment">
+      <div class="collapsible-sub" data-sub="villaSubgroup">
+        <div class="collapsible-sub-header" data-sub="villaSubgroup">
+          <span>Warrens Villa Shortlist</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="villaSubgroup">
+          <ul class="sidebar-submenu" id="villaSubmenu"></ul>
+        </div>
+      </div>
+      <div class="collapsible-sub" data-sub="invTableSubgroup">
+        <div class="collapsible-sub-header" data-sub="invTableSubgroup">
+          <span>Investment Table</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="invTableSubgroup">
+          <ul class="sidebar-submenu" id="investmentTableSubmenu"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="footer-row"><span class="footer-label">Source</span><span class="footer-value">Domain.com.au</span></div>
+  </div>
+</aside>
+
+<!-- ===== PAGE CONTENT ===== -->
 <div class="main-content">
 <div class="wrap">
 
 <header>
-  <div>
-    <h1>143 Sussex Street, Pascoe Vale</h1>
+  <div><h1>143 Sussex Street, Pascoe Vale</h1>
     <p style="font-size:13px;color:var(--muted);margin-top:4px;">Every townhouse sold — 7 sales, 2007–2024</p>
   </div>
-  <div class="meta">
-    <span>Domain.com.au building profile</span>
-  </div>
+  <div class="meta"><span>Domain.com.au building profile</span></div>
 </header>
 
 <div class="section">
   <h2>Complete sale history <span class="badge">Domain · Pascoe Vale VIC 3044</span></h2>
   <div class="totals-row">
-    <div class="total-card">
-      <div class="label">Total sales</div>
-      <div class="value">7</div>
-      <div class="sub">townhouses sold</div>
-    </div>
-    <div class="total-card">
-      <div class="label">Date range</div>
-      <div class="value" style="font-size:18px;font-weight:600;">2007–2024</div>
-      <div class="sub">17 years</div>
-    </div>
-    <div class="total-card">
-      <div class="label">Median price</div>
-      <div class="value">~$600k</div>
-      <div class="sub">AUD</div>
-    </div>
-    <div class="total-card">
-      <div class="label">Top sale</div>
-      <div class="value" style="font-size:18px;font-weight:600;">$770k</div>
-      <div class="sub">Jun 2024</div>
-    </div>
+    <div class="total-card"><div class="label">Total sales</div><div class="value">7</div><div class="sub">townhouses sold</div></div>
+    <div class="total-card"><div class="label">Date range</div><div class="value" style="font-size:18px;font-weight:600;">2007–2024</div><div class="sub">17 years</div></div>
+    <div class="total-card"><div class="label">Median price</div><div class="value">~$600k</div><div class="sub">AUD</div></div>
+    <div class="total-card"><div class="label">Top sale</div><div class="value" style="font-size:18px;font-weight:600;">$770k</div><div class="sub">Jun 2024</div></div>
   </div>
   <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Source: Domain.com.au building profile. All 7 townhouse lots have sold to date. All are 3BR/2BA.</p>
-  <div class="table-wrap">
-    <table id="sussexTable">
-      <thead><tr>
-        <th>Unit</th><th class="num">Beds</th><th class="num">Baths</th><th class="num">Parking</th><th class="num">Sold (AUD)</th><th>Date sold</th><th>Source</th>
-      </tr></thead>
-      <tbody></tbody>
-    </table>
+  <div class="table-wrap"><table id="sussexTable">
+    <thead><tr><th>Unit</th><th class="num">Beds</th><th class="num">Baths</th><th class="num">Parking</th><th class="num">Sold (AUD)</th><th>Date sold</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>TH7/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$770,000</td><td>24 Jun 2024</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH6/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$680,000</td><td>11 Sep 2023</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH5/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$640,000</td><td>12 Jul 2023</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH4/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$625,000</td><td>25 May 2023</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH3/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$590,000</td><td>03 Mar 2022</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH2/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$565,000</td><td>28 Jul 2021</td><td class="muted">Domain</td></tr>
+      <tr><td><strong>TH1/143</strong></td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">$475,000</td><td>22 Oct 2007</td><td class="muted">Domain</td></tr>
+    </tbody></table>
+  </div>
+  <div class="note" style="margin-top:10px;font-size:13px;">
+    All 7 townhouse lots at 143 Sussex Street, Pascoe Vale VIC 3044 have sold. All are 3-bedroom, 2-bathroom townhouses. Source: Domain.com.au building profile.
   </div>
 </div>
 
