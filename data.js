@@ -81,16 +81,16 @@ const BPS_GATE_NOTE = "BPS gate data counts all foreign visitors passing through
    TOP SOURCE MARKETS — 2025 full year
    ============================================================================= */
 const MARKET_2025 = [
-  { rank:1, market:"Australia", visitors:1598018, share:0.230, yoy:"+5.2%" },
-  { rank:2, market:"India", visitors:666945, share:0.096, yoy:"+11.8%" },
-  { rank:3, market:"China", visitors:532159, share:0.077, yoy:"+18.6%" },
-  { rank:4, market:"Malaysia", visitors:320504, share:0.046, yoy:"+2.1%" },
-  { rank:5, market:"Japan", visitors:278151, share:0.040, yoy:"-12.4%" },
-  { rank:6, market:"Singapore", visitors:278117, share:0.040, yoy:"-13.4%" },
-  { rank:7, market:"South Korea", visitors:215199, share:0.031, yoy:"+15.2%" },
-  { rank:8, market:"United States", visitors:203018, share:0.029, yoy:"+1.8%" },
-  { rank:9, market:"Taiwan", visitors:170207, share:0.025, yoy:"+8.3%" },
-  { rank:10, market:"Netherlands", visitors:157843, share:0.023, yoy:"+10.1%" },
+  { rank:1, country:"Australia", arrivals:1598018, share:0.230, yoy:"+5.2%" },
+  { rank:2, country:"India", arrivals:666945, share:0.096, yoy:"+11.8%" },
+  { rank:3, country:"China", arrivals:532159, share:0.077, yoy:"+18.6%" },
+  { rank:4, country:"Malaysia", arrivals:320504, share:0.046, yoy:"+2.1%" },
+  { rank:5, country:"Japan", arrivals:278151, share:0.040, yoy:"-12.4%" },
+  { rank:6, country:"Singapore", arrivals:278117, share:0.040, yoy:"-13.4%" },
+  { rank:7, country:"South Korea", arrivals:215199, share:0.031, yoy:"+15.2%" },
+  { rank:8, country:"United States", arrivals:203018, share:0.029, yoy:"+1.8%" },
+  { rank:9, country:"Taiwan", arrivals:170207, share:0.025, yoy:"+8.3%" },
+  { rank:10, country:"Netherlands", arrivals:157843, share:0.023, yoy:"+10.1%" },
 ];
 
 /* =============================================================================
