@@ -283,7 +283,7 @@ const VILLA_SHORTLIST = [
   {
     id:"Casa-Petak",
     name:"Casa Petak",
-    url:"(Balitecture — ask Warren for link)",
+    url:"https://www.balitecture.com/",
     flag:"🇮🇩",
     zone:"Petak / Mengwi",
     br:3,
