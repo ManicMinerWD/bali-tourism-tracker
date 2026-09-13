@@ -35,9 +35,9 @@ function renderAnnual() {
 
   // table
   const rows = DATA.arrAnnual.map(d => {
-    const intlM = (d.intl/1000).toFixed(1);
-    const domM = (d.dom/1000).toFixed(1);
-    const totM = ((d.intl+d.dom)/1000).toFixed(1);
+    const intlM = (d.intl/1e6).toFixed(2);
+    const domM = (d.dom/1e6).toFixed(2);
+    const totM = ((d.intl+d.dom)/1e6).toFixed(2);
     return `<tr class="num">
       <td class="yr">${d.year}</td>
       <td>${intlM}<span class="unit">M</span></td>
