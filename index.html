@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bali Tourism Tracker — Monthly Arrivals & Source Markets</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="data.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>Bali Tourism Tracker</h1>
+    <div style="font-size:13.5px;color:var(--muted);margin-top:2px;">
+      Monthly arrivals, source markets, BPS gate data &amp; zone STR tracker
+    </div>
+  </div>
+  <div class="meta">
+    <span>Last updated: <strong id="lastUpdated"></strong></span>
+    <span>Data: BPS Bali · BHA · Antara</span>
+  </div>
+</header>
+
+<!-- ============ SECTION 1: ANNUAL TOTALS ============ -->
+<div class="section">
+  <h2>Annual tourist arrivals <span class="badge">BPS</span></h2>
+  <p class="lead">Bali international + domestic arrivals, annual totals. International hit a record in 2025.</p>
+  <div class="totals-row" id="annualCards"></div>
+  <div class="chart-box tall">
+    <canvas id="annualChart"></canvas>
+  </div>
+  <div class="note" id="annualNote"></div>
+</div>
+
+<!-- ============ SECTION 2: MONTHLY ARRIVALS ============ -->
+<div class="section">
+  <h2>Monthly arrivals <span class="badge">BPS · BHA</span></h2>
+  <p class="lead">International + domestic arrivals by month. Grey gaps = months not yet released by BPS — update <code>data.js</code> when new figures land.</p>
+  <div class="totals-row" id="monthlyCards"></div>
+  <div class="chart-box">
+    <canvas id="monthlyChart"></canvas>
+  </div>
+  <div class="note" id="monthlyNote"></div>
+</div>
+
+<!-- ============ SECTION 3: BPS GATE DATA ============ -->
+<div class="section">
+  <h2>Foreign arrivals by gate — 2026 <span class="badge">BPS</span></h2>
+  <p class="lead">Ngurah Rai Airport vs seaport (harbour). Most arrivals come through the airport; harbour figures are small but growing with cruise traffic.</p>
+  <table id="gateTable">
+    <thead>
+      <tr><th>Month</th><th>Airport</th><th>Harbour</th><th>Total foreign</th><th>Harbour %</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="note" id="gateNote"></div>
+</div>
+
+<!-- ============ SECTION 4: TOP SOURCE COUNTRIES ============ -->
+<div class="section">
+  <h2>Top source markets — 2025 full year <span class="badge">BPS · BHA · Antara</span></h2>
+  <p class="lead">Australia is the dominant market (~23% of all foreign arrivals). India and China are #2 and #3. Singapore is the only major market down YoY.</p>
+  <div class="chart-box">
+    <canvas id="countryChart"></canvas>
+  </div>
+  <table id="countryTable" style="margin-top:14px;">
+    <thead>
+      <tr><th>Market</th><th class="num">Visitors</th><th class="num">Share</th><th class="num">YoY</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2 style="margin-top:22px;">March 2026 snapshot — top 20 source markets <span class="badge">BHA</span></h2>
+  <p class="lead">Single-month snapshot. Australia led with 119,777 visitors (25.4% of international).</p>
+  <table id="marchTable">
+    <thead>
+      <tr><th>Market</th><th>Flag</th><th class="num">Visitors</th><th class="num">Share</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- ============ SECTION 5: ZONE STR TRACKER ============ -->
+<div class="section">
+  <h2>Zone STR tracker — occupancy &amp; average rate <span class="badge">manual</span></h2>
+  <p class="lead">
+    <strong>No public monthly source exists</strong> for zone-level STR occupancy or average nightly price.
+    This table is a <strong>manual tracker</strong> — fill in the cells from your own research
+    (AirDNA, your property data, listing scans). Placeholder values are not verified figures.
+  </p>
+  <table id="zoneTable">
+    <thead>
+      <tr>
+        <th>Zone</th>
+        <th class="num">Occ. 2025 (%)</th>
+        <th class="num">ADR 2025 (USD/night)</th>
+        <th class="num">Est. nights 2025</th>
+        <th>Notes / source</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="note">
+    <strong>How to use:</strong> edit <code>data.js</code>, find the <code>zones</code> array, and replace
+    <code>null</code> with your figures. Reload the page. ADR = average daily rate; nights = occupied nights/year
+    (occupancy × 365). For your own villa, plug in actual booked nights and realised ADR.
+  </div>
+</div>
+
+<!-- ============ SECTION 6: SOURCES ============ -->
+<div class="section sources">
+  <h2>Data sources &amp; method</h2>
+  <ul id="sourceList"></ul>
+  <div class="howto" style="margin-top:14px;">
+    <strong>How to update this tracker:</strong>
+    <ol style="margin:6px 0 0 18px;">
+      <li>Open <code>data.js</code> in this repo.</li>
+      <li>Add the new month's figures to the <code>monthly</code> array (and <code>bpsGate</code> if you have gate data).</li>
+      <li>Update <code>lastUpdated</code> at the top of <code>data.js</code>.</li>
+      <li>Commit + push — the site rebuilds automatically on GitHub Pages.</li>
+    </ol>
+    Monthly international/domestic figures come from <strong>BHA</strong> (international + domestic together)
+    and <strong>BPS Bali</strong> (foreign arrivals by gate). Annual totals come from <strong>BPS</strong>.
+    Country breakdowns: full-year 2025 from <strong>BPS/BHA/Antara</strong>; March 2026 snapshot from <strong>BHA</strong>.
+  </div>
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-top:18px;text-align:center;">
+  Bali Tourism Tracker · data.js is the single source of truth · refresh the page after editing
+</p>
+
+</div>
+
+<script>
+// ============== HELPERS ==============
+const fmt = n => n == null ? "—" : n.toLocaleString("en-US");
+const fmt1 = n => n == null ? "—" : n.toLocaleString("en-US", {maximumFractionDigits:1});
+const fmtP = n => n == null ? "—" : n.toFixed(1) + "%";
+const monthName = m => ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m];
+
+// ============== LAST UPDATED ==============
+document.getElementById("lastUpdated").textContent = DATA.lastUpdated;
+
+// ============== ANNUAL ==============
+(function(){
+  const cards = document.getElementById("annualCards");
+  DATA.annual.forEach(a => {
+    const div = document.createElement("div");
+    div.className = "total-card";
+    div.innerHTML = `<div class="label">${a.year}</div>` +
+      `<div class="value">${a.int ? fmt(a.int) : "—"}</div>` +
+      `<div class="sub">International arrivals</div>`;
+    cards.appendChild(div);
+    if (a.dom) {
+      const d = document.createElement("div");
+      d.className = "total-card";
+      d.innerHTML = `<div class="label">${a.year}</div>` +
+        `<div class="value">${fmt(a.dom)}</div>` +
+        `<div class="sub">Domestic arrivals</div>`;
+      cards.appendChild(d);
+    }
+    if (a.total) {
+      const t = document.createElement("div");
+      t.className = "total-card";
+      t.innerHTML = `<div class="label">${a.year}</div>` +
+        `<div class="value">${fmt(a.total)}</div>` +
+        `<div class="sub">Total arrivals</div>`;
+      cards.appendChild(t);
+    }
+  });
+
+  // chart: grouped bars int + dom (+ total if available)
+  const ctx = document.getElementById("annualChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: DATA.annual.map(a => a.year),
+      datasets: [
+        { label: "International", data: DATA.annual.map(a => a.int), backgroundColor: "#0d4f4f", borderRadius: 4 },
+        { label: "Domestic", data: DATA.annual.map(a => a.dom), backgroundColor: "#e07856", borderRadius: 4 },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: { label: c => c.dataset.label + ": " + fmt(c.raw) }
+        }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => fmt(v) }, grid: { color: "#ececec" } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  document.getElementById("annualNote").innerHTML =
+    "2025 international arrivals reached <strong>6,948,754</strong> — a record (+9.72% vs 2024). " +
+    "Source: BPS Bali / BHA / Antara. Domestic 2025 full-year total not yet published in the sources used here.";
+})();
+
+// ============== MONTHLY ==============
+(function(){
+  // cards: show latest 3 known months + YTD
+  const known = DATA.monthly.filter(m => m.int != null || m.dom != null);
+  const latest = known.slice(-3);
+  const cardsEl = document.getElementById("monthlyCards");
+
+  // YTD 2026
+  const ytd2026 = DATA.monthly.filter(m => m.year === 2026 && (m.int != null || m.dom != null));
+  const ytdInt = ytd2026.reduce((s,m) => s + (m.int||0), 0);
+  const ytdDom = ytd2026.reduce((s,m) => s + (m.dom||0), 0);
+  const ytdTot = ytd2026.reduce((s,m) => s + (m.total||0), 0);
+
+  cardsEl.innerHTML = `
+    <div class="total-card"><div class="label">2026 YTD (Jan–Mar)</div><div class="value">${fmt(ytdTot || ytdInt + ytdDom)}</div><div class="sub">Total arrivals</div></div>
+    <div class="total-card"><div class="label">2026 YTD int.</div><div class="value">${fmt(ytdInt)}</div><div class="sub">International</div></div>
+    <div class="total-card"><div class="label">2026 YTD dom.</div><div class="value">${fmt(ytdDom)}</div><div class="sub">Domestic</div></div>
+  `;
+
+  // chart: monthly int + dom lines
+  const months = [];
+  const intData = [];
+  const domData = [];
+  const labels2025 = [];
+  const int2025 = [];
+  const dom2025 = [];
+  const labels2026 = [];
+  const int2026 = [];
+  const dom2026 = [];
+
+  DATA.monthly.forEach(m => {
+    if (m.year === 2025) {
+      labels2025.push(monthName(m.month));
+      int2025.push(m.int);
+      dom2025.push(m.dom);
+    } else if (m.year === 2026) {
+      labels2026.push(monthName(m.month));
+      int2026.push(m.int);
+      dom2026.push(m.dom);
+    }
+  });
+
+  // We'll show 2025 (Jan-Dec) and 2026 (Jan-Aug) as two separate line charts in one canvas
+  // Simpler: one chart with all months labelled "25-Jan"... but mixing years on one axis is confusing.
+  // Use two charts stacked? No — use one chart, colour-coded, with year in label.
+  // Cleanest: two datasets, labels are "2025-Mon" / "2026-Mon" — but that's verbose.
+  // Decision: show 2025 full (Jan-Dec) and 2026 Jan-Aug on the SAME x-axis, labelled by month,
+  // with a vertical separator? Chart.js doesn't do that easily.
+  //
+  // Better: two small charts side by side via flex. Let's do that.
+
+  const container = document.getElementById("monthlyChart").parentElement;
+  container.innerHTML = `
+    <div style="display:flex;gap:12px;height:280px;">
+      <div style="flex:1;position:relative;"><canvas id="monthly2025"></canvas></div>
+      <div style="flex:1;position:relative;"><canvas id="monthly2026"></canvas></div>
+    </div>
+  `;
+
+  function makeChart(id, labels, intArr, domArr, label) {
+    return new Chart(document.getElementById(id), {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          { label: "International", data: intArr, borderColor: "#0d4f4f", backgroundColor: "rgba(13,79,79,0.06)", fill: true, tension: 0.25, pointRadius: 3, spanGaps: false },
+          { label: "Domestic", data: domArr, borderColor: "#e07856", backgroundColor: "rgba(224,120,86,0.06)", fill: true, tension: 0.25, pointRadius: 3, spanGaps: false },
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top", labels: { boxWidth: 12, padding: 8 } },
+          tooltip: { callbacks: { label: c => c.dataset.label + ": " + fmt(c.raw) } }
+        },
+        scales: {
+          y: { beginAtZero: false, ticks: { callback: v => fmt(v) }, grid: { color: "#ececec" } },
+          x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } }
+        }
+      }
+    });
+  }
+
+  makeChart("monthly2025", labels2025, int2025, dom2025, "2025");
+  makeChart("monthly2026", labels2026, int2026, dom2026, "2026");
+
+  document.getElementById("monthlyNote").innerHTML =
+    "2025 monthly figures Jan–May from RoadGenius (preliminary); December from BHA. " +
+    "2026 Jan–Mar from BHA/BPS (international + domestic). " +
+    "Gaps = months not yet released — fill them in <code>data.js</code> when BPS publishes.";
+})();
+
+// ============== BPS GATE TABLE ==============
+(function(){
+  const tbody = document.querySelector("#gateTable tbody");
+  DATA.bpsGate.forEach(g => {
+    const tr = document.createElement("tr");
+    const harbourPct = g.total ? (g.harbour / g.total * 100) : 0;
+    tr.innerHTML = `<td>${monthName(g.month)} 2026</td>` +
+      `<td class="num">${fmt(g.airport)}</td>` +
+      `<td class="num">${fmt(g.harbour)}</td>` +
+      `<td class="num"><strong>${fmt(g.total)}</strong></td>` +
+      `<td class="num">${fmtP(harbourPct)}</td>`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("gateNote").innerHTML =
+    "Source: BPS Bali, Number of Monthly Foreign Visitor to Bali by Gate, updated through July 2026. " +
+    "Harbour = seaport arrivals (cruise + ferry). Harbour share is small but grew in 2025 (+65.9% YoY per BPS).";
+})();
+
+// ============== COUNTRIES 2025 ==============
+(function(){
+  const ctx = document.getElementById("countryChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: DATA.countries2025.map(c => c.country),
+      datasets: [{
+        label: "Visitors (2025)",
+        data: DATA.countries2025.map(c => c.visitors),
+        backgroundColor: "#0d4f4f",
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: "y",
+      plugins: {
+        tooltip: { callbacks: { label: c => fmt(c.raw) + " (" + c.raw/DATA.countries2025[0].visitors*100 + "%)" } }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: v => fmt(v) }, grid: { color: "#ececec" } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  const tbody = document.getElementById("countryTable tbody");
+  DATA.countries2025.forEach(c => {
+    const tr = document.createElement("tr");
+    const yoyCell = c.yoy >= 0
+      ? `<td class="num" style="color:#1a7a3a">+${c.yoy.toFixed(2)}%</td>`
+      : `<td class="num" style="color:#b03030">${c.yoy.toFixed(2)}%</td>`;
+    tr.innerHTML = `<td class="country-cell"><span class="flag">${c.flag}</span>${c.country}</td>` +
+      `<td class="num">${fmt(c.visitors)}</td>` +
+      `<td class="num">${fmtP(c.share)}</td>` +
+      yoyCell;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("countryTable").parentElement.querySelector("h2").insertAdjacentHTML("afterend",
+    `<div class="note">Total 2025 foreign arrivals: <strong>6,948,754</strong> (+9.72% YoY). ` +
+    `Top 10 markets above account for ~70% of all foreign visitors. Australia alone = ~23%. ` +
+    `Source: BPS Bali via Antara News (Feb 2026) / BHA.</div>`);
+})();
+
+// ============== MARCH 2026 SNAPSHOT ==============
+(function(){
+  const tbody = document.getElementById("marchTable tbody");
+  DATA.countriesMarch2026.forEach(c => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td><span class="flag">${c.flag}</span>${c.country}</td>` +
+      `<td>${c.flag}</td>` +
+      `<td class="num">${fmt(c.visitors)}</td>` +
+      `<td class="num">${c.share ? fmtP(c.share) : "—"}</td>`;
+    tbody.appendChild(tr);
+  });
+})();
+
+// ============== ZONE TRACKER ==============
+(function(){
+  const tbody = document.getElementById("zoneTable tbody");
+  DATA.zones.forEach(z => {
+    const nights = (z.occupancy2025 != null && z.occupancy2025 > 0)
+      ? Math.round(z.occupancy2025/100 * 365)
+      : null;
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      `<td><strong>${z.zone}</strong></td>` +
+      `<td class="num">${z.occupancy2025 != null ? z.occupancy2025.toFixed(1) + "%" : "<span style='color:#b0a090'>—</span>"}</td>` +
+      `<td class="num">${z.adr2025 != null ? "$" + z.adr2025.toFixed(0) : "<span style='color:#b0a090'>—</span>"}</td>` +
+      `<td class="num">${nights != null ? fmt(nights) : "<span style='color:#b0a090'>—</span>"}</td>` +
+      `<td style="font-size:12.5px;color:#6b6b6b;">${z.notes}</td>`;
+    tbody.appendChild(tr);
+  });
+})();
+
+// ============== SOURCES LIST ==============
+(function(){
+  const ul = document.getElementById("sourceList");
+  DATA.sources.forEach(s => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong><a href="${s.url}" target="_blank">${s.name}</a></strong>` +
+      `<span class="src-note">${s.note}</span>`;
+    ul.appendChild(li);
+  });
+})();
+</script>
+</body>
+</html>

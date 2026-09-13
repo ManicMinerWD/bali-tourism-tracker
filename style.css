@@ -1,0 +1,212 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --teal: #0d4f4f;
+  --teal-light: #14706b;
+  --sand: #f5e6c8;
+  --sand-dark: #e8d5b0;
+  --coral: #e07856;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #d8d8d8;
+  --bg: #faf7f2;
+  --card: #ffffff;
+  --pending: #b0a090;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  padding: 0 24px 60px;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+header {
+  margin: 28px 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 2px solid var(--teal);
+  padding-bottom: 14px;
+}
+header h1 {
+  font-size: 26px;
+  color: var(--teal);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+header .meta {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+header .meta span { display: block; }
+header .meta strong { color: var(--ink); }
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(13,79,79,0.04);
+}
+.section h2 {
+  font-size: 17px;
+  color: var(--teal);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section h2 .badge {
+  font-size: 11px;
+  background: var(--sand);
+  color: var(--teal);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.section p.lead {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.section .note {
+  font-size: 12.5px;
+  color: var(--muted);
+  background: var(--sand);
+  border-left: 3px solid var(--coral);
+  padding: 8px 12px;
+  margin-top: 12px;
+  border-radius: 0 6px 6px 0;
+}
+
+.chart-box {
+  position: relative;
+  height: 280px;
+  width: 100%;
+  margin-top: 6px;
+}
+.chart-box.tall { height: 320px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin-top: 6px;
+}
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  background: var(--sand);
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+tbody tr:hover { background: #f6f1ea; }
+tbody tr.pending td { color: var(--pending); font-style: italic; }
+
+.totals-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.total-card {
+  flex: 1;
+  min-width: 120px;
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.total-card .label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--teal);
+  font-weight: 600;
+}
+.total-card .value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.total-card .sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.flag { font-size: 16px; }
+.country-cell { display: flex; align-items: center; gap: 8px; }
+.country-cell .bar {
+  height: 12px;
+  background: var(--teal-light);
+  border-radius: 6px;
+  min-width: 2px;
+  opacity: 0.75;
+}
+.country-cell .barfill {
+  height: 12px;
+  background: var(--teal);
+  border-radius: 6px;
+  opacity: 1;
+}
+
+.sources { font-size: 13px; }
+.sources li { margin-bottom: 8px; }
+.sources a { color: var(--teal); text-decoration: none; }
+.sources a:hover { text-decoration: underline; }
+.sources .src-note { color: var(--muted); display: block; font-size: 12px; margin-top: 2px; }
+
+button.update {
+  background: var(--teal);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button.update:hover { background: var(--teal-light); }
+
+.howto {
+  font-size: 13px;
+  color: var(--muted);
+  background: #f0f4f4;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+.howto code {
+  background: white;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--teal);
+}
