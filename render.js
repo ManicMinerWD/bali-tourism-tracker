@@ -1,5 +1,5 @@
 /* =============================================================================
-   Bali Tourism Tracker — chart + table renderers
+   Bali Tourism Tracker — chart + table renderers  v2  (2026-09-13)
    Reads DATA from data.js; renders into the sections below.
    ============================================================================= */
 "use strict";
