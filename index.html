@@ -326,8 +326,47 @@
     STR data comes from <strong>private platforms</strong> (Airbnb, AirDNA) — not government statistics. BPS only publishes hotel TPK.
     The island-wide STR occupancy is roughly 57–65% depending on source and methodology.
   </p>
-  <div id="strCards" class="str-cards"></div>
-  <div class="note" id="strDisclaimer"></div>
+  <div class="two-col">
+    <div>
+      <h3>Airbnb (Airbtics)</h3>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th class="num">Value</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>Period</td><td class="num" id="sAirbnbPeriod">—</td><td></td></tr>
+          <tr><td>Median occupancy</td><td class="num" id="sAirbnbOcc">—</td><td id="sAirbnbOcc1y"></td></tr>
+          <tr><td>1-yr occupancy change</td><td class="num" id="sAirbnbOcc1yV">—</td><td id="sAirbnbOcc1yNote"></td></tr>
+          <tr><td>3-yr occupancy change</td><td class="num" id="sAirbnbOcc3yV">—</td><td id="sAirbnbOcc3yNote"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>AirDNA (all STR)</h3>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th class="num">Value</th><th>YoY change</th></tr></thead>
+        <tbody>
+          <tr><td>Period</td><td class="num" id="sAirdnaPeriod">—</td><td></td></tr>
+          <tr><td>Occupancy</td><td class="num" id="sAirdnaOcc">—</td><td id="sAirdnaOccChg"></td></tr>
+          <tr><td>ADR (USD/night)</td><td class="num" id="sAirdnaAdr">—</td><td id="sAirdnaAdrChg"></td></tr>
+          <tr><td>RevPAR (USD)</td><td class="num" id="sAirdnaRevpar">—</td><td id="sAirdnaRevparChg"></td></tr>
+          <tr><td>Active listings</td><td class="num" id="sAirdnaListings">—</td><td id="sAirdnaListingsChg"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="two-col" style="margin-top:18px;">
+    <div>
+      <h3>Villa / STR market</h3>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th class="num">Value</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Period</td><td class="num" id="sVillaPeriod">—</td><td></td></tr>
+          <tr><td>Median occupancy</td><td class="num" id="sVillaOcc">—</td><td id="sVillaOccNote"></td></tr>
+          <tr><td>ADR (USD/night)</td><td class="num" id="sVillaAdr">—</td><td id="sVillaAdrNote"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="note" id="strDisclaimer" style="margin-top:14px;"></div>
 </div>
 
 <!-- ============ SECTION 9: PROPERTY PRICES & ADR BY ZONE ============ -->

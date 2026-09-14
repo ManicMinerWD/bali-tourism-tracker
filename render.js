@@ -416,37 +416,35 @@ function renderSTR() {
   const a = DATA.strMarket.airbnb;
   const ad = DATA.strMarket.airdna;
   const vm = DATA.strMarket.villaMarket;
+  const sgn = v => (v == null ? "" : (v >= 0 ? "+" : "")) + (v == null ? "—" : v) + "%";
 
-  wrap.querySelector("#strCards").innerHTML = `
-    <div class="stat-card airbnb">
-      <h3>Airbnb (Airbtics)</h3>
-      <p class="period">${esc(a.period)}</p>
-      <div class="big-num">${a.occupancy}%</div>
-      <p class="stat-label">Median occupancy</p>
-      <p class="stat-sub">1yr change ${a.occupancyChange1y>0?"+":""}${a.occupancyChange1y}% · 3yr ${a.occupancyChange3y>0?"+":""}${a.occupancyChange3y}%</p>
-      <p class="stat-note">${esc(a.note)}</p>
-    </div>
-    <div class="stat-card airdna">
-      <h3>AirDNA (all STR)</h3>
-      <div class="stat-grid">
-        <div><div class="big-num">${ad.occupancy}%</div><p class="stat-label">Occupancy</p><p class="stat-sub">${ad.occupancyChange>0?"+":""}${ad.occupancyChange}% YoY</p></div>
-        <div><div class="big-num">${usd(ad.adr)}</div><p class="stat-label">ADR</p><p class="stat-sub">${ad.adrChange>0?"+":""}${ad.adrChange}% YoY</p></div>
-        <div><div class="big-num">${usd(ad.revpar)}</div><p class="stat-label">RevPAR</p><p class="stat-sub">${ad.revparChange>0?"+":""}${ad.revparChange}% YoY</p></div>
-        <div><div class="big-num">${ad.activeListings.toLocaleString()}</div><p class="stat-label">Active listings</p><p class="stat-sub">${ad.activeListingsChange>0?"+":""}${ad.activeListingsChange}% YoY</p></div>
-      </div>
-      <p class="stat-note">${esc(ad.note)}</p>
-    </div>
-    <div class="stat-card villa">
-      <h3>Villa / STR market</h3>
-      <div class="stat-grid">
-        <div><div class="big-num">${vm.occupancy}%</div><p class="stat-label">Median occupancy</p></div>
-        <div><div class="big-num">~${usd(vm.adr)}</div><p class="stat-label">ADR</p><p class="stat-sub">${esc(vm.adrRange)}</p></div>
-      </div>
-      <p class="period">${esc(vm.period)}</p>
-      <p class="stat-note">${esc(vm.note)}</p>
-    </div>
-  `;
+  // ---- Airbnb (Airbtics) table ----
+  $("#sAirbnbPeriod").textContent = a.period || "—";
+  $("#sAirbnbOcc").textContent = (a.occupancy != null ? a.occupancy : "—") + "%";
+  $("#sAirbnbOcc1y").textContent = sgn(a.occupancyChange1y);
+  $("#sAirbnbOcc1yNote").textContent = a.occupancyChange1y != null ? (a.occupancyChange1y >= 0 ? "Up YoY" : "Down YoY") : "n/a";
+  $("#sAirbnbOcc3yV").textContent = a.occupancyChange3y != null ? (a.occupancyChange3y >= 0 ? "+" : "") + a.occupancyChange3y + "%" : "—";
+  $("#sAirbnbOcc3yNote").textContent = a.occupancyChange3y != null ? (a.occupancyChange3y >= 0 ? "Up vs 3yr ago" : "Down vs 3yr ago") : "n/a";
 
+  // ---- AirDNA (all STR) table ----
+  $("#sAirdnaPeriod").textContent = ad.period || "—";
+  $("#sAirdnaOcc").textContent = (ad.occupancy != null ? ad.occupancy : "—") + "%";
+  $("#sAirdnaOccChg").textContent = sgn(ad.occupancyChange);
+  $("#sAirdnaAdr").textContent = usd(ad.adr);
+  $("#sAirdnaAdrChg").textContent = sgn(ad.adrChange);
+  $("#sAirdnaRevpar").textContent = usd(ad.revpar);
+  $("#sAirdnaRevparChg").textContent = sgn(ad.revparChange);
+  $("#sAirdnaListings").textContent = ad.activeListings != null ? ad.activeListings.toLocaleString() : "—";
+  $("#sAirdnaListingsChg").textContent = sgn(ad.activeListingsChange);
+
+  // ---- Villa / STR market table ----
+  $("#sVillaPeriod").textContent = vm.period || "—";
+  $("#sVillaOcc").textContent = (vm.occupancy != null ? vm.occupancy : "—") + "%";
+  $("#sVillaOccNote").textContent = (vm.occupancyRange || "—");
+  $("#sVillaAdr").textContent = "~" + usd(vm.adr);
+  $("#sVillaAdrNote").textContent = (vm.adrRange || "—");
+
+  // ---- Disclaimer ----
   const disc = $("#strDisclaimer");
   if (disc) disc.textContent = DATA.strMarket.disclaimer;
 }
