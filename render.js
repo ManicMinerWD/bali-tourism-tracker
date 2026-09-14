@@ -585,6 +585,63 @@ function renderInvestmentTable() {
 }
 
 /* =============================================================================
+   11. VILLA SHORTLIST PAGE — full-page detail table for villas.html
+   ============================================================================= */
+function renderVillaPage() {
+  const tbody = $("#villaPageTable tbody");
+  if (!tbody) return;
+
+  const rows = (DATA.villaShortlist || []).map(v => {
+    const br = v.br != null ? v.br + "BR" : "—";
+    const price = v.priceUsd != null ? "$" + v.priceUsd.toLocaleString("en-AU") : "—";
+    const lease = v.leaseTo != null ? v.leaseTo : "—";
+    const statusLine = (v.status || "") + (v.when ? " — " + v.when : "");
+    const zoning = v.zoning || "—";
+    const zoningCls = zoning.toLowerCase().indexOf("not stated") >= 0 ? " color:var(--coral);font-weight:600;" : "";
+    return `<tr>
+      <td><strong>${esc(v.name)}</strong><br><span class="muted" style="font-size:11px;">${esc(v.id)}</span></td>
+      <td>${esc(v.zone)}</td>
+      <td class="num">${br}</td>
+      <td class="num">${price}</td>
+      <td class="num">${lease}</td>
+      <td style="font-size:12px${zoningCls}">${esc(zoning)}</td>
+      <td style="font-size:12px;">${esc(statusLine)}</td>
+      <td style="font-size:11px;"><a href="${esc(v.url)}" target="_blank" rel="noopener" style="color:var(--teal);">${esc(v.url.split("/").pop())}</a></td>
+    </tr>`;
+  }).join("");
+  tbody.innerHTML = rows;
+
+  // Detail cards below the table
+  const detailEl = $("#villaPageDetails");
+  if (!detailEl) return;
+  const cards = (DATA.villaShortlist || []).map((v, i) => {
+    const price = v.priceUsd != null ? "$" + v.priceUsd.toLocaleString("en-AU") : "—";
+    const br = v.br != null ? v.br + "BR" : "—";
+    const lease = v.leaseTo != null ? "Lease to " + v.leaseTo : "Lease term not stated";
+    const zoningNote = v.zoning && v.zoning.toLowerCase().indexOf("not stated") >= 0
+      ? `<span style="color:var(--coral);">⚠ ${esc(v.zoning)} — confirm before proceeding</span>`
+      : esc(v.zoning);
+    const statusLine = v.status + (v.when ? " · " + v.when : "");
+    return `<div class="section" style="margin-bottom:14px;">
+      <h3>${esc(v.name)} <span class="badge" style="font-size:10px;">${esc(v.id)}</span></h3>
+      <table class="data-table" style="margin-top:8px;font-size:13px;">
+        <tr><td style="width:120px;"><strong>Zone</strong></td><td>${esc(v.zone)}</td></tr>
+        <tr><td><strong>Price</strong></td><td class="num">${price}</td></tr>
+        <tr><td><strong>Bedrooms</strong></td><td class="num">${br}</td></tr>
+        <tr><td><strong>Lease to</strong></td><td>${lease}</td></tr>
+        <tr><td><strong>Zoning</strong></td><td>${zoningNote}</td></tr>
+        <tr><td><strong>Status</strong></td><td>${esc(statusLine)}</td></tr>
+        <tr><td><strong>Operator</strong></td><td>${esc(v.operator || "TBC")}</td></tr>
+      </table>
+      <div class="note" style="font-size:12px;margin-top:6px;">${esc(v.note || "")}</div>
+      <div class="note" style="font-size:12px;margin-top:4px;color:${v.verdict.indexOf("watch") >= 0 || v.verdict.indexOf("not a lead") >= 0 ? "var(--coral)" : "var(--teal)"};"><strong>Verdict:</strong> ${esc(v.verdict || "")}</div>
+      <p style="font-size:11px;margin-top:6px;"><a href="${esc(v.url)}" target="_blank" rel="noopener" style="color:var(--teal);">View source listing →</a></p>
+    </div>`;
+  }).join("");
+  detailEl.innerHTML = cards;
+}
+
+/* =============================================================================
    SIDEBAR — collapse/expand groups, mobile toggle, active link highlight
    Also wires dynamically-rendered sub-menus (Villa Shortlist, Investment Table)
    ============================================================================= */
@@ -732,6 +789,7 @@ function boot() {
   renderSTR();
   renderPriceAdr();
   renderHotelReport();
+  renderVillaPage();
 }
 
 // Boot: wait for DOM fully parsed before querying
