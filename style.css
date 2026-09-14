@@ -60,6 +60,16 @@ body { display: flex; flex-direction: row; min-height: 100vh; }
   flex-direction: column;
 }
 
+/* ---- Sidebar lock (inline sidebar wrapper — g05.html, 302.html) ---- */
+.sidebar-lock {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--sidebar-bg);
+}
+
 /* ---- Sidebar trigger (collapse toggle) ---- */
 .sidebar-trigger {
   display: flex;
