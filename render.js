@@ -585,6 +585,88 @@ function renderInvestmentTable() {
 }
 
 /* =============================================================================
+   SIDEBAR — collapse/expand groups, mobile toggle, active link highlight
+   Also wires dynamically-rendered sub-menus (Villa Shortlist, Investment Table)
+   ============================================================================= */
+function setupSidebars() {
+  var body = document.body;
+  if (!body) return;
+
+  function toggleChevron(chev, open) {
+    if (!chev) return;
+    chev.classList.toggle("rotated", !!open);
+  }
+
+  // ---- Group labels ----
+  var groupLabels = body.querySelectorAll(".sidebar-group-label");
+  for (var i = 0; i < groupLabels.length; i++) {
+    (function(label) {
+      label.addEventListener("click", function(e) {
+        var dataAttr = label.getAttribute("data-group");
+        if (!dataAttr) return;
+        var content = document.querySelector('.sidebar-group-content[data-group="' + dataAttr + '"]');
+        if (!content) return;
+        label.classList.toggle("collapsed");
+        content.classList.toggle("collapsed");
+        toggleChevron(label.querySelector(".chevron"), !content.classList.contains("collapsed"));
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    })(groupLabels[i]);
+  }
+
+  // ---- Sub-group headers (static) ----
+  var subHeaders = body.querySelectorAll(".collapsible-sub-header");
+  for (var j = 0; j < subHeaders.length; j++) {
+    (function(header) {
+      header.addEventListener("click", function(e) {
+        var dataAttr = header.getAttribute("data-sub");
+        if (!dataAttr) return;
+        var content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
+        if (!content) return;
+        header.classList.toggle("collapsed");
+        content.classList.toggle("collapsed");
+        toggleChevron(header.querySelector(".chevron"), !content.classList.contains("collapsed"));
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    })(subHeaders[j]);
+  }
+
+  // ---- Event delegation: catches dynamically-injected sub-headers (Villa Shortlist, Investment Table) ----
+  document.addEventListener("click", function(e) {
+    var closest = e.target.closest ? e.target.closest(".collapsible-sub-header") : null;
+    if (!closest) return;
+    var dataAttr = closest.getAttribute("data-sub");
+    if (!dataAttr) return;
+    var content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
+    if (!content) return;
+    closest.classList.toggle("collapsed");
+    content.classList.toggle("collapsed");
+    var chev = closest.querySelector(".chevron");
+    if (chev) chev.classList.toggle("rotated", !content.classList.contains("collapsed"));
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  // ---- Mobile menu toggle ----
+  var sidebar = document.getElementById("sidebar");
+  var btn = document.getElementById("menuToggle");
+  if (sidebar && btn) {
+    btn.addEventListener("click", function() {
+      var open = sidebar.classList.toggle("open");
+      btn.textContent = open ? "✕ Close" : "☰ Menu";
+    });
+    document.addEventListener("click", function(e) {
+      if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+        sidebar.classList.remove("open");
+        btn.textContent = "☰ Menu";
+      }
+    });
+  }
+}
+
+/* =============================================================================
    BOOT — render everything, set last-updated
    ============================================================================= */
 function boot() {
@@ -593,6 +675,7 @@ function boot() {
   const fl = $("#footerLastUpdated");
   if (fl) fl.textContent = DATA.lastUpdated;
 
+  setupSidebars();
   renderVillaShortlist();
   renderInvestmentSubmenu();
   renderInvestmentTable();
