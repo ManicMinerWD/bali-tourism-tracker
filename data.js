@@ -395,14 +395,14 @@ const VILLA_SHORTLIST = [
     flag:"🇮🇩",
     zone:"Berawa, Seminyak (FINNS Beach Club)",
     br:null,
-    priceUsd:null,
+    priceUsd:195193,
     leaseTo:null,
     zoning:"Commercial / resort (via Mgmt Agreement)",
     status:"Operating beach club + building 256-room resort",
     when:"Revenue share from Q3 2027",
     yield:null,
     operator:"FINNS (Mgmt Agreement — 35% gross rental rev → investor pool)",
-    note:"FINNS operates the beach club at Berawa (Seminyak) and is building a 256-room resort. Deal structure: 35% of gross rental revenue → investor pool (revenue share, NOT profit). Monthly payouts from day 1, Q3 2027. Std pool 0.38% of pool; Lagoon Superior 0.59% of pool. Yr1 pool ~$4.1M → Std ~$15.5k (9%) / Lagoon ~$24.3k; yr5 pool ~$6.7M → Lagoon ~$39.5k (12.7%); 5yr avg ~12.3%. Lagoon Sup 5.3B IDR (~$312k USD). Stated 9% yr1 doesn't reconcile with spot (~7.8%) — flag FX. Misses Warren's 10% yield floor and 6yr payback hard lines; below $50k SGD/yr until yr5 peak.",
+    note:"Cost: 3,322,008,000 IDR (~$195,193 USD). Deal structure: 35% of gross rental revenue → investor pool (revenue share, NOT profit). Monthly payouts from day 1, Q3 2027. Std pool 0.38% of pool; Lagoon Superior 0.59% of pool. Yr1 pool ~$4.1M → Std ~$15,580 (8.0%) / Lagoon ~$24,190 (7.8%); yr5 pool ~$6.7M → Lagoon ~$39,530 (12.7%); 5yr avg ~12.3%. Stated 9% yr1 doesn't reconcile with spot (~7.8%) — flag FX. Misses Warren's 10% yield floor and 6yr payback hard lines; below $50k SGD/yr until yr5 peak.",
     verdict:"Pool-revenue product, not a villa. Higher scale/divided risk than a single villa — your share depends on the whole pool. Below 10% yield floor; below $50k SGD/yr until yr5 peak. Lags behind single-villa options on every axis Warren cares about. Keep as a watch item, not a lead."
   },
   {
@@ -419,7 +419,7 @@ const VILLA_SHORTLIST = [
     when:"Revenue share from Q3 2027",
     yield:null,
     operator:"FINNS (Mgmt Agreement — 35% gross rental rev → investor pool)",
-    note:"Lagoon Superior pool — 5.3B IDR (~$312k USD). Same revenue-share structure as the Standard pool: 0.59% of investor pool (vs 0.38% for Standard). So this is a ~55% larger share of the same pool. Yr1: ~$24.3k; yr5: ~$39.5k (12.7%). Same caveats as Standard: below 10% yield floor, below $50k SGD/yr until yr5 peak, misses 6yr payback, FX on stated 9% vs spot ~7.8%.",
+    note:"Lagoon Superior pool — 5,309,962,500 IDR (~$312,000 USD). Same revenue-share structure as the Standard pool: 0.59% of investor pool (vs 0.38% for Standard). So this is a ~55% larger share of the same pool. Yr1: ~$24,190 (7.8%) / yr5: ~$39,530 (12.7%). Same caveats as Standard: below 10% yield floor, below $50k SGD/yr until yr5 peak, misses 6yr payback, FX on stated 9% vs spot ~7.8%.",
     verdict:"Higher ticket ($312k) for a ~55% bigger slice of the same pool — but still a pool product, not your own villa. Revenue depends on FINNS' whole pool performance, not your asset. Same structural drawbacks as Standard. If you want exposure to the FINNS resort, the Lagoon Superior is the better-priced slice of that exposure — but still doesn't beat a single STR-viable villa on Warren's criteria."
   },
 ];
