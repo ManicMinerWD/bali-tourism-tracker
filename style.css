@@ -41,7 +41,25 @@ body {
   padding: 0 28px 60px;
 }
 
-/* ============ SIDEBAR + MAIN LAYOUT (Hyatt-style) ============ */
+/* ============ BALI STATISTICS SECTION LOCKING ============ */
+/* When a Bali Stats nav-link is clicked, only that section is visible */
+.section.balistats-hidden { display: none; }
+
+#balistatsShowAll {
+  display: none;
+  margin: 0 0 14px 0;
+  padding: 7px 16px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+#balistatsShowAll.visible { display: inline-block; }
+#balistatsShowAll:hover { background: var(--teal-light); }
 body { display: flex; flex-direction: row; min-height: 100vh; }
 
 /* ---- Sidebar ---- */

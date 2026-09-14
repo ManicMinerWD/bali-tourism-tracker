@@ -657,14 +657,55 @@ function setupSidebars() {
   if (sidebar && btn) {
     btn.addEventListener("click", function() {
       var open = sidebar.classList.toggle("open");
-      btn.textContent = open ? "✕ Close" : "☰ Menu";
+      btn.textContent = open ? "\u2715 Close" : "\u2630 Menu";
     });
     document.addEventListener("click", function(e) {
       if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
         sidebar.classList.remove("open");
-        btn.textContent = "☰ Menu";
+        btn.textContent = "\u2630 Menu";
       }
     });
+  }
+
+  // ---- Bali Statistics section locking ----
+  // Clicking a baliStats nav-link shows ONLY that section; the rest are hidden.
+  // Works only on index.html (the dashboard) — standalone pages skip it.
+  var showAllBtn = document.getElementById("balistatsShowAll");
+  var baliStatsLinks = body.querySelectorAll(".sidebar-group-content[data-group=\"baliStats\"] .nav-link");
+  var baliStatsIds = [];
+  for (var i = 0; i < baliStatsLinks.length; i++) {
+    var href = baliStatsLinks[i].getAttribute("href");
+    if (href && href.charAt(0) === "#") baliStatsIds.push(href.slice(1));
+  }
+  if (baliStatsIds.length > 1 && showAllBtn) {
+    // "Show all" button — restore every section
+    showAllBtn.addEventListener("click", function() {
+      for (var k = 0; k < baliStatsIds.length; k++) {
+        var el = document.getElementById(baliStatsIds[k]);
+        if (el) el.classList.remove("balistats-hidden");
+      }
+      showAllBtn.classList.remove("visible");
+      for (var l = 0; l < baliStatsLinks.length; l++) baliStatsLinks[l].classList.remove("active");
+    });
+    // Each nav-link hides all others and shows only itself
+    for (var m = 0; m < baliStatsLinks.length; m++) {
+      (function(link, id) {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          for (var n = 0; n < baliStatsIds.length; n++) {
+            var sec = document.getElementById(baliStatsIds[n]);
+            if (sec) sec.classList.add("balistats-hidden");
+          }
+          var target = document.getElementById(id);
+          if (target) target.classList.remove("balistats-hidden");
+          showAllBtn.classList.add("visible");
+          for (var o = 0; o < baliStatsLinks.length; o++) baliStatsLinks[o].classList.remove("active");
+          link.classList.add("active");
+          // Scroll the shown section into view
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      })(baliStatsLinks[m], baliStatsIds[m]);
+    }
   }
 }
 
