@@ -639,15 +639,17 @@ function setupSidebars() {
     if (!closest) return;
     var dataAttr = closest.getAttribute("data-sub");
     if (!dataAttr) return;
-    var content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
+    const content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
     if (!content) return;
     closest.classList.toggle("collapsed");
     content.classList.toggle("collapsed");
     var chev = closest.querySelector(".chevron");
     if (chev) chev.classList.toggle("rotated", !content.classList.contains("collapsed"));
-    e.preventDefault();
+    // Let link clicks inside sub-headers navigate naturally
+    var link = e.target.closest ? e.target.closest("a") : null;
+    if (!link) e.preventDefault();
     e.stopPropagation();
-  });
+    });
 
   // ---- Mobile menu toggle ----
   var sidebar = document.getElementById("sidebar");
