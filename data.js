@@ -661,7 +661,7 @@ const MACTAN_VILLA = {
 
 
 const DATA = {
-  lastUpdated: "2026-09-15T20:30",
+  lastUpdated: "2026-09-15T20:40",
   arrAnnual: ARR_ANNUAL,
   arrMonthly: ARR_MONTHLY,
   gate2026: GATE_2026,
