@@ -649,6 +649,13 @@ function setupSidebars() {
   var body = document.body;
   if (!body) return;
 
+  // ---- Global error catch: any throw is visible in console, not silently killing the sidebar ----
+  window.addEventListener("error", function(e) {
+    var t = e && e.target;
+    if (t && (t.tagName === "SCRIPT" || t.tagName === "LINK" || t.tagName === "STYLE")) return;
+    console.error("[render.js] error:", e.message, e.filename, e.lineno, e.colno);
+  }, true);
+
   function toggleChevron(chev, open) {
     if (!chev) return;
     chev.classList.toggle("rotated", !!open);
@@ -709,17 +716,19 @@ function setupSidebars() {
     });
 
   // ---- Mobile menu toggle ----
-  var sidebar = document.getElementById("sidebar");
-  var btn = document.getElementById("menuToggle");
+  var sidebar = document.getElementById && document.getElementById("sidebar") || null;
+  var btn = document.getElementById && document.getElementById("menuToggle") || null;
   if (sidebar && btn) {
     btn.addEventListener("click", function() {
+      if (!sidebar || !sidebar.classList) return;
       var open = sidebar.classList.toggle("open");
-      btn.textContent = open ? "\u2715 Close" : "\u2630 Menu";
+      if (btn && btn.textContent !== undefined) btn.textContent = open ? "\u2715 Close" : "\u2630 Menu";
     });
     document.addEventListener("click", function(e) {
-      if (!sidebar.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      if (!e || !e.target) return;
+      if (sidebar && sidebar.classList && !sidebar.contains(e.target) && e.target !== btn && (!btn || !btn.contains(e.target))) {
         sidebar.classList.remove("open");
-        btn.textContent = "\u2630 Menu";
+        if (btn && btn.textContent !== undefined) btn.textContent = "\u2630 Menu";
       }
     });
   }

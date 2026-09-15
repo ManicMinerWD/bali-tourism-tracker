@@ -143,15 +143,15 @@ const LOS_MONTHLY_2026 = [
    BALI ECONOMY (GDP) — BPS Bali
    ============================================================================= */
 const GDP_QUARTERLY = [
-  { y: 2024, q: 1, g: 4.43 },,
-  { y: 2024, q: 2, g: 4.58 },,
-  { y: 2024, q: 3, g: 4.50 },,
-  { y: 2024, q: 4, g: 4.53 },,
-  { y: 2025, q: 1, g: 4.78 },,
-  { y: 2025, q: 2, g: 5.02 },,
-  { y: 2025, q: 3, g: 4.88 },,
-  { y: 2025, q: 4, g: 4.90 },,
-  { y: 2026, q: 1, g: 5.62 },,
+  { y: 2024, q: 1, g: 4.43 },
+  { y: 2024, q: 2, g: 4.58 },
+  { y: 2024, q: 3, g: 4.50 },
+  { y: 2024, q: 4, g: 4.53 },
+  { y: 2025, q: 1, g: 4.78 },
+  { y: 2025, q: 2, g: 5.02 },
+  { y: 2025, q: 3, g: 4.88 },
+  { y: 2025, q: 4, g: 4.90 },
+  { y: 2026, q: 1, g: 5.62 },
 ];
 
 const GDP_FULL_YEAR = [
@@ -573,7 +573,7 @@ const SUSSEX_SALES = [
    EXPORTS
    ============================================================================= */
 const DATA = {
-  lastUpdated: "2026-09-14T18:18",
+  lastUpdated: "2026-09-15T12:30",
   arrAnnual: ARR_ANNUAL,
   arrMonthly: ARR_MONTHLY,
   gate2026: GATE_2026,
@@ -596,7 +596,6 @@ const DATA = {
   investmentTable: INVESTMENT_TABLE,
   queensberrySales: QUEENSBERRY_SALES,
   sussexSales: SUSSEX_SALES,
-  mactan: MACTAN,
   bedrooms: BEDROOMS,
   areas: AREAS,
   priceGridUsd: PRICE_GRID_USD,
