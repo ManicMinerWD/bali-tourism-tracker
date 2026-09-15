@@ -573,7 +573,7 @@ const SUSSEX_SALES = [
    EXPORTS
    ============================================================================= */
 const DATA = {
-  lastUpdated: "2026-09-15T20:20",
+  lastUpdated: "2026-09-15T20:30",
   arrAnnual: ARR_ANNUAL,
   arrMonthly: ARR_MONTHLY,
   gate2026: GATE_2026,
