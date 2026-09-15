@@ -656,7 +656,32 @@ const MACTAN_VILLA = {
   competitionNote: "TRUE LUXURY COMP SET = Anza (5BR beachfront Punta Engaño, $844–917, RATE CONFIRMED via VRBO/Booking/Airbnb) + Villa Amare (5BR/900m² inland Mactan, RATE UNVERIFIED — Agoda hides it). Only 2 confirmed standalone luxury villas. Your 6BR beachfront/jetty at Punta Engaño tip enters a near-empty premium slot. Most competitors do NOT publish per-room rates — they sell whole-villa. 6BR whole-villa competition is thin in Punta Engaño.",
   positioning: "6BR private villa, Punta Engaño tip, Shangri-La-grade bedrooms, private pool + beach/jetty — rented WHOLE at $100–140/room vs Shangri-La's $200–350/room. Resort quality, villa privacy, 40–70% less per room. Scarce: no confirmed 6BR at this spec at the tip.",
   riskNote: "Shangri-La-grade finishes may exceed the ₱6M finishes budget across 6 suites — verify fit-out cost before locking the 'quality' claim. Build size: 6 suite-grade BRs need ~300–360m²; tight inside 420m²/3-floor plan (may need 4–5 full suites + 1–2 smaller, or larger build).",
-  sources: "Mactan Villa Budget, Land Options, Mactan Villa Market Rate, Competition (Mactan Villas) — tabs from Warren's 5-143-Sussex-CTG-workbook.xlsx. Web search 2026-08-28. FX: PHP→AUD 37.5, USD→AUD 1.52."
+  sources: "Mactan Villa Budget, Land Options, Mactan Villa Market Rate, Competition (Mactan Villas) — tabs from Warren's 5-143-Sussex-CTG-workbook.xlsx. Web search 2026-08-28. FX: PHP→AUD 37.5, USD→AUD 1.52.",
+  // Gapura villas (Punta Engaño)
+  villas: [
+    {
+      name: "Target Garden",
+      beds: 5,
+      priceUsd: 220000,
+      rateUsd: "$500–700/night",
+      occupancy: "65–70%",
+      monthlyAud: 16500,
+      source: "Lamudi — Gapura listing",
+      note: "5BR beachfront villa at Punta Engaño, Gapura development. Sea-facing, pool, near Shangri-La/Mövenpick. ~5BR, beachfront pool villa.",
+      verdict: "Active lead — comparable to Anza-class at 5BR; within 6BR build scope."
+    },
+    {
+      name: "La Lu'u",
+      beds: 6,
+      priceUsd: 320000,
+      rateUsd: "$700–950/night",
+      occupancy: "60–68%",
+      monthlyAud: 21000,
+      source: "Lamudi — Gapura listing",
+      note: "6BR beachfront villa at Punta Engaño, Gapura development. Sea-facing, pool, near Shangri-La/Mövenpick. ~6BR, beachfront pool villa.",
+      verdict: "Active lead — 6BR beachfront at Gapura, directly comparable to the Mactan build target; cross-check against the ₱6M finishes budget."
+    }
+  ]
 };
 
 
