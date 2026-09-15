@@ -16,7 +16,7 @@ function renderMactan() {
 
   // ---- Build budget phases table ----
   const phaseRows = d.build.phases.map(p => `
-    <tr${p.coveredByCleared ? ' style="background:var(--sand);"' : ''}>
+    <tr${p.coveredByCleared ? ' style="background:var(--sand);"':''}>
       <td><strong>${esc(p.name)}</strong></td>
       <td class="num">${p.php != null ? '₱' + p.php.toLocaleString() : '—'}</td>
       <td class="num">${p.aud != null ? '$' + p.aud.toLocaleString() : '—'}</td>
@@ -112,10 +112,26 @@ function renderMactan() {
   `).join('');
   $("#mactanFullCompTable tbody").innerHTML = fullCompRows;
 
+  // ---- Gapura villas (Punta Engaño) ----
+  if (d.villas && d.villas.length > 0) {
+    const villaRows = d.villas.map(v => `
+      <tr>
+        <td><strong>${esc(v.name)}</strong></td>
+        <td class="num">${v.beds}BR</td>
+        <td class="num">$${v.priceUsd.toLocaleString()}</td>
+        <td class="num">${esc(v.rateUsd)}</td>
+        <td class="num">${esc(v.occupancy)}</td>
+        <td class="num">$${v.monthlyAud.toLocaleString()}</td>
+        <td class="muted" style="font-size:11px;">${esc(v.source)}</td>
+      </tr>`).join('');
+    $("#mactanGapuraVillaTable tbody").innerHTML = villaRows;
+    $("#mactanGapuraNote").innerHTML = d.villas.map(v =>
+      `<div class="note" style="font-size:12px;margin-top:6px;"><strong>${esc(v.name)}:</strong> ${esc(v.verdict)}</div>`).join('');
+  }
+
   // ---- Notes ----
   $("#mactanCompNote").textContent = d.competitionNote;
   $("#mactanPositioning").textContent = d.positioning;
   $("#mactanRiskNote").textContent = d.riskNote;
   $("#mactanSources").textContent = d.sources;
 }
-
