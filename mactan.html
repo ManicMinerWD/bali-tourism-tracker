@@ -18,7 +18,7 @@
     <div class="app-name"><span class="dot"></span>Warrens Exit Strategy</div>
   </div>
 
-  <!-- ---- Group: Phase1 (Exit Aus) — Option 1 Bali ---- -->
+  <!-- ---- Group: Phase1 (Exit Aus) ---- -->
   <div class="sidebar-group" data-group="phase1">
     <div class="sidebar-group-label" data-group="phase1">
       <span>Option 1 — Bali</span>
@@ -127,8 +127,8 @@
   <p class="lead" style="font-size:13px;">All-in build budget broken into 3 phases — Phase 1 lock-up (funded now from cleared $587k), Phase 2 finishes (deferred, self-funded from rental), Phase 3 scale loop. FX: PHP→AUD 37.5.</p>
 
   <div class="totals-row" style="margin-bottom:14px;">
-    <div class="total-card"><div class="label">Villa total (PHP)</div><div class="value" style="font-size:20px;">₱16,792,500</div><div class="sub">Grey + finishes + pool + solar + lot + contingency</div></div>
-    <div class="total-card" style="background:var(--teal);color:#fff;"><div class="label" style="color:#fff;opacity:0.85;">Villa total (AUD)</div><div class="value" style="font-size:20px;">$447,800</div><div class="sub" style="color:#fff;opacity:0.9;">FX 37.5</div></div>
+    <div class="total-card"><div class="label">Villa total (PHP)</div><div class="value" style="font-size:20px;" id="mactanTotalPhp">₱16,792,500</div><div class="sub">Grey + finishes + pool + solar + lot + contingency</div></div>
+    <div class="total-card" style="background:var(--teal);color:#fff;"><div class="label" style="color:#fff;opacity:0.85;">Villa total (AUD)</div><div class="value" style="font-size:20px;" id="mactanTotalAud">$447,800</div><div class="sub" style="color:#fff;opacity:0.9;">FX 37.5</div></div>
     <div class="total-card" style="background:${DATA.mactan.build.totalAud > 587000 ? 'var(--coral)' : 'var(--teal)'};color:#fff;"><div class="label" style="color:#fff;opacity:0.85;">vs cleared $587k (AUD)</div><div class="value" style="font-size:20px;" id="mactanGap"></div><div class="sub" style="color:#fff;opacity:0.9;" id="mactanGapNote"></div></div>
   </div>
 
@@ -173,7 +173,7 @@
   <div class="totals-row" style="margin-top:14px;">
     <div class="total-card" style="background:var(--teal);color:#fff;flex:1;min-width:200px;">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;opacity:0.85;margin-bottom:4px;">Your target (6BR, conservative floor)</div>
-      <div style="font-size:18px;font-weight:700;">${DATA.mactan.market.yourTarget.rateAud} / month</div>
+      <div class="num" style="font-size:16px;font-weight:700;color:var(--teal);" id="mactanYourTarget"></div>
       <div style="font-size:12px;opacity:0.9;margin-top:2px;">${DATA.mactan.market.yourTarget.ratePhp} · ${DATA.mactan.market.yourTarget.occupancy} occ · ${DATA.mactan.market.yourTarget.nightlyImplied} implied</div>
     </div>
   </div>
