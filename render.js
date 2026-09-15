@@ -666,15 +666,16 @@ function setupSidebars() {
   for (var i = 0; i < groupLabels.length; i++) {
     (function(label) {
       label.addEventListener("click", function(e) {
-        var dataAttr = label.getAttribute("data-group");
+        if (!label) return;
+        var dataAttr = label.getAttribute && label.getAttribute("data-group");
         if (!dataAttr) return;
-        var content = document.querySelector('.sidebar-group-content[data-group="' + dataAttr + '"]');
-        if (!content) return;
+        var content = document.querySelector && document.querySelector('.sidebar-group-content[data-group="' + dataAttr + '"]') || null;
         label.classList.toggle("collapsed");
-        content.classList.toggle("collapsed");
-        toggleChevron(label.querySelector(".chevron"), !content.classList.contains("collapsed"));
-        e.preventDefault();
-        e.stopPropagation();
+        if (content) content.classList.toggle("collapsed");
+        var chev = label.querySelector && label.querySelector(".chevron") || null;
+        if (chev) toggleChevron(chev, !content || !content.classList.contains("collapsed"));
+        if (e && e.preventDefault) e.preventDefault();
+        if (e && e.stopPropagation) e.stopPropagation();
       });
     })(groupLabels[i]);
   }
@@ -684,36 +685,37 @@ function setupSidebars() {
   for (var j = 0; j < subHeaders.length; j++) {
     (function(header) {
       header.addEventListener("click", function(e) {
-        var dataAttr = header.getAttribute("data-sub");
+        if (!header) return;
+        var dataAttr = header.getAttribute && header.getAttribute("data-sub");
         if (!dataAttr) return;
-        var content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
-        if (!content) return;
+        var content = document.querySelector && document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]') || null;
         header.classList.toggle("collapsed");
-        content.classList.toggle("collapsed");
-        toggleChevron(header.querySelector(".chevron"), !content.classList.contains("collapsed"));
-        e.preventDefault();
-        e.stopPropagation();
+        if (content) content.classList.toggle("collapsed");
+        var chev = header.querySelector && header.querySelector(".chevron") || null;
+        if (chev) toggleChevron(chev, !content || !content.classList.contains("collapsed"));
+        if (e && e.preventDefault) e.preventDefault();
+        if (e && e.stopPropagation) e.stopPropagation();
       });
     })(subHeaders[j]);
   }
 
   // ---- Event delegation: catches dynamically-injected sub-headers (Villa Shortlist, Investment Table) ----
   document.addEventListener("click", function(e) {
+    if (!e || !e.target) return;
     var closest = e.target.closest ? e.target.closest(".collapsible-sub-header") : null;
     if (!closest) return;
-    var dataAttr = closest.getAttribute("data-sub");
+    var dataAttr = closest.getAttribute && closest.getAttribute("data-sub");
     if (!dataAttr) return;
-    const content = document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]');
-    if (!content) return;
+    var content = document.querySelector && document.querySelector('.collapsible-sub-content[data-sub="' + dataAttr + '"]') || null;
     closest.classList.toggle("collapsed");
-    content.classList.toggle("collapsed");
-    var chev = closest.querySelector(".chevron");
-    if (chev) chev.classList.toggle("rotated", !content.classList.contains("collapsed"));
+    if (content) content.classList.toggle("collapsed");
+    var chev = closest.querySelector && closest.querySelector(".chevron") || null;
+    if (chev) chev.classList.toggle("rotated", !content || !content.classList.contains("collapsed"));
     // Let link clicks inside sub-headers navigate naturally
     var link = e.target.closest ? e.target.closest("a") : null;
-    if (!link) e.preventDefault();
-    e.stopPropagation();
-    });
+    if (!link && e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  });
 
   // ---- Mobile menu toggle ----
   var sidebar = document.getElementById && document.getElementById("sidebar") || null;
@@ -733,15 +735,14 @@ function setupSidebars() {
     });
   }
 
-  // ---- Bali Statistics section locking ----
-  // Clicking a baliStats nav-link shows ONLY that section; the rest are hidden.
-  // Works only on index.html (the dashboard) — standalone pages skip it.
-  var showAllBtn = document.getElementById("balistatsShowAll");
-  var baliStatsLinks = body.querySelectorAll(".sidebar-group-content[data-group=\"baliStats\"] .nav-link");
+  // ---- Bali Statistics section locking (index.html ONLY — standalone pages skip) ----
+  var showAllBtn = document.getElementById && document.getElementById("balistatsShowAll") || null;
+  if (!showAllBtn) return;  // standalone pages: no #balistatsShowAll → nothing to lock → bail
+  var baliStatsLinks = body.querySelectorAll && body.querySelectorAll(".sidebar-group-content[data-group=\"baliStats\"] .nav-link") || [];
   var baliStatsIds = [];
   for (var i = 0; i < baliStatsLinks.length; i++) {
-    var href = baliStatsLinks[i].getAttribute("href");
-    if (href && href.charAt(0) === "#") baliStatsIds.push(href.slice(1));
+    var href = baliStatsLinks[i].getAttribute && baliStatsLinks[i].getAttribute("href");
+    if (href && href.charAt && href.charAt(0) === "#") baliStatsIds.push(href.slice(1));
   }
   if (baliStatsIds.length > 1 && showAllBtn) {
     // "Show all" button — restore every section
@@ -757,18 +758,18 @@ function setupSidebars() {
     for (var m = 0; m < baliStatsLinks.length; m++) {
       (function(link, id) {
         link.addEventListener("click", function(e) {
-          e.preventDefault();
+          if (!link) return;
+          if (e && e.preventDefault) e.preventDefault();
           for (var n = 0; n < baliStatsIds.length; n++) {
             var sec = document.getElementById(baliStatsIds[n]);
-            if (sec) sec.classList.add("balistats-hidden");
+            if (sec && sec.classList) sec.classList.add("balistats-hidden");
           }
           var target = document.getElementById(id);
-          if (target) target.classList.remove("balistats-hidden");
-          showAllBtn.classList.add("visible");
-          for (var o = 0; o < baliStatsLinks.length; o++) baliStatsLinks[o].classList.remove("active");
-          link.classList.add("active");
-          // Scroll the shown section into view
-          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (target && target.classList) target.classList.remove("balistats-hidden");
+          if (showAllBtn && showAllBtn.classList) showAllBtn.classList.add("visible");
+          for (var o = 0; o < baliStatsLinks.length; o++) { var lb = baliStatsLinks[o]; if (lb && lb.classList) lb.classList.remove("active"); }
+          if (link.classList) link.classList.add("active");
+          if (target && target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       })(baliStatsLinks[m], baliStatsIds[m]);
     }
