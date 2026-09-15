@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="data.js"></script>
+  <script src="mactan_data.js"></script>
 </head>
 <body>
 <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">☰ Menu</button>
@@ -120,6 +121,22 @@
       <span class="link-icon">🏘️</span><span class="link-label"><strong>Warrens Villa Shortlist</strong></span>
     </a>
     <div class="sidebar-group-content" data-group="phase2">
+
+      <!-- Sub-group: Warrens Villa Shortlist (collapsible) -->
+      <div class="collapsible-sub" data-sub="villaSubgroup">
+        <div class="collapsible-sub-header" data-sub="villaSubgroup">
+          <span>Warrens Villa Shortlist</span>
+          <span class="chevron">▶</span>
+        </div>
+        <div class="collapsible-sub-content" data-sub="villaSubgroup">
+          <ul class="sidebar-submenu" id="villaSubmenu"></ul>
+        </div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--sidebar-border);margin:8px 0;">
+      <a class="nav-link" href="mactan.html">
+        <span class="link-icon">🇵🇭</span><span class="link-label"><strong>Option 2 — Mactan (Cebu)</strong></span>
+      </a>
 
       <!-- Sub-group: Investment Table (collapsible) -->
       <div class="collapsible-sub" data-sub="invTableSubgroup">
