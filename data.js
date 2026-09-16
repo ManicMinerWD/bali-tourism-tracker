@@ -657,31 +657,55 @@ const MACTAN_VILLA = {
   positioning: "6BR private villa, Punta Engaño tip, Shangri-La-grade bedrooms, private pool + beach/jetty — rented WHOLE at $100–140/room vs Shangri-La's $200–350/room. Resort quality, villa privacy, 40–70% less per room. Scarce: no confirmed 6BR at this spec at the tip.",
   riskNote: "Shangri-La-grade finishes may exceed the ₱6M finishes budget across 6 suites — verify fit-out cost before locking the 'quality' claim. Build size: 6 suite-grade BRs need ~300–360m²; tight inside 420m²/3-floor plan (may need 4–5 full suites + 1–2 smaller, or larger build).",
   sources: "Mactan Villa Budget, Land Options, Mactan Villa Market Rate, Competition (Mactan Villas) — tabs from Warren's 5-143-Sussex-CTG-workbook.xlsx. Web search 2026-08-28. FX: PHP→AUD 37.5, USD→AUD 1.52.",
-  // Gapura villas (Punta Engaño)
+  // Coral Point Residences — Punta Engaño, Lapu-Lapu City (Mactan) — src: hallersrealty.com (updated 2026-09-15)
+  // 14 active listings on HallersRealty (1 rental). Maintenance fee: ₱105/sqm/month.
+  // Location: tip of Mactan Island, beachfront resort community 200m from Shangri-La / Mövenpick / Dusit Thani.
+  // Owner amenities: clubhouse, dry dock + boat park (35' boats), private island + lagoon,
+  //   landscaped garden, beachfront park, saltwater + freshwater pools, lockers, cabanas, sundecks, boat ramp.
   villas: [
-    {
-      name: "Target Garden",
-      beds: 5,
-      priceUsd: 220000,
-      rateUsd: "$500–700/night",
-      occupancy: "65–70%",
-      monthlyAud: 16500,
-      source: "Lamudi — Gapura listing",
-      note: "5BR beachfront villa at Punta Engaño, Gapura development. Sea-facing, pool, near Shangri-La/Mövenpick. ~5BR, beachfront pool villa.",
-      verdict: "Active lead — comparable to Anza-class at 5BR; within 6BR build scope."
-    },
-    {
-      name: "La Lu'u",
-      beds: 6,
-      priceUsd: 320000,
-      rateUsd: "$700–950/night",
-      occupancy: "60–68%",
-      monthlyAud: 21000,
-      source: "Lamudi — Gapura listing",
-      note: "6BR beachfront villa at Punta Engaño, Gapura development. Sea-facing, pool, near Shangri-La/Mövenpick. ~6BR, beachfront pool villa.",
-      verdict: "Active lead — 6BR beachfront at Gapura, directly comparable to the Mactan build target; cross-check against the ₱6M finishes budget."
-    }
-  ]
+    { id:"CP-A",        name:"Coral Point Residences A (1BR)",     unit:"A",      beds:1, baths:1, area:135, pricePhp:15000000, source:"HallersRealty (SELL24091208)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-A-X",      name:"Coral Point Residences A-X (1BR)",   unit:"A-X",    beds:1, baths:1, area:160, pricePhp:20000000, source:"HallersRealty (SELL24091209)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-A-5X",     name:"Coral Point Residences A-5X (2BR)",  unit:"A-5X",   beds:2, baths:2, area:179, pricePhp:25000000, source:"HallersRealty (SELL24091206)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-6X-2BR",   name:"Coral Point Residences 6X (2BR)",    unit:"6X",     beds:2, baths:2, area:173, pricePhp:16500000, source:"HallersRealty (SELL25083101)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-B-X",      name:"Coral Point Residences B-X (2BR)",   unit:"B-X",    beds:2, baths:2, area:194, pricePhp:20000000, source:"HallersRealty (SELL24091207)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-Villa-X",  name:"Villa X Coral Point (3BR/4BA)",      unit:"Villa X",beds:3, baths:4, area:355, pricePhp:55000000, source:"HallersRealty (SELL26072301)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-Villa-3BR",name:"Villa in Coral Point (3BR/3BA)",     unit:"Villa",  beds:3, baths:3, area:285, pricePhp:45000000, source:"HallersRealty (SELL26071702)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-A-1X",     name:"Coral Point Residences A-1X (3BR)",  unit:"A-1X",   beds:3, baths:3, area:227, pricePhp:30000000, source:"HallersRealty (SELL24091204)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-1X-Apt",   name:"Coral Point Residences 1X (3BR/4BA, apartment)", unit:"1X", beds:3, baths:4, area:337, pricePhp:38000000, source:"HallersRealty (SELL25020401)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-3BR-old",  name:"3-Bedroom Coral Point (3BR/2BA)",    unit:"3BR",    beds:3, baths:2, area:174, pricePhp:15000000, source:"HallersRealty (SELL23090402)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-2XX",      name:"Coral Point Residences 2XX (4BR)",   unit:"2XX",    beds:4, baths:3, area:352, pricePhp:49000000, source:"HallersRealty (SELL26071001)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-6X-4BR",   name:"Coral Point Residences 6X (4BR)",    unit:"6X",     beds:4, baths:3, area:364, pricePhp:40000000, source:"HallersRealty (SELL24091201)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-4X",       name:"Coral Point Residences 4X (4BR)",    unit:"4X",     beds:4, baths:3, area:365, pricePhp:38000000, source:"HallersRealty (SELL24091202)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+    { id:"CP-3X",       name:"Coral Point Residences 3X (4BR)",    unit:"3X",     beds:4, baths:3, area:343, pricePhp:35000000, source:"HallersRealty (SELL24091203)", url:"https://www.hallersrealty.com/buildings/view/26352/coral-point-residences/cebu/punta-engano-lapu-lapu-city/coral-point-residences" },
+  ],
+  // Maintenance fee: ₱105/sqm/month — ranges from ~₱173k/yr (135sqm 1BR) to ~₱462k/yr (365sqm 4BR)
+  maintenanceFeePerSqmMonthly: 105,
+  coralPointNote: "HallersRealty lists 14 active Coral Point Residences for sale (updated 2026-09-15) + 1 rental unit. Beachfront resort community at tip of Mactan Island, 200m from Dusit Thani / Mövenpick / Shangri-La. Owner amenities: clubhouse, dry dock + boat park (35' boats), private island + lagoon, landscaped garden, beachfront park, saltwater + freshwater pools, lockers, cabanas, sundecks, boat ramp. Price range: ₱15M–55M PHP (~$400k–1.47M USD). 4BR units: ₱35M–55M PHP (~$933k–1.47M USD) for 343–365 sqm. Both hallersrealty.com and the older gapurabali.com listing (Joy De Guzman / Sotheby's, Dec 2016) reference the same Coral Point, Punta Engaño location — confirming a real beachfront resort community at the Mactan tip.",
+  coralPointVerdict: "Coral Point Residences is a real, active beachfront resort community at the Punta Engaño tip — same location as your Punta Engaño lot. 14 HallersRealty listings (updated 2026-09-15) confirm the market: ₱15M–55M PHP (~$400k–1.47M USD). 4BR units: ₱35M–55M PHP (~$933k–1.47M USD) for 343–365 sqm. Caveats vs building your own villa: (1) Maintenance fee ₱105/sqm/month (~A$11,760/yr for a 350sqm unit at 37.5 FX) — ongoing body corporate cost that a self-built villa on titled land avoids; (2) These are strata/condo units inside a managed community, not full land ownership — you own the unit, not the land; (3) Price range ₱35M–55M for 4BR is 2–3× your build budget (₱16.75M all-in for a 6BR from scratch on your own land). Buying into Coral Point gives you the developer's finishes + amenities + prime beachfront location, but you pay for it in higher upfront cost + ongoing maintenance. Building your own villa on your titled Punta Engaño lot gives full land ownership, no body corporate, and a 6BR for ~₱16.75M — less than half the cheapest 4BR at Coral Point.",
+  // ---- LAND OPTIONS (Land Options tab from CGT spreadsheet) ----
+  // Individual seaside/waterfront lots + developer land comparison — src: Land Options tab,
+  // 5-143-Sussex-CTG-workbook.xlsx, web search 2026-08-28. All prices PHP. AUD @ 37.5.
+  // 'Secondary lot from shore' = sea VIEW not beachfront. 'Beachfront' = direct shore.
+  landListings: [
+    { source:"Lamudi", location:"Punta Engaño tip (Wellfleet St)", area:241, frontage:"2.09m N edge", pricePhp:6300000, priceAud:168000, type:"Sea-view (secondary from shore)", note:"Your original lot; coral-rock foreshore, near Dusit. img_0216 survey. Listed twice: (1) sea-view secondary, (2) SAME lot re-listed 'RUSH SALE', owner bedridden, titled, 360° sea view.", url:"https://www.lamudi.com.ph/property/41032-73-5b46c9a11c35-e4db-199e801-9c01-7491" },
+    { source:"FB / Discovery Bay", location:"Punta Engaño Discovery Bay", area:376, frontage:"—", pricePhp:12220000, priceAud:325867, type:"Beach lot (unfinished structure)", note:"₱32,500/sqm, existing unfinished building. Beach lots at Discovery Bay.", url:"https://www.facebook.com/groups/1701830689959487/posts/3715657085243494/" },
+    { source:"Trovit", location:"Punta Engaño", area:1741, frontage:"38.59m", pricePhp:4100000, priceAud:109333, type:"Beach house (not empty lot)", note:"Beach house for sale, not bare land. 1,741m² — large but with existing structure. from ₱4.1M listing." }
+  ],
+  landOptionsNote: "BEACHFRONT vs SEA-VIEW: True beachfront lots (direct shore access) confirmed at 2,000m² Magellan Bay (₱50M / ~$1.33M AUD) and 16,885m² mega lot (₱1.35B). These exceed the $587k AUD cleared budget. Your 241m² Wellfleet St lot is SEA-VIEW (secondary from shore, coral-rock foreshore) — NOT beachfront. You build via jetty access from the coral-rock edge. For true beachfront at villa scale, 2,000m² @ ₱50M is the realistic option but requires Phase 2 / job funding. A 360m² beach-access lot at ₱10M (your earlier email estimate) sits between these — verify which lot you actually have before finalising the budget. BUILT EXAMPLE: a 3-storey 6BR villa on ~204m² lot near the rotonda at the tip-end of Punta Engaño (same strip as your lot, after Dusit Thani) confirms a 3-storey 6BR fits a ~200m² tip lot — your 241m² plan is feasible and demand-validated on-site.",
+  developerCompare: [
+    { developer:"Inland Lapu-Lapu", location:"Lapu-Lapu (inland)", phpPerSqmLow:11700, phpPerSqmHigh:11700, beachside:"No", storeyCap:"Verify", notes:"Cheapest overall; away from Punta Engaño enclave" },
+    { developer:"Mactan Subd resale", location:"Mactan", phpPerSqmLow:12000, phpPerSqmHigh:12000, beachside:"No", storeyCap:"Verify", notes:"Oldest subdivision; cheapest" },
+    { developer:"Blue Coast Residences", location:"Punta Engaño", phpPerSqmLow:16268, phpPerSqmHigh:19500, beachside:"Near", storeyCap:"Verify", notes:"YOUR PLAN area; 252m²@₱4.1M=₱16.3k/sqm" },
+    { developer:"White Sands Villas", location:"Maribago", phpPerSqmLow:12950, phpPerSqmHigh:24200, beachside:"Near", storeyCap:"Verify", notes:"Rush @₱12.95k nett; 309m²@₱18.6k" },
+    { developer:"Pacific Grand Villas", location:"Maribago/Marigondon", phpPerSqmLow:13500, phpPerSqmHigh:21374, beachside:"Near", storeyCap:"Verify", notes:"236m²@₱13.5k=₱3.19M" },
+    { developer:"Cebu Landmasters", location:"Interior Mactan", phpPerSqmLow:20000, phpPerSqmHigh:20000, beachside:"No", storeyCap:"Verify", notes:"Biggest Cebu developer; H2-2026 11 projects" },
+    { developer:"Vistamar", location:"Mactan/Punta Engaño", phpPerSqmLow:12000, phpPerSqmHigh:28000, beachside:"Mix", storeyCap:"Verify", notes:"338m²@₱19k; beach lots ₱13k" },
+    { developer:"Punta Engaño resale", location:"Punta Engaño", phpPerSqmLow:26000, phpPerSqmHigh:28000, beachside:"Near", storeyCap:"Verify", notes:"Interior resale premium tier" },
+    { developer:"Amara Residences", location:"Punta Engaño beachside", phpPerSqmLow:25000, phpPerSqmHigh:45000, beachside:"Yes", storeyCap:"Verify", notes:"Beachside dev; cheaper than Discovery Bay" },
+    { developer:"Discovery Bay", location:"Punta Engaño beachside", phpPerSqmLow:41500, phpPerSqmHigh:43000, beachside:"Yes", storeyCap:"Verify", notes:"Premium beachside; ₱10.6M/250m²" }
+  ],
+  landOptionsSources: "Land Options tab from Warren's 5-143-Sussex-CTG-workbook.xlsx. Web search 2026-08-28. FX: PHP→AUD 37.5. 'Secondary from shore' = sea VIEW not beachfront. 'Beachfront' = direct shore access. Verify setback/jetty permit + clean quiet possession per lot.",
+
 };
 
 

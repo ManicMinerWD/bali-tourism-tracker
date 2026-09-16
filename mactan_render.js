@@ -112,21 +112,61 @@ function renderMactan() {
   `).join('');
   $("#mactanFullCompTable tbody").innerHTML = fullCompRows;
 
-  // ---- Gapura villas (Punta Engaño) ----
+  // ---- Coral Point Residences villas (HallersRealty) ----
   if (d.villas && d.villas.length > 0) {
-    const villaRows = d.villas.map(v => `
+    const mfee = d.maintenanceFeePerSqmMonthly || 105;
+    const villaRows = d.villas.map(v => {
+      const priceAud = v.pricePhp != null ? Math.round(v.pricePhp / 37.5) : null;
+      const priceAudStr = priceAud != null ? '$' + priceAud.toLocaleString() : '—';
+      const pricePhpStr = v.pricePhp != null ? '₱' + v.pricePhp.toLocaleString() : '—';
+      const mfeePerYear = v.area != null ? mfee * v.area * 12 : null;
+      const mfeeStr = mfeePerYear != null ? '₱' + mfeePerYear.toLocaleString() + '/yr' : '—';
+      const typeLabel = v.unit && v.unit.toLowerCase().includes('villa') ? 'Villa' :
+                        v.unit && (v.unit.toLowerCase().includes('x') || v.unit.toLowerCase().includes('1x') || v.unit.toLowerCase().includes('2x') || v.unit.toLowerCase().includes('3x') || v.unit.toLowerCase().includes('4x') || v.unit.toLowerCase().includes('5x') || v.unit.toLowerCase().includes('6x')) ? 'Strata' :
+                        'Unit';
+      return `
+        <tr>
+          <td><strong>${esc(v.name)}</strong><br><span class="muted" style="font-size:10px;">${esc(v.unit)} · ${typeLabel}</span></td>
+          <td class="num">${v.beds}BR / ${v.baths}BA</td>
+          <td class="num">${v.area} m²</td>
+          <td class="num">${pricePhpStr}</td>
+          <td class="num">${priceAudStr}</td>
+          <td class="num">₱${mfeePerYear != null ? Math.round(mfeePerYear/1000)*1000 : '—'}/yr</td>
+          <td class="muted" style="font-size:10px;">${esc(v.source)}</td>
+        </tr>`;
+    }).join('');
+    $("#mactanCoralPointTable tbody").innerHTML = villaRows;
+    // Summary rows: price range + maintenance fee
+    const prices = d.villas.map(v => v.pricePhp).filter(p => p != null);
+    const minP = prices.length > 0 ? Math.min(...prices) : null;
+    const maxP = prices.length > 0 ? Math.max(...prices) : null;
+    const minAud = minP != null ? Math.round(minP / 37.5 / 1e6 * 1000) : null;
+    const maxAud = maxP != null ? Math.round(maxP / 37.5 / 1e6 * 1000) : null;
+    $("#mactanCoralPointRange").textContent =
+      minP != null && maxP != null
+        ? `Price range: ₱${minP.toLocaleString()} – ₱${maxP.toLocaleString()} ($${minAud}k – $${maxAud}k USD)`
+        : '—';
+    $("#mactanCoralPointMfee").textContent =
+      `Maintenance fee: ₱${mfee}/sqm/month (≈ ₱${(mfee*135*12).toLocaleString()}–₱${(mfee*365*12).toLocaleString()}/yr for 135–365 m² units)`;
+    $("#mactanCoralPointVerdict").textContent = d.coralPointVerdict;
+  }
+
+  // ---- Individual land listings (Land Options tab) ----
+  if (d.landListings && d.landListings.length > 0) {
+    const landRows = d.landListings.map(l => `
       <tr>
-        <td><strong>${esc(v.name)}</strong></td>
-        <td class="num">${v.beds}BR</td>
-        <td class="num">$${v.priceUsd.toLocaleString()}</td>
-        <td class="num">${esc(v.rateUsd)}</td>
-        <td class="num">${esc(v.occupancy)}</td>
-        <td class="num">$${v.monthlyAud.toLocaleString()}</td>
-        <td class="muted" style="font-size:11px;">${esc(v.source)}</td>
+        <td><strong>${esc(l.source)}</strong></td>
+        <td>${esc(l.location)}</td>
+        <td class="num">${l.area} m²</td>
+        <td class="muted" style="font-size:11px;">${esc(l.frontage)}</td>
+        <td class="num">₱${l.pricePhp.toLocaleString()}</td>
+        <td class="num">$${l.priceAud.toLocaleString()}</td>
+        <td class="muted" style="font-size:11px;">${esc(l.type)}</td>
+        <td class="muted" style="font-size:10px;">${esc(l.note)}</td>
       </tr>`).join('');
-    $("#mactanGapuraVillaTable tbody").innerHTML = villaRows;
-    $("#mactanGapuraNote").innerHTML = d.villas.map(v =>
-      `<div class="note" style="font-size:12px;margin-top:6px;"><strong>${esc(v.name)}:</strong> ${esc(v.verdict)}</div>`).join('');
+    $("#mactanLandListingsTable tbody").innerHTML = landRows;
+    $("#mactanLandListingsNote").textContent = d.landOptionsNote;
+    $("#mactanLandListingsSources").textContent = d.landOptionsSources;
   }
 
   // ---- Notes ----
@@ -134,4 +174,39 @@ function renderMactan() {
   $("#mactanPositioning").textContent = d.positioning;
   $("#mactanRiskNote").textContent = d.riskNote;
   $("#mactanSources").textContent = d.sources;
+
+  // Render land developer compare (separate section below)
+  renderLandDeveloperCompare();
+}
+
+// ---- Land Developer Compare section ----
+function renderLandDeveloperCompare() {
+  const d = DATA.mactan;
+  if (!d || !d.developerCompare || d.developerCompare.length === 0) return;
+
+  const rows = d.developerCompare.map(dev => {
+    const mid = dev.phpPerSqmLow != null && dev.phpPerSqmHigh != null
+      ? Math.round((dev.phpPerSqmLow + dev.phpPerSqmHigh) / 2) : null;
+    const midAud = mid != null ? '$' + Math.round(mid / 37.5).toLocaleString() : '—';
+    const midPhp = mid != null ? '₱' + mid.toLocaleString() : '—';
+    const lowPhp = dev.phpPerSqmLow != null ? '₱' + dev.phpPerSqmLow.toLocaleString() : '—';
+    const hiPhp = dev.phpPerSqmHigh != null ? '₱' + dev.phpPerSqmHigh.toLocaleString() : '—';
+    const beachLabel = dev.beachside === 'Yes' ? '✅ Beachside' :
+                      dev.beachside === 'Near' ? '📍 Near beach' :
+                      dev.beachside === 'Mix' ? '🏖️ Mix' : '—';
+    return `
+      <tr>
+        <td><strong>${esc(dev.developer)}</strong></td>
+        <td>${esc(dev.location)}</td>
+        <td class="num">${lowPhp}</td>
+        <td class="num">${hiPhp}</td>
+        <td class="num">${midPhp}</td>
+        <td class="num">${midAud}</td>
+        <td style="font-size:12px;color:${dev.beachside === 'Yes' ? 'var(--teal)' : 'var(--muted)'}">${beachLabel}</td>
+        <td class="muted" style="font-size:10px;">${esc(dev.notes)}</td>
+      </tr>`;
+  }).join('');
+  $("#mactanLandDeveloperTable tbody").innerHTML = rows;
+  $("#mactanLandDeveloperNote").textContent = d.landOptionsNote;
+  $("#mactanLandDeveloperSources").textContent = d.landOptionsSources;
 }
